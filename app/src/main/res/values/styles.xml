@@ -8,4 +8,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="style_edt_element_matrix">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">fill_horizontal</item>
+        <item name="android:minWidth">25dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/background_edit_text</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="style_tv_element_matrix_result">
+           <item name="android:layout_width">wrap_content</item>
+           <item name="android:layout_height">wrap_content</item>
+           <item name="android:maxLines">1</item>
+           <item name="android:textAlignment">center</item>
+           <item name="android:layout_gravity">fill_horizontal</item>
+           <item name="android:minWidth">25dp</item>
+           <item name="android:layout_margin">4dp</item>
+           <item name="android:background">@drawable/background_edit_text</item>
+           <item name="android:padding">2dp</item>
+    </style>
+
 </resources>

@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="red">#d42137</color>
+    <color name="white">#fff</color>
+    <color name="textColor">#000</color>
+    <color name="activityBackground">#aeaeae</color>
 </resources>

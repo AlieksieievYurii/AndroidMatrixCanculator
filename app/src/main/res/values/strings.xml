@@ -10,4 +10,25 @@
     <string name="transpose_of_matrix">Transpose of Matrix</string>
     <string name="determinant_of_matrix">Determinant of Matrix</string>
     <string name="inverse_of_matrix">Inverse of Matrix</string>
+    <string name="count_rows">Count rows of Matrix:</string>
+    <string name="count_columns">Count columns of Matrix</string>
+    <string name="enter_value_of_matrix">Enter value of matrices:</string>
+    <string name="matrix_a">Matrix A:</string>
+    <string name="addition_symbol">+</string>
+    <string name="matrix_b">Matrix B:</string>
+    <string name="equals_symbol">=</string>
+    <string name="text_warming_fill_up_matrix">Fill up Matrices!</string>
+    <string name="result">Result</string>
+
+    <string-array name="numbers_for_spinner">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

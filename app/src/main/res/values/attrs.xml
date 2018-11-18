@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="styleable_edt_matrix">
+        <attr name="android:layout_width"/>
+        <attr name="android:layout_height"/>
+        <attr name="android:maxLines"/>
+        <attr name="android:singleLine"/>
+        <attr name="android:textAlignment"/>
+        <attr name="android:layout_gravity"/>
+        <attr name="android:minWidth"/>
+        <attr name="android:layout_margin"/>
+        <attr name="android:background"/>
+        <attr name="android:padding"/>
+    </declare-styleable>
+</resources>
