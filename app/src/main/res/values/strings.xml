@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Matrix</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="operations_on_matrix">Operations on Matrix</string>
+    <string name="addition_of_matrix">Addition of Matrix</string>
+    <string name="subtraction_of_matrix">Subtraction of Matrix</string>
+    <string name="multiplication_of_matrix">Multiplication of Matrix</string>
+    <string name="transpose_of_matrix">Transpose of Matrix</string>
+    <string name="determinant_of_matrix">Determinant of Matrix</string>
+    <string name="inverse_of_matrix">Inverse of Matrix</string>
+</resources>

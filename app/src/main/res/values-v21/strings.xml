@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addition_of_matrix">Addition of Matrix</string>
+    <string name="subtraction_of_matrix">Subtraction of Matrix</string>
+    <string name="multiplication_of_matrix">Multiplication of Matrix</string>
+    <string name="transpose_of_matrix">Transpose of Matrix</string>
+    <string name="determinant_of_matrix">Determinant of Matrix</string>
+</resources>

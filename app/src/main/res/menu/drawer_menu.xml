@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_addition_matrix"
+                android:icon="@drawable/ic_test"
+                android:title="@string/addition_of_matrix"/>
+        <item
+                android:id="@+id/nav_subtraction_matrix"
+                android:icon="@drawable/ic_test"
+                android:title="@string/subtraction_of_matrix" />
+        <item
+                android:id="@+id/nav_multiplication_matrix"
+                android:icon="@drawable/ic_test"
+                android:title="@string/multiplication_of_matrix"/>
+
+        <item android:id="@+id/nav_transpose_matrix"
+              android:icon="@drawable/ic_test"
+              android:title="@string/transpose_of_matrix"/>
+
+        <item android:id="@+id/nav_determinant_matrix"
+              android:icon="@drawable/ic_test"
+              android:title="@string/determinant_of_matrix"/>
+
+        <item android:id="@+id/nav_inverse_matrix"
+              android:icon="@drawable/ic_test"
+              android:title="@string/inverse_of_matrix"/>
+    </group>
+</menu>
