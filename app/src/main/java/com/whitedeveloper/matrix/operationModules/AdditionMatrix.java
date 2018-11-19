@@ -3,13 +3,12 @@ package com.whitedeveloper.matrix.operationModules;
 public class AdditionMatrix {
 
     private double[][] matrixA;
+    private double[][] matrixB;
 
     public AdditionMatrix(double[][] matrixA, double[][] matrixB) {
         this.matrixA = matrixA;
         this.matrixB = matrixB;
     }
-
-    private double[][] matrixB;
 
     public double[][] additionMatrix() {
         int rowMatrix = matrixA.length;

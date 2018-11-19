@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.whitedeveloper.matrix.fragments.FragmentAdditionMatrix;
+import com.whitedeveloper.matrix.fragments.FragmentMultiplicationMatrix;
 import com.whitedeveloper.matrix.fragments.FragmentSubtractionMatrix;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadMultiplicationFragment() {
         //TODO Implementation Multiplication of matrix!
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new FragmentMultiplicationMatrix())
+                .commit();
+        setTitle(getResources().getString(R.string.multiplication_of_matrix));
     }
 
     private void loadTransposeFragment() {
