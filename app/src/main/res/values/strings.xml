@@ -19,6 +19,7 @@
     <string name="equals_symbol">=</string>
     <string name="text_warming_fill_up_matrix">Fill up Matrices!</string>
     <string name="result">Result</string>
+    <string name="subtraction_symbol">-</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

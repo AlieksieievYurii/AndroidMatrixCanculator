@@ -13,11 +13,10 @@ import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
 
+import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
+
 public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
-
-    private static final String TAG_ID_MATRIX_A = "matrix_a";
-    private static final String TAG_ID_MATRIX_B = "matrix_b";
-
     private View view;
 
     private Spinner spCountRowsMatrices;
@@ -30,7 +29,6 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
     private int rowsMatrices;
     private int columnsMatrices;
 
-    private AdditionMatrix additionMatrix;
     private ManagerMatrix managerMatrix;
     private TextView tvResult;
 
@@ -63,18 +61,22 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
         btnRun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                calculate();
 
-                if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices) &&
-                        managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices)) {
-                    additionMatrix = new AdditionMatrix(managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices),
-                            managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices));
-
-                    showResult(additionMatrix.additionMatrix());
-
-                } else
-                    Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void calculate() {
+        if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices) &&
+                managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices)) {
+            AdditionMatrix additionMatrix = new AdditionMatrix(managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices),
+                    managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices));
+
+            showResult(additionMatrix.additionMatrix());
+
+        } else
+            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {
@@ -95,8 +97,8 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
         rowsMatrices = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
         columnsMatrices = Integer.parseInt(spCountColumnsMatrices.getSelectedItem().toString());
 
-        managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices,this);
-        managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices,this);
+        managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices, this);
+        managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices, this);
 
 
     }
@@ -113,7 +115,7 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if(tvResult.getVisibility() == View.VISIBLE)
+        if (tvResult.getVisibility() == View.VISIBLE)
             removeResult();
     }
 

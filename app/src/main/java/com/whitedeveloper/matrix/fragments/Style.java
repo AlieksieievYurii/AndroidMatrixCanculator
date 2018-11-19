@@ -1,9 +1,9 @@
 package com.whitedeveloper.matrix.fragments;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,45 +14,48 @@ import com.whitedeveloper.matrix.R;
 
 public class Style {
     public static void setStyleEditViewForGridLayout(Context context, EditText editText) {
-        TypedArray typedArray = context.obtainStyledAttributes(R.style.style_edt_element_matrix, R.styleable.styleable_edt_matrix);
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(new ViewGroup.LayoutParams(
-                typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_width, 0),
-                typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_height, 0)));
-        layoutParams.setGravity(Gravity.FILL_HORIZONTAL);
+            GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(new ViewGroup.LayoutParams(
+                   ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layoutParams.setGravity(Gravity.FILL_HORIZONTAL);
 
-        int margin = typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_margin, 0);
-        layoutParams.setMargins(margin, margin, margin, margin);
+            int margin = dpToPx(4,context);
+            layoutParams.setMargins(margin, margin, margin, margin);
 
-        editText.setMaxLines(typedArray.getInt(R.styleable.styleable_edt_matrix_android_maxLines, 1));
-        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);//TODO Modification
-        editText.setSingleLine(typedArray.getBoolean(R.styleable.styleable_edt_matrix_android_singleLine, true));
-        editText.setMinWidth(typedArray.getDimensionPixelOffset(R.styleable.styleable_edt_matrix_android_minWidth, 0));
-        editText.setBackground(typedArray.getDrawable(R.styleable.styleable_edt_matrix_android_background));
-        int padding = typedArray.getDimensionPixelOffset(R.styleable.styleable_edt_matrix_android_padding, 0);
-        editText.setPadding(padding, padding, padding, padding);
-        editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        typedArray.recycle();
-        editText.setLayoutParams(layoutParams);
-    }
+            editText.setMaxLines(1);
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            editText.setSingleLine( true);
+            editText.setMinWidth(dpToPx(25,context));
+            editText.setBackground(ContextCompat.getDrawable(context,R.drawable.background_edit_text));
+            int padding = dpToPx(2,context);
+            editText.setPadding(padding, padding, padding, padding);
+            editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            editText.setLayoutParams(layoutParams);
+        }
+
+
 
     public static void setStyleTextViewForGridLayout(Context context, TextView textView) {
-        TypedArray typedArray = context.obtainStyledAttributes(R.style.style_edt_element_matrix, R.styleable.styleable_edt_matrix);
         GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(new ViewGroup.LayoutParams(
-                typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_width, 0),
-                typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_height, 0)));
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
         layoutParams.setGravity(Gravity.FILL_HORIZONTAL);
+        int margin = dpToPx(4,context);
+        layoutParams.setMargins(margin,margin,margin,margin);
 
-        int margin = typedArray.getLayoutDimension(R.styleable.styleable_edt_matrix_android_layout_margin, 0);
-        layoutParams.setMargins(margin, margin, margin, margin);
+        textView.setMaxLines(1);
+        textView.setMinWidth(dpToPx(25,context));
+        textView.setBackground(ContextCompat.getDrawable(context,R.drawable.background_edit_text));
+        textView.setTextColor(ContextCompat.getColor(context,R.color.textColor));
+        textView.setTextSize(dpToPx(7,context));
 
-        textView.setMaxLines(typedArray.getInt(R.styleable.styleable_edt_matrix_android_maxLines, 1));
-        textView.setMinWidth(typedArray.getDimensionPixelOffset(R.styleable.styleable_edt_matrix_android_minWidth, 0));
-        textView.setBackground(typedArray.getDrawable(R.styleable.styleable_edt_matrix_android_background));
-        textView.setTextColor(context.getResources().getColor(R.color.textColor));
-        int padding = typedArray.getDimensionPixelOffset(R.styleable.styleable_edt_matrix_android_padding, 0);
+        int padding = dpToPx(2,context);
         textView.setPadding(padding, padding, padding, padding);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        typedArray.recycle();
         textView.setLayoutParams(layoutParams);
+    }
+
+    private static int dpToPx(float dp, Context context) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 }
