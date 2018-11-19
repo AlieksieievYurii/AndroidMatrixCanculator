@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.whitedeveloper.matrix.fragments.FragmentAdditionMatrix;
 import com.whitedeveloper.matrix.fragments.FragmentMultiplicationMatrix;
 import com.whitedeveloper.matrix.fragments.FragmentSubtractionMatrix;
+import com.whitedeveloper.matrix.fragments.FragmentTransposeMatrix;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -72,16 +73,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void loadMultiplicationFragment() {
-        //TODO Implementation Multiplication of matrix!
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new FragmentMultiplicationMatrix())
+                .replace(R.id.fragment_container, new FragmentMultiplicationMatrix())
                 .commit();
         setTitle(getResources().getString(R.string.multiplication_of_matrix));
     }
 
     private void loadTransposeFragment() {
-        //TODO Implementation Transpose of matrix!
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,new FragmentTransposeMatrix())
+                .commit();
+        setTitle(getResources().getString(R.string.transpose_of_matrix));
     }
 
     private void loadDeterminantFragment() {

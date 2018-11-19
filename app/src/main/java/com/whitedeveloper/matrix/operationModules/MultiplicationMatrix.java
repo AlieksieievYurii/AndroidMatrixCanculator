@@ -20,7 +20,7 @@ public class MultiplicationMatrix {
         return result;
     }
 
-    public static double[] getColumnFromMatrix(double[][] matrix, int numColumn) {
+    static double[] getColumnFromMatrix(double[][] matrix, int numColumn) {
         double[] column = new double[matrix.length];
 
         for (int i = 0; i < column.length; i++)
@@ -30,7 +30,7 @@ public class MultiplicationMatrix {
     }
 
 
-    public static double calculateMultiplicationColumnOnRow(double[] column, double[] row) {
+    static double calculateMultiplicationColumnOnRow(double[] column, double[] row) {
         double sum = 0;
 
         for (int i = 0; i < column.length; i++)
@@ -38,7 +38,7 @@ public class MultiplicationMatrix {
         return sum;
     }
 
-    public boolean isAvailableForAddition() {
+    boolean isAvailableForAddition() {
         int columnsMatrixA = matrixA[0].length;
 
         int rowMatrixB = matrixB.length;
