@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ActivityAbout"
+        android:orientation="vertical">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo"
+            android:background="@color/red"
+            android:padding="20dp"
+            android:contentDescription="@null"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/the_app_matrix"
+            android:layout_marginTop="90dp"
+            android:textSize="20sp"
+            android:textColor="@color/textColor"
+            android:textAlignment="center"/>
+    <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/special_for_dems"
+                android:layout_marginTop="20dp"
+                android:textSize="15sp"
+                android:textColor="@color/textColor"
+                android:textAlignment="center"/>
+    <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_author"
+                    android:layout_marginTop="190dp"
+                    android:textSize="12sp"
+                    android:textAlignment="center"/>
+
+</LinearLayout>

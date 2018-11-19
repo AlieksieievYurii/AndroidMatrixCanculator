@@ -6,5 +6,5 @@
     <color name="red">#d42137</color>
     <color name="white">#fff</color>
     <color name="textColor">#000</color>
-    <color name="activityBackground">#aeaeae</color>
+    <color name="activityBackground">#cccccc</color>
 </resources>

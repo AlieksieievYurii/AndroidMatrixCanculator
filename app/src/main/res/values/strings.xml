@@ -23,10 +23,17 @@
     <string name="count_columns_matrix_a">Count columns of Matrix A:</string>
     <string name="count_columns_matrix_b">Count columns of Matrix B:</string>
     <string name="count_rows_matrix_a">Count rows of Matrix A:</string>
-    <string name="multiplication_symbol">*</string>
+    <string name="multiplication_symbol">X</string>
     <string name="size_matrix">Size matrix:</string>
     <string name="text_determinant">Det(A)=</string>
     <string name="enter_value_of_matrix">Enter value of matrix:</string>
+    <string name="about">About</string>
+    <string name="question_exit">Do you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
+    <string name="special_for_dems">Special for Krzystof Dems</string>
+    <string name="the_app_matrix">The program Matrix</string>
 
 
     <string-array name="numbers_for_spinner">

@@ -1,5 +1,6 @@
 package com.whitedeveloper.matrix;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.whitedeveloper.matrix.fragments.*;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AlertDialogExit.CallBack {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
@@ -45,14 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         loadAdditionFragment();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START))
-            drawerLayout.closeDrawer(GravityCompat.START);
-        else
-            super.onBackPressed();
-    }
-
     private void loadAdditionFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -80,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadTransposeFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new FragmentTransposeMatrix())
+                .replace(R.id.fragment_container, new FragmentTransposeMatrix())
                 .commit();
         setTitle(getResources().getString(R.string.transpose_of_matrix));
     }
@@ -88,13 +81,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadDeterminantFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new FragmentDeterminantMatrix())
+                .replace(R.id.fragment_container, new FragmentDeterminantMatrix())
                 .commit();
         setTitle(getResources().getString(R.string.determinant_of_matrix));
     }
 
     private void loadInverseFragment() {
         //TODO Implementation Inverse of matrix!
+    }
+
+    private void startActivityAbout() {
+        startActivity(new Intent(this,ActivityAbout.class));
     }
 
     @Override
@@ -118,10 +115,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_inverse_matrix:
                 loadInverseFragment();
                 break;
+            case R.id.nav_about:
+                startActivityAbout();
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+    @Override
+    public void doFinishActivity() {
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            new AlertDialogExit(this,this).showAlert();
+    }
+
 }

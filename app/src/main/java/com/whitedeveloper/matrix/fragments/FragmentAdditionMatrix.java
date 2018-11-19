@@ -30,7 +30,7 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
     private int columnsMatrices;
 
     private ManagerMatrix managerMatrix;
-    private TextView tvResult;
+    private RelativeLayout tvResult;
 
 
     @Nullable
@@ -49,7 +49,7 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
         glMatrixA = view.findViewById(R.id.gl_matrix_a);
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
-        tvResult = view.findViewById(R.id.tv_result);
+        tvResult = view.findViewById(R.id.rl_result);
 
         spCountColumnsMatrices.setOnItemSelectedListener(this);
         spCountRowsMatrices.setOnItemSelectedListener(this);
@@ -86,7 +86,7 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
 
     private void removeResult() {
         glMatrixResult.removeAllViews();
-        tvResult.setVisibility(View.GONE);
+        tvResult.setVisibility(View.INVISIBLE);
     }
 
 

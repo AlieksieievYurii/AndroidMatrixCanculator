@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/activityBackground"
@@ -53,7 +54,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/count_columns"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/textColor"/>
+                        android:textColor="@color/textColor"
+                        android:elevation="8dp"
+                        tools:targetApi="lollipop"/>
 
                 <Spinner
                         android:id="@+id/sp_count_columns_matrix"
@@ -83,7 +86,6 @@
                     android:layout_marginTop="20dp">
 
                 <RelativeLayout
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -92,7 +94,11 @@
                             android:id="@+id/ln_matrix_a"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="@drawable/bc_matrix"
+                            android:padding="5dp"
+                            android:elevation="8dp"
+                            tools:targetApi="lollipop">
 
                         <TextView
                                 android:layout_width="match_parent"
@@ -105,7 +111,6 @@
                                 android:id="@+id/gl_matrix_a"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-
                         </GridLayout>
 
                     </LinearLayout>
@@ -126,8 +131,12 @@
                             android:id="@+id/ln_matrix_b"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/tv_add_symbol"
                             android:orientation="vertical"
-                            android:layout_toEndOf="@id/tv_add_symbol">
+                            android:background="@drawable/bc_matrix"
+                            android:padding="5dp"
+                            android:elevation="8dp"
+                            tools:targetApi="lollipop">
 
                         <TextView
                                 android:layout_width="match_parent"
@@ -156,32 +165,38 @@
                     android:layout_below="@id/hsv_matrix_a_b"
                     android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="70dp">
-
-                <TextView
-                        android:id="@+id/tv_result"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/result"
-                        android:textSize="30sp"
-                        android:textColor="@color/textColor"
-                        android:visibility="gone"
-                        android:layout_centerHorizontal="true"/>
-
-                <GridLayout
-                        android:id="@+id/gl_matrix_result"
+                <RelativeLayout
+                        android:id="@+id/rl_result"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_result"
-                        android:layout_centerHorizontal="true">
-                </GridLayout>
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="70dp"
+                        android:background="@drawable/bc_matrix"
+                        android:elevation="5dp"
+                        tools:targetApi="lollipop"
+                        android:visibility="invisible"
+                        android:padding="5dp">
+
+                    <TextView
+                            android:id="@+id/tv_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/result"
+                            android:textSize="30sp"
+                            android:textColor="@color/textColor"
+                            android:layout_marginBottom="5dp"
+                            android:layout_centerHorizontal="true"/>
+
+                    <GridLayout
+                            android:id="@+id/gl_matrix_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_result"
+                            android:layout_centerHorizontal="true">
+                    </GridLayout>
 
 
-            </RelativeLayout>
+                </RelativeLayout>
             </HorizontalScrollView>
         </RelativeLayout>
 

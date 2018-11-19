@@ -28,4 +28,11 @@
               android:icon="@drawable/ic_inversion_matrix"
               android:title="@string/inverse_of_matrix"/>
     </group>
+
+   <group android:id="@+id/test" android:checkableBehavior="none">
+       <item android:id="@+id/nav_about"
+                android:icon="@drawable/ic_test"
+                android:title="@string/about"/>
+   </group>
+
 </menu>

@@ -130,7 +130,6 @@
                                 android:id="@+id/gl_matrix_a"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-
                         </GridLayout>
 
                     </LinearLayout>
@@ -141,10 +140,10 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/textColor"
                             android:text="@string/multiplication_symbol"
-                            android:textSize="60sp"
+                            android:textSize="40sp"
                             android:layout_toEndOf="@id/ln_matrix_a"
                             android:layout_centerVertical="true"
-                            android:layout_margin="10dp"
+                            android:padding="10dp"
                             android:textAlignment="center"/>
 
                     <LinearLayout
@@ -152,7 +151,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_toEndOf="@id/tv_add_symbol">
+                            android:layout_toEndOf="@id/tv_add_symbol"
+                            android:layout_centerVertical="true">
 
                         <TextView
                                 android:layout_width="match_parent"
