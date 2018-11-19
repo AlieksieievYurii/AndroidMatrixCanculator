@@ -9,23 +9,23 @@
                 android:title="@string/addition_of_matrix"/>
         <item
                 android:id="@+id/nav_subtraction_matrix"
-                android:icon="@drawable/ic_test"
+                android:icon="@drawable/ic_subtraction_matrix"
                 android:title="@string/subtraction_of_matrix" />
         <item
                 android:id="@+id/nav_multiplication_matrix"
-                android:icon="@drawable/ic_test"
+                android:icon="@drawable/ic_multiplication_matrix"
                 android:title="@string/multiplication_of_matrix"/>
 
         <item android:id="@+id/nav_transpose_matrix"
-              android:icon="@drawable/ic_test"
+              android:icon="@drawable/ic_transpose_matrix"
               android:title="@string/transpose_of_matrix"/>
 
         <item android:id="@+id/nav_determinant_matrix"
-              android:icon="@drawable/ic_test"
+              android:icon="@drawable/ic_determinant_matrix"
               android:title="@string/determinant_of_matrix"/>
 
         <item android:id="@+id/nav_inverse_matrix"
-              android:icon="@drawable/ic_test"
+              android:icon="@drawable/ic_inversion_matrix"
               android:title="@string/inverse_of_matrix"/>
     </group>
 </menu>

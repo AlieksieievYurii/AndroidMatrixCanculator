@@ -67,7 +67,7 @@
                     android:id="@+id/tv_text_enter_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/enter_value_of_matrix"
+                    android:text="@string/enter_value_of_matrices"
                     android:layout_below="@id/ln_count_columns_matrix"
                     android:layout_centerHorizontal="true"
                     android:textAlignment="center"

@@ -12,7 +12,7 @@
     <string name="inverse_of_matrix">Inverse of Matrix</string>
     <string name="count_rows">Count rows of Matrix:</string>
     <string name="count_columns">Count columns of Matrix</string>
-    <string name="enter_value_of_matrix">Enter value of matrices:</string>
+    <string name="enter_value_of_matrices">Enter value of matrices:</string>
     <string name="matrix_a">Matrix A:</string>
     <string name="addition_symbol">+</string>
     <string name="matrix_b">Matrix B:</string>
@@ -24,6 +24,10 @@
     <string name="count_columns_matrix_b">Count columns of Matrix B:</string>
     <string name="count_rows_matrix_a">Count rows of Matrix A:</string>
     <string name="multiplication_symbol">*</string>
+    <string name="size_matrix">Size matrix:</string>
+    <string name="text_determinant">Det(A)=</string>
+    <string name="enter_value_of_matrix">Enter value of matrix:</string>
+
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
@@ -35,5 +39,17 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+    </string-array>
+
+    <string-array name="size_matrix_for_spinner">
+        <item>2x2</item>
+        <item>3x3</item>
+        <item>4x4</item>
+        <item>5x5</item>
+        <item>6x6</item>
+        <item>7x7</item>
+        <item>8x8</item>
+        <item>9x9</item>
+        <item>10x10</item>
     </string-array>
 </resources>
