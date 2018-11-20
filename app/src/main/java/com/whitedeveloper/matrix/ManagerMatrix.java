@@ -67,5 +67,17 @@ public class ManagerMatrix {
         }
     }
 
+    public void clearMatrix(GridLayout gridLayout,String tagId, int rowsMatrices, int columnsMatrices)
+    {
+        for(int i = 0; i < rowsMatrices; i++)
+            for(int j = 0; j < columnsMatrices; j++)
+            {
+                String tag = tagId + String.valueOf(i) + String.valueOf(j);
+                EditText editText = gridLayout.findViewWithTag(tag);
+                editText.getText().clear();
+            }
+
+    }
+
 
 }

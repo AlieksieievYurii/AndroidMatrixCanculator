@@ -16,10 +16,9 @@ import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
+
 public class FragmentDeterminantMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
     private View view;
-
-    private Spinner spSizeMatrix;
 
     private GridLayout glMatrix;
 
@@ -39,7 +38,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     }
 
     private void init() {
-        spSizeMatrix = view.findViewById(R.id.sp_dimension_matrix);
+        final Spinner spSizeMatrix = view.findViewById(R.id.sp_dimension_matrix);
         spSizeMatrix.setOnItemSelectedListener(this);
         glMatrix = view.findViewById(R.id.gl_matrix_determinant);
 
@@ -57,6 +56,15 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
                 calculate();
             }
         });
+
+        final Button btnClear = view.findViewById(R.id.btn_clear);
+                btnClear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        managerMatrix.clearMatrix(glMatrix,TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix);
+                        removeResult();
+                    }
+                });
     }
     private void calculate() {
             if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {

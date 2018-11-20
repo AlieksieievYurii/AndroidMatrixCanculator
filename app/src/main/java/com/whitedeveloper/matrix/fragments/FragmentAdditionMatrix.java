@@ -66,6 +66,16 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
 
             }
         });
+
+        final Button btnClear = view.findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                managerMatrix.clearMatrix(glMatrixA,TAG_ID_MATRIX_A,rowsMatrices,columnsMatrices);
+                managerMatrix.clearMatrix(glMatrixB,TAG_ID_MATRIX_B,rowsMatrices,columnsMatrices);
+                removeResult();
+            }
+        });
     }
 
     private void calculate() {

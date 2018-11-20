@@ -18,10 +18,11 @@
                     android:id="@+id/ln_count_rows_matrix"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="7dp"
                     android:orientation="horizontal"
                     android:gravity="start"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    android:layout_toStartOf="@id/btn_clear">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -37,6 +38,16 @@
                         android:textColor="@color/textColor"
                         android:entries="@array/size_matrix_for_spinner"/>
             </LinearLayout>
+
+            <Button
+                    android:id="@+id/btn_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/ln_count_rows_matrix"
+                    android:layout_alignBottom="@id/ln_count_rows_matrix"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/clear"/>
 
 
             <TextView

@@ -34,6 +34,7 @@
     <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
     <string name="special_for_dems">Special for Krzystof Dems</string>
     <string name="the_app_matrix">The program Matrix</string>
+    <string name="clear">CLEAR</string>
 
 
     <string-array name="numbers_for_spinner">

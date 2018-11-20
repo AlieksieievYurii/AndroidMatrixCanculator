@@ -54,6 +54,15 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
                 calculate();
             }
         });
+
+        final Button btnClear = view.findViewById(R.id.btn_clear);
+                btnClear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        managerMatrix.clearMatrix(glMatrix,TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix);
+                        removeResult();
+                    }
+                });
     }
 
     private void calculate() {

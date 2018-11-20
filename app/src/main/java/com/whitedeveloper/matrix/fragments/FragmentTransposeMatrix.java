@@ -13,7 +13,9 @@ import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.TransposeMatrix;
+
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 
 public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
     private View view;
@@ -60,13 +62,21 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
                 calculate();
             }
         });
+
+        final Button btnClear = view.findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                managerMatrix.clearMatrix(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns);
+                removeResult();
+            }
+        });
     }
 
     private void calculate() {
-        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns))
-        {
+        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns)) {
             TransposeMatrix transposeMatrix =
-                    new TransposeMatrix(managerMatrix.readMatrix(glMatrix,TAG_ID_MATRIX_A,numberOfRows,numberOfColumns));
+                    new TransposeMatrix(managerMatrix.readMatrix(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns));
 
             showResult(transposeMatrix.transposeMatrix());
         } else
@@ -74,7 +84,7 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glResult, matrixResult);
     }
@@ -100,9 +110,8 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-    {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
         numberOfRows = Integer.parseInt(spRowsMatrix.getSelectedItem().toString());
         numberOfColumns = Integer.parseInt(spColumnMatrix.getSelectedItem().toString());
 

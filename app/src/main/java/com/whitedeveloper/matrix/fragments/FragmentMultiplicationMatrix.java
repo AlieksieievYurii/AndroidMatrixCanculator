@@ -68,6 +68,16 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
                 calculate();
             }
         });
+
+        final Button btnClear = view.findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                managerMatrix.clearMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA);
+                managerMatrix.clearMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB);
+                removeResult();
+            }
+        });
     }
 
     private void calculate() {
@@ -82,7 +92,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
     }
@@ -96,7 +106,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         removeResult();
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
 
         rowsMatrixA = Integer.parseInt(spCountRowsMatrixA.getSelectedItem().toString());
         columnsMatrixA = Integer.parseInt(spCountColumnsMatrixA.getSelectedItem().toString());
