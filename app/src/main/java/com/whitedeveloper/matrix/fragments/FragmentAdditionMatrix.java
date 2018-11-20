@@ -91,7 +91,6 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
         tvResult.setVisibility(View.INVISIBLE);
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();

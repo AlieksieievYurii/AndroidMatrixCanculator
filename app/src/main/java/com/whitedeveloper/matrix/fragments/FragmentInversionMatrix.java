@@ -12,12 +12,13 @@ import android.widget.*;
 import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.operationModules.InversionMatrix;
+
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
 public class FragmentInversionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
     private View view;
 
-    private Spinner spDimensionMatrix;
     private GridLayout glMatrix;
     private GridLayout glResult;
 
@@ -36,7 +37,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void init() {
-        spDimensionMatrix = view.findViewById(R.id.sp_dimension_matrix);
+        final Spinner spDimensionMatrix = view.findViewById(R.id.sp_dimension_matrix);
         spDimensionMatrix.setOnItemSelectedListener(this);
 
         glMatrix = view.findViewById(R.id.gl_matrix_inversion);
@@ -56,7 +57,12 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void calculate() {
-        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
+        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix))
+        {
+            InversionMatrix inversionMatrix =
+                    new InversionMatrix(managerMatrix.readMatrix(glMatrix,Tags.TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix));
+
+            showResult(inversionMatrix.inversionMatrix());
 
         } else
             Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
