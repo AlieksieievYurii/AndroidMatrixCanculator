@@ -92,13 +92,7 @@
 
                     <LinearLayout
                             android:id="@+id/ln_matrix_a"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:background="@drawable/bc_matrix"
-                            android:padding="5dp"
-                            android:elevation="8dp"
-                            tools:targetApi="lollipop">
+                            style="@style/matrix">
 
                         <TextView
                                 android:layout_width="match_parent"
@@ -129,14 +123,8 @@
 
                     <LinearLayout
                             android:id="@+id/ln_matrix_b"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_toEndOf="@id/tv_add_symbol"
-                            android:orientation="vertical"
-                            android:background="@drawable/bc_matrix"
-                            android:padding="5dp"
-                            android:elevation="8dp"
-                            tools:targetApi="lollipop">
+                            style="@style/matrix">
 
                         <TextView
                                 android:layout_width="match_parent"
@@ -167,15 +155,8 @@
 
                 <RelativeLayout
                         android:id="@+id/rl_result"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="70dp"
-                        android:background="@drawable/bc_matrix"
-                        android:elevation="5dp"
-                        tools:targetApi="lollipop"
-                        android:visibility="invisible"
-                        android:padding="5dp">
+                        style="@style/matrix_result"
+                        android:visibility="invisible">
 
                     <TextView
                             android:id="@+id/tv_result"

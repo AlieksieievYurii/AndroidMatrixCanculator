@@ -87,7 +87,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void loadInverseFragment() {
-        //TODO Implementation Inverse of matrix!
+        getSupportFragmentManager()
+                .beginTransaction().
+                replace(R.id.fragment_container,new FragmentInversionMatrix())
+                .commit();
+
+        setTitle(getResources().getString(R.string.inverse_of_matrix));
     }
 
     private void startActivityAbout() {

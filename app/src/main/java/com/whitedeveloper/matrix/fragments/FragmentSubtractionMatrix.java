@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
@@ -31,7 +32,7 @@ public class FragmentSubtractionMatrix extends Fragment implements AdapterView.O
     private int columnsMatrices;
 
     private ManagerMatrix managerMatrix;
-    private TextView tvResult;
+    private RelativeLayout rlResult;
 
 
     @Nullable
@@ -50,7 +51,7 @@ public class FragmentSubtractionMatrix extends Fragment implements AdapterView.O
         glMatrixA = view.findViewById(R.id.gl_matrix_a);
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
-        tvResult = view.findViewById(R.id.tv_result);
+        rlResult = view.findViewById(R.id.rl_result);
 
         spCountColumnsMatrices.setOnItemSelectedListener(this);
         spCountRowsMatrices.setOnItemSelectedListener(this);
@@ -81,19 +82,21 @@ public class FragmentSubtractionMatrix extends Fragment implements AdapterView.O
     }
 
     private void showResult(double[][] matrixResult) {
-        tvResult.setVisibility(View.VISIBLE);
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
     }
 
     private void removeResult() {
         glMatrixResult.removeAllViews();
-        tvResult.setVisibility(View.GONE);
+        rlResult.setVisibility(View.INVISIBLE);
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
 
         rowsMatrices = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
         columnsMatrices = Integer.parseInt(spCountColumnsMatrices.getSelectedItem().toString());
@@ -116,7 +119,7 @@ public class FragmentSubtractionMatrix extends Fragment implements AdapterView.O
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if (tvResult.getVisibility() == View.VISIBLE)
+        if (rlResult.getVisibility() == View.VISIBLE)
             removeResult();
     }
 

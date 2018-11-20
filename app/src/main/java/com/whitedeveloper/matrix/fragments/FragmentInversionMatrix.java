@@ -12,41 +12,34 @@ import android.widget.*;
 import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
-import com.whitedeveloper.matrix.operationModules.TransposeMatrix;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
-public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
+public class FragmentInversionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
     private View view;
 
-    private Spinner spRowsMatrix;
-    private Spinner spColumnMatrix;
-
+    private Spinner spDimensionMatrix;
     private GridLayout glMatrix;
     private GridLayout glResult;
 
     private RelativeLayout rlResult;
 
     private ManagerMatrix managerMatrix;
-    private int numberOfRows;
-    private int numberOfColumns;
+
+    private int dimensionMatrix;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.fragment_transpose_matrix, container, false);
+        view = inflater.inflate(R.layout.fragment_inversion_matrix, container, false);
         init();
         return view;
     }
 
     private void init() {
-        spRowsMatrix = view.findViewById(R.id.sp_count_rows_matrix);
-        spColumnMatrix = view.findViewById(R.id.sp_count_columns_matrix);
+        spDimensionMatrix = view.findViewById(R.id.sp_dimension_matrix);
+        spDimensionMatrix.setOnItemSelectedListener(this);
 
-        spRowsMatrix.setOnItemSelectedListener(this);
-        spColumnMatrix.setOnItemSelectedListener(this);
-
-        glMatrix = view.findViewById(R.id.gl_matrix_transpose);
+        glMatrix = view.findViewById(R.id.gl_matrix_inversion);
         glResult = view.findViewById(R.id.gl_matrix_result);
 
         rlResult = view.findViewById(R.id.rl_result);
@@ -63,18 +56,14 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void calculate() {
-        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns))
-        {
-            TransposeMatrix transposeMatrix =
-                    new TransposeMatrix(managerMatrix.readMatrix(glMatrix,TAG_ID_MATRIX_A,numberOfRows,numberOfColumns));
+        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
 
-            showResult(transposeMatrix.transposeMatrix());
         } else
             Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glResult, matrixResult);
     }
@@ -91,7 +80,8 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        removeResult();
+        if (rlResult.getVisibility() == View.VISIBLE)
+            removeResult();
     }
 
     @Override
@@ -100,13 +90,11 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-    {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
-        numberOfRows = Integer.parseInt(spRowsMatrix.getSelectedItem().toString());
-        numberOfColumns = Integer.parseInt(spColumnMatrix.getSelectedItem().toString());
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        dimensionMatrix = i + 2;
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
 
-        managerMatrix.generateMatrix(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns, this);
+        managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
     }
 
     @Override

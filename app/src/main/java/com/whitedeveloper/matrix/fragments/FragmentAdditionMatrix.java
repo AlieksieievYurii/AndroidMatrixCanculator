@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
@@ -80,6 +81,7 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
     }
 
     private void showResult(double[][] matrixResult) {
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
         tvResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
     }
@@ -93,6 +95,8 @@ public class FragmentAdditionMatrix extends Fragment implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();
+
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
 
         rowsMatrices = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
         columnsMatrices = Integer.parseInt(spCountColumnsMatrices.getSelectedItem().toString());

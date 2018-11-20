@@ -90,9 +90,7 @@
 
                     <LinearLayout
                             android:id="@+id/ln_matrix_a"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            style="@style/matrix">
 
                         <TextView
                                 android:layout_width="match_parent"
@@ -124,9 +122,7 @@
 
                     <LinearLayout
                             android:id="@+id/ln_matrix_b"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            style="@style/matrix"
                             android:layout_toEndOf="@id/tv_add_symbol">
 
                         <TextView
@@ -157,10 +153,9 @@
                     android:layout_centerHorizontal="true">
 
             <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="70dp">
+                    android:id="@+id/rl_result"
+                    style="@style/matrix_result"
+                    android:visibility="invisible">
 
                 <TextView
                         android:id="@+id/tv_result"
@@ -169,7 +164,6 @@
                         android:text="@string/result"
                         android:textSize="30sp"
                         android:textColor="@color/textColor"
-                        android:visibility="gone"
                         android:layout_centerHorizontal="true"/>
 
                 <GridLayout

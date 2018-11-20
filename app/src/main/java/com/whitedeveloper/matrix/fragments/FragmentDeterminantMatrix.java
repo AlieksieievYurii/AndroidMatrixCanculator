@@ -5,11 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
@@ -23,7 +23,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
 
     private GridLayout glMatrix;
 
-    private TextView tvResult;
+    private RelativeLayout rlResult;
     private TextView tvDet;
 
     private ManagerMatrix managerMatrix;
@@ -45,7 +45,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
 
         spSizeMatrix.setOnItemSelectedListener(this);
 
-        tvResult = view.findViewById(R.id.tv_result);
+        rlResult = view.findViewById(R.id.rl_result);
         tvDet = view.findViewById(R.id.tv_determinant);
 
         managerMatrix = new ManagerMatrix(getContext());
@@ -70,13 +70,14 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
         }
 
     private void showResult(double det) {
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
         tvDet.setVisibility(View.VISIBLE);
         tvDet.setText(getResources().getString(R.string.text_determinant).concat(String.valueOf(det)));
-        tvResult.setVisibility(View.VISIBLE);
+        rlResult.setVisibility(View.VISIBLE);
     }
 
     private void removeResult() {
-        tvResult.setVisibility(View.INVISIBLE);
+        rlResult.setVisibility(View.INVISIBLE);
         tvDet.setVisibility(View.INVISIBLE);
     }
 
@@ -84,6 +85,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();
         dimensionMatrix = i + 2;
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
     }
@@ -101,7 +103,8 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        removeResult();
+        if (rlResult.getVisibility() == View.VISIBLE)
+            removeResult();
     }
 
     @Override

@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:background="@color/activityBackground"
                 android:padding="10dp"
                 android:focusableInTouchMode="true">
@@ -60,7 +59,7 @@
                     android:layout_centerHorizontal="true">
 
                         <GridLayout
-                                android:id="@+id/gl_matrix_determinant"
+                                android:id="@+id/gl_matrix_inversion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                         </GridLayout>
@@ -75,7 +74,7 @@
 
             <RelativeLayout
                     android:id="@+id/rl_result"
-                   style="@style/matrix_result"
+                    style="@style/matrix_result"
                     android:visibility="invisible">
 
                 <TextView
@@ -87,16 +86,13 @@
                         android:textColor="@color/textColor"
                         android:layout_centerHorizontal="true"/>
 
-               <TextView
-                       android:id="@+id/tv_determinant"
-                       android:layout_below="@id/tv_result"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       tools:text="det(A)=20"
-                       android:visibility="invisible"
-                       android:textColor="@color/textColor"
-                       android:textSize="20sp"
-                       android:layout_centerHorizontal="true"/>
+                <GridLayout
+                        android:id="@+id/gl_matrix_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_result"
+                        android:layout_centerHorizontal="true">
+                </GridLayout>
 
 
             </RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
@@ -27,7 +28,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
     private GridLayout glMatrixB;
     private GridLayout glMatrixResult;
 
-    private TextView tvResult;
+    private RelativeLayout rlResult;
 
     private ManagerMatrix managerMatrix;
 
@@ -52,7 +53,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
 
-        tvResult = view.findViewById(R.id.tv_result);
+        rlResult = view.findViewById(R.id.rl_result);
 
         managerMatrix = new ManagerMatrix(getContext());
 
@@ -81,19 +82,21 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
     }
 
     private void showResult(double[][] matrixResult) {
-        tvResult.setVisibility(View.VISIBLE);
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
     }
 
     private void removeResult() {
         glMatrixResult.removeAllViews();
-        tvResult.setVisibility(View.GONE);
+        rlResult.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         removeResult();
+        HidenKeyboard.hideKeyboardFrom(getContext(),view);
 
         rowsMatrixA = Integer.parseInt(spCountRowsMatrixA.getSelectedItem().toString());
         columnsMatrixA = Integer.parseInt(spCountColumnsMatrixA.getSelectedItem().toString());
@@ -115,7 +118,8 @@ public class FragmentMultiplicationMatrix extends Fragment implements AdapterVie
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        removeResult();
+        if (rlResult.getVisibility() == View.VISIBLE)
+            removeResult();
     }
 
     @Override
