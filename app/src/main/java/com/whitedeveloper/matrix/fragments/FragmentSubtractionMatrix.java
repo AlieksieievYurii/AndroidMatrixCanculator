@@ -5,19 +5,22 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.HidenKeyboard;
 import com.whitedeveloper.matrix.ManagerMatrix;
+import com.whitedeveloper.matrix.OnPressSaveResualtListener;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 
-public class FragmentSubtractionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher {
+public class FragmentSubtractionMatrix extends Fragment implements
+        AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResualtListener {
 
     private View view;
 
@@ -136,5 +139,10 @@ public class FragmentSubtractionMatrix extends Fragment implements AdapterView.O
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    @Override
+    public void onPressSave() {
+        //TODO Here gotta implement saving result!
     }
 }

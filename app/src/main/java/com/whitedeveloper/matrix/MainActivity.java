@@ -3,18 +3,21 @@ package com.whitedeveloper.matrix;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import com.whitedeveloper.matrix.fragments.*;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AlertDialogExit.CallBack {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private OnPressSaveResualtListener onPressSaveResualtListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,55 +44,97 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menu_save:
+                onPressSaveResualtListener.onPressSave();
+                break;
+        }
+
+        return true;
+    }
+
     private void setSelectedFirstTime() {
         navigationView.getMenu().getItem(0).setChecked(true);
         loadAdditionFragment();
     }
 
-    private void loadAdditionFragment() {
+    private void loadAdditionFragment()
+    {
+        FragmentAdditionMatrix fragmentAdditionMatrix = new FragmentAdditionMatrix();
+        onPressSaveResualtListener = fragmentAdditionMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentAdditionMatrix())
+                .replace(R.id.fragment_container,  fragmentAdditionMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.addition_of_matrix));
     }
 
     private void loadSubtractionFragment() {
+        FragmentSubtractionMatrix subtractionMatrix = new FragmentSubtractionMatrix();
+        onPressSaveResualtListener = subtractionMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentSubtractionMatrix())
+                .replace(R.id.fragment_container, subtractionMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.subtraction_of_matrix));
     }
 
     private void loadMultiplicationFragment() {
+
+        FragmentMultiplicationMatrix multiplicationMatrix = new FragmentMultiplicationMatrix();
+        onPressSaveResualtListener = multiplicationMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentMultiplicationMatrix())
+                .replace(R.id.fragment_container,multiplicationMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.multiplication_of_matrix));
     }
 
-    private void loadTransposeFragment() {
+    private void loadTransposeFragment()
+    {
+        FragmentTransposeMatrix fragmentTransposeMatrix = new FragmentTransposeMatrix();
+        onPressSaveResualtListener = fragmentTransposeMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentTransposeMatrix())
+                .replace(R.id.fragment_container, fragmentTransposeMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.transpose_of_matrix));
     }
 
-    private void loadDeterminantFragment() {
+    private void loadDeterminantFragment()
+    {
+        FragmentDeterminantMatrix fragmentDeterminantMatrix = new FragmentDeterminantMatrix();
+        onPressSaveResualtListener = fragmentDeterminantMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new FragmentDeterminantMatrix())
+                .replace(R.id.fragment_container,fragmentDeterminantMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.determinant_of_matrix));
     }
 
-    private void loadInverseFragment() {
+    private void loadInverseFragment()
+    {
+        FragmentInversionMatrix fragmentInversionMatrix = new FragmentInversionMatrix();
+        onPressSaveResualtListener = fragmentInversionMatrix;
+
         getSupportFragmentManager()
                 .beginTransaction().
-                replace(R.id.fragment_container,new FragmentInversionMatrix())
+                replace(R.id.fragment_container,fragmentInversionMatrix)
                 .commit();
 
         setTitle(getResources().getString(R.string.inverse_of_matrix));
