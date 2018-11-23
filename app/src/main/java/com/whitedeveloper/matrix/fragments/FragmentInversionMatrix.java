@@ -76,7 +76,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
             showResult(inversionMatrix.inversionMatrix());
 
         } else
-            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {

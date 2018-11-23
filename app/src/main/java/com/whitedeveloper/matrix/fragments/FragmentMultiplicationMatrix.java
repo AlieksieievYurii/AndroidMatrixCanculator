@@ -93,7 +93,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements
                     managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB));
             showResult(multiplicationMatrix.multiplicationMatrices());
         } else
-            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {

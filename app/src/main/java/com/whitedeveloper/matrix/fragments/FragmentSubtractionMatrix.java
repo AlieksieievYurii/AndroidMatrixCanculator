@@ -91,7 +91,7 @@ public class FragmentSubtractionMatrix extends Fragment implements
             showResult(additionMatrix.additionMatrix());
 
         } else
-            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {

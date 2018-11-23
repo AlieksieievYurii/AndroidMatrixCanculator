@@ -35,6 +35,11 @@
     <string name="special_for_dems">Special for Krzystof Dems</string>
     <string name="the_app_matrix">The program Matrix</string>
     <string name="clear">CLEAR</string>
+    <string name="text_save_result">Save result</string>
+    <string name="hint_enter_name_saving">Enter name save...</string>
+    <string name="text_btn_save">Save</string>
+    <string name="text_btn_cancel">Cancel</string>
+    <string name="text_name_can_not_be_empty">Name can not be empty</string>
 
 
     <string-array name="numbers_for_spinner">

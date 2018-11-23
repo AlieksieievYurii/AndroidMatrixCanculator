@@ -81,7 +81,7 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
 
             showResult(transposeMatrix.transposeMatrix());
         } else
-            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {

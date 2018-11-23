@@ -76,7 +76,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
                 showResult(determinantMatrix.countDeterminant());
 
             } else
-                Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
         }
 
     private void showResult(double det) {

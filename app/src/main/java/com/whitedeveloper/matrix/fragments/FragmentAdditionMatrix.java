@@ -10,10 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.whitedeveloper.matrix.HidenKeyboard;
-import com.whitedeveloper.matrix.ManagerMatrix;
-import com.whitedeveloper.matrix.OnPressSaveResualtListener;
-import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
@@ -93,7 +90,7 @@ public class FragmentAdditionMatrix extends Fragment implements
             showResult(additionMatrix.additionMatrix());
 
         } else
-            Toast.makeText(getContext(), getResources().getString(R.string.text_warming_fill_up_matrix), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {
@@ -147,5 +144,12 @@ public class FragmentAdditionMatrix extends Fragment implements
     public void onPressSave()
     {
         //TODO Here gotta implement saving result!
+        AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
+            @Override
+            public void callBack(String name) {
+                Log.i("NAME",name);
+            }
+        });
+        alertDialogSave.show();
     }
 }
