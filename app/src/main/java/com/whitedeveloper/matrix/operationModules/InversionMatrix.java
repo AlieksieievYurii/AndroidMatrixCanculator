@@ -4,13 +4,20 @@ public class InversionMatrix {
     private double[][] matrix;
 
 
-    public InversionMatrix(double[][] matrix) {
-        this.matrix = matrix;
-
+    public InversionMatrix(final double[][] matrix) {
+        this.matrix = copyInstance(matrix);
     }
 
-    public double[][] inversionMatrix()
-    {
+    private static double[][] copyInstance(double[][] matrix) {
+        double[][] matrixCopy = new double[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++)
+            if (matrix[i].length >= 0) System.arraycopy(matrix[i], 0, matrixCopy[i], 0, matrix[i].length);
+
+        return matrixCopy;
+    }
+
+    public double[][] inversionMatrix() {
         return roundMatrix(invert());
     }
 
@@ -86,18 +93,18 @@ public class InversionMatrix {
         }
     }
 
-    private double[][] roundMatrix(double[][] matrix)
-    {
+    private double[][] roundMatrix(double[][] matrix) {
         double[][] matrixRounded = new double[matrix.length][matrix[0].length];
 
-        for(int i = 0; i < matrix.length; i++)
-            for(int j = 0; j < matrix[i].length;j++)
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[i].length; j++)
                 matrixRounded[i][j] = round(matrix[i][j]);
         return matrixRounded;
     }
 
-    static double round(double number)
-    {
-        return (double)Math.round(number * 100000d) / 100000d;
+    static double round(double number) {
+        return (double) Math.round(number * 100000d) / 100000d;
     }
+
+
 }

@@ -5,15 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.whitedeveloper.matrix.HidenKeyboard;
-import com.whitedeveloper.matrix.ManagerMatrix;
-import com.whitedeveloper.matrix.OnPressSaveResualtListener;
-import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.instance.SavingInstance;
+import com.whitedeveloper.matrix.instance.TestClass;
 import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
@@ -28,6 +26,8 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     private TextView tvDet;
 
     private ManagerMatrix managerMatrix;
+    private double[][] matrix;
+    private double determinant;
 
     private int dimensionMatrix;
 
@@ -60,27 +60,30 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
         });
 
         final Button btnClear = view.findViewById(R.id.btn_clear);
-                btnClear.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        managerMatrix.clearMatrix(glMatrix,TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix);
-                        removeResult();
-                    }
-                });
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                managerMatrix.clearMatrix(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
+                removeResult();
+            }
+        });
     }
+
     private void calculate() {
-            if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
-                DeterminantMatrix determinantMatrix =
-                        new DeterminantMatrix(managerMatrix.readMatrix(glMatrix,TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix));
+        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix))
+        {
+            matrix = managerMatrix.readMatrix(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
 
-                showResult(determinantMatrix.countDeterminant());
+            DeterminantMatrix determinantMatrix = new DeterminantMatrix(matrix);
+            determinant = determinantMatrix.countDeterminant();
+            showResult(determinant);
 
-            } else
-                Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
-        }
+        } else
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
+    }
 
     private void showResult(double det) {
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
         tvDet.setVisibility(View.VISIBLE);
         tvDet.setText(getResources().getString(R.string.text_determinant).concat(String.valueOf(det)));
         rlResult.setVisibility(View.VISIBLE);
@@ -95,7 +98,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();
         dimensionMatrix = i + 2;
-        HidenKeyboard.hideKeyboardFrom(getContext(),view);
+        HidenKeyboard.hideKeyboardFrom(getContext(), view);
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
     }
@@ -106,8 +109,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     }
 
     @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-    {
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
     }
 
@@ -124,6 +126,26 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
 
     @Override
     public void onPressSave() {
-        //TODO Here gotta implement saving result!
+        if (rlResult.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
+            @Override
+            public void callBack(String name) {
+                try {
+                    new SavingInstance(getContext())
+                            .setNameSaving(name)
+                            .setAction(Action.DETERMINATION)
+                            .setMatrixA(matrix)
+                            .setDeterminant(determinant)
+                            .commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        alertDialogSave.show();
     }
 }

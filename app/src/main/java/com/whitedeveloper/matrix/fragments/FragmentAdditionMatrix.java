@@ -5,12 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.instance.SavingInstance;
+import com.whitedeveloper.matrix.instance.TestClass;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
@@ -35,6 +36,10 @@ public class FragmentAdditionMatrix extends Fragment implements
 
     private ManagerMatrix managerMatrix;
     private RelativeLayout tvResult;
+
+    private double[][] matrixA;
+    private double[][] matrixB;
+    private double[][] matrixResult;
 
 
     @Nullable
@@ -84,10 +89,12 @@ public class FragmentAdditionMatrix extends Fragment implements
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices) &&
                 managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices)) {
-            AdditionMatrix additionMatrix = new AdditionMatrix(managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices),
-                    managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices));
+            matrixA = managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices);
+            matrixB = managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices);
+            AdditionMatrix additionMatrix = new AdditionMatrix(matrixA, matrixB);
 
-            showResult(additionMatrix.additionMatrix());
+            matrixResult = additionMatrix.additionMatrix();
+            showResult(matrixResult);
 
         } else
             Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
@@ -141,13 +148,27 @@ public class FragmentAdditionMatrix extends Fragment implements
     }
 
     @Override
-    public void onPressSave()
-    {
-        //TODO Here gotta implement saving result!
+    public void onPressSave() {
+        if (tvResult.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
+            TestClass.test(getContext());
+            return;
+        }
+
         AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
             @Override
             public void callBack(String name) {
-                Log.i("NAME",name);
+                try {
+                    new SavingInstance(getContext())
+                            .setNameSaving(name)
+                            .setAction(Action.ADDITION)
+                            .setMatrixA(matrixA)
+                            .setMatrixB(matrixB)
+                            .setMatrixResult(matrixResult)
+                            .commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         alertDialogSave.show();

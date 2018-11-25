@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.whitedeveloper.matrix.HidenKeyboard;
-import com.whitedeveloper.matrix.ManagerMatrix;
-import com.whitedeveloper.matrix.OnPressSaveResualtListener;
-import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
@@ -40,6 +38,10 @@ public class FragmentMultiplicationMatrix extends Fragment implements
     private int rowsMatrixA;
     private int columnsMatrixA;
     private int columnsMatrixB;
+
+    private double[][] matrixA;
+    private double[][] matrixB;
+    private double[][] matrixResult;
 
     @Nullable
     @Override
@@ -87,11 +89,14 @@ public class FragmentMultiplicationMatrix extends Fragment implements
 
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA) &&
-                managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB)) {
-            MultiplicationMatrix multiplicationMatrix = new MultiplicationMatrix(
-                    managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA),
-                    managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB));
-            showResult(multiplicationMatrix.multiplicationMatrices());
+                managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB))
+        {
+            matrixA = managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA);
+            matrixB =  managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB);
+
+            MultiplicationMatrix multiplicationMatrix = new MultiplicationMatrix(matrixA,matrixB);
+            matrixResult = multiplicationMatrix.multiplicationMatrices();
+            showResult(matrixResult);
         } else
             Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
@@ -144,6 +149,27 @@ public class FragmentMultiplicationMatrix extends Fragment implements
 
     @Override
     public void onPressSave() {
-        //TODO Here gotta implement saving result!
+        if (rlResult.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
+            @Override
+            public void callBack(String name) {
+                try {
+                    new SavingInstance(getContext())
+                            .setNameSaving(name)
+                            .setAction(Action.MULTIPLICATION)
+                            .setMatrixA(matrixA)
+                            .setMatrixB(matrixB)
+                            .setMatrixResult(matrixResult)
+                            .commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        alertDialogSave.show();
     }
 }

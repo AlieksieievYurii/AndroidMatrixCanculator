@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.whitedeveloper.matrix.HidenKeyboard;
-import com.whitedeveloper.matrix.ManagerMatrix;
-import com.whitedeveloper.matrix.OnPressSaveResualtListener;
-import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.instance.GetInstance;
+import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
+import org.json.JSONException;
+
+import java.util.Arrays;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
@@ -36,6 +38,10 @@ public class FragmentSubtractionMatrix extends Fragment implements
 
     private ManagerMatrix managerMatrix;
     private RelativeLayout rlResult;
+
+    private double[][] matrixA;
+    private double[][] matrixB;
+    private double[][] matrixResult;
 
 
     @Nullable
@@ -85,10 +91,13 @@ public class FragmentSubtractionMatrix extends Fragment implements
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices) &&
                 managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices)) {
-            AdditionMatrix additionMatrix = new AdditionMatrix(managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices),
-                    AdditionMatrix.doNegative(managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices)));
 
-            showResult(additionMatrix.additionMatrix());
+            matrixA = managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices);
+            matrixB = AdditionMatrix.doNegative(managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices));
+            AdditionMatrix additionMatrix = new AdditionMatrix(matrixA, matrixB);
+
+            matrixResult = additionMatrix.additionMatrix();
+            showResult(matrixResult);
 
         } else
             Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
@@ -143,6 +152,26 @@ public class FragmentSubtractionMatrix extends Fragment implements
 
     @Override
     public void onPressSave() {
-        //TODO Here gotta implement saving result!
+        if (rlResult.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
+            @Override
+            public void callBack(String name) {
+                try {
+                    new SavingInstance(getContext())
+                            .setNameSaving(name)
+                            .setAction(Action.SUBTRACTION)
+                            .setMatrixA(matrixA)
+                            .setMatrixB(matrixB)
+                            .setMatrixResult(matrixResult)
+                            .commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        alertDialogSave.show();
     }
 }

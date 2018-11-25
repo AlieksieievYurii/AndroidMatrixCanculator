@@ -5,15 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.whitedeveloper.matrix.HidenKeyboard;
-import com.whitedeveloper.matrix.ManagerMatrix;
-import com.whitedeveloper.matrix.OnPressSaveResualtListener;
-import com.whitedeveloper.matrix.R;
+import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.InversionMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
@@ -27,6 +24,8 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     private RelativeLayout rlResult;
 
     private ManagerMatrix managerMatrix;
+    private double[][] matrix;
+    private double[][] matrixResult;
 
     private int dimensionMatrix;
 
@@ -58,22 +57,22 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         });
 
         final Button btnClear = view.findViewById(R.id.btn_clear);
-                btnClear.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        managerMatrix.clearMatrix(glMatrix,TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix);
-                        removeResult();
-                    }
-                });
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                managerMatrix.clearMatrix(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
+                removeResult();
+            }
+        });
     }
 
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix))
         {
-            InversionMatrix inversionMatrix =
-                    new InversionMatrix(managerMatrix.readMatrix(glMatrix,Tags.TAG_ID_MATRIX_A,dimensionMatrix,dimensionMatrix));
-
-            showResult(inversionMatrix.inversionMatrix());
+            matrix = managerMatrix.readMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
+            InversionMatrix inversionMatrix = new InversionMatrix(matrix);
+            matrixResult = inversionMatrix.inversionMatrix();
+            showResult(matrixResult);
 
         } else
             Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
@@ -120,7 +119,28 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     @Override
-    public void onPressSave() {
-        //TODO Here gotta implement saving result!
+    public void onPressSave()
+    {
+        if (rlResult.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialogSave alertDialogSave = new AlertDialogSave(getContext(), new AlertDialogSave.CallBackFromAlertDialogSave() {
+            @Override
+            public void callBack(String name) {
+                try {
+                    new SavingInstance(getContext())
+                            .setNameSaving(name)
+                            .setAction(Action.INVERSION)
+                            .setMatrixA(matrix)
+                            .setMatrixResult(matrixResult)
+                            .commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        alertDialogSave.show();
     }
 }

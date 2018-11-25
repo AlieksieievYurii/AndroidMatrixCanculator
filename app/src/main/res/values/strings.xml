@@ -40,6 +40,7 @@
     <string name="text_btn_save">Save</string>
     <string name="text_btn_cancel">Cancel</string>
     <string name="text_name_can_not_be_empty">Name can not be empty</string>
+    <string name="text_calculate">Calculate!</string>
 
 
     <string-array name="numbers_for_spinner">
