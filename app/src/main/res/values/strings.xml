@@ -4,8 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="operations_on_matrix">Operations on Matrix</string>
-    <string name="addition_of_matrix">Addition of Matrix</string>
-    <string name="subtraction_of_matrix">Subtraction of Matrix</string>
+    <string name="basic_actions_of_matrix">Basic actions of Matrix</string>
     <string name="multiplication_of_matrix">Multiplication of Matrix</string>
     <string name="transpose_of_matrix">Transpose of Matrix</string>
     <string name="determinant_of_matrix">Determinant of Matrix</string>
@@ -36,11 +35,16 @@
     <string name="the_app_matrix">The program Matrix</string>
     <string name="clear">CLEAR</string>
     <string name="text_save_result">Save result</string>
-    <string name="hint_enter_name_saving">Enter name save...</string>
+    <string name="hint_enter_name_saving">Enter name save…</string>
     <string name="text_btn_save">Save</string>
     <string name="text_btn_cancel">Cancel</string>
     <string name="text_name_can_not_be_empty">Name can not be empty</string>
     <string name="text_calculate">Calculate!</string>
+    <string name="text_not_allowed">Not allowed!</string>
+    <string name="text_error_opening_saving">Error opening!</string>
+    <string name="inversing">Inversed</string>
+    <string name="transposing">Transposed</string>
+    <string name="matrix_result">Result:</string>
 
 
     <string-array name="numbers_for_spinner">

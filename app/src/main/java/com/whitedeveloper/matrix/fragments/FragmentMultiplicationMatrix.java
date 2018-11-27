@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
 
@@ -20,32 +21,43 @@ import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 public class FragmentMultiplicationMatrix extends Fragment implements
         AdapterView.OnItemSelectedListener,
         TextWatcher,
-        OnPressSaveResualtListener {
+        OnPressSaveResualtListener, View.OnLongClickListener {
     private View view;
 
-    private Spinner spCountRowsMatrixA;
+    private Spinner spCountRowsMatrices;
     private Spinner spCountColumnsMatrixA;
     private Spinner spCountColumnsMatrixB;
+
 
     private GridLayout glMatrixA;
     private GridLayout glMatrixB;
     private GridLayout glMatrixResult;
 
     private RelativeLayout rlResult;
-
+    private SavingHelper savingHelper;
     private ManagerMatrix managerMatrix;
 
     private int rowsMatrixA;
     private int columnsMatrixA;
     private int columnsMatrixB;
+    private int bufferRowsMatrixA;
+    private int bufferColumnsMatrixA;
+    private int bufferColumnsMatrixB;
 
     private double[][] matrixA;
     private double[][] matrixB;
     private double[][] matrixResult;
+    private SetMatrix setMatrixA;
+    private SetMatrix setMatrixB;
+
+    private boolean setMatrixAFromSaving = false;
+    private boolean setMatrixBFromSaving = false;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i("TAG","TEST");
         view = inflater.inflate(R.layout.fragment_multiplication_matrix, container, false);
         init();
         return view;
@@ -53,18 +65,25 @@ public class FragmentMultiplicationMatrix extends Fragment implements
 
     private void init() {
         spCountColumnsMatrixA = view.findViewById(R.id.sp_count_columns_matrix_a);
-        spCountRowsMatrixA = view.findViewById(R.id.sp_count_rows_matrix_a);
+        spCountRowsMatrices = view.findViewById(R.id.sp_count_rows_matrix_a);
         spCountColumnsMatrixB = view.findViewById(R.id.sp_count_columns_matrix_b);
 
         glMatrixA = view.findViewById(R.id.gl_matrix_a);
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
 
+        savingHelper = new SavingHelper(getContext());
+
+        final TextView tvMatrixA = view.findViewById(R.id.tv_matrix_a);
+        final TextView tvMatrixB = view.findViewById(R.id.tv_matrix_b);
+        tvMatrixA.setOnLongClickListener(this);
+        tvMatrixB.setOnLongClickListener(this);
+
         rlResult = view.findViewById(R.id.rl_result);
 
         managerMatrix = new ManagerMatrix(getContext());
 
-        spCountRowsMatrixA.setOnItemSelectedListener(this);
+        spCountRowsMatrices.setOnItemSelectedListener(this);
         spCountColumnsMatrixA.setOnItemSelectedListener(this);
         spCountColumnsMatrixB.setOnItemSelectedListener(this);
 
@@ -85,16 +104,76 @@ public class FragmentMultiplicationMatrix extends Fragment implements
                 removeResult();
             }
         });
+
+        setMatrixA = new SetMatrix() {
+            @Override
+            public void setMatrix(double[][] matrix) {
+                matrixA = matrix;
+            }
+
+            @Override
+            public void setSizeMatrix(int countRows, int countColumns) {
+                if (countRows == rowsMatrixA && countColumns == columnsMatrixA)
+                    managerMatrix.fillUpMatrix(glMatrixA, TAG_ID_MATRIX_A, matrixA);
+                else {
+                    setColumnsForSpinnerA(countColumns);
+                    setRowsMatrixA(countRows);
+                    setMatrixAFromSaving = true;
+                }
+            }
+        };
+
+        setMatrixB = new SetMatrix() {
+            @Override
+            public void setMatrix(double[][] matrix) {
+                matrixB = matrix;
+
+            }
+
+            @Override
+            public void setSizeMatrix(int countRows, int countColumns) {
+                if (countRows == rowsMatrixA && countColumns == columnsMatrixB)
+                    managerMatrix.fillUpMatrix(glMatrixB, TAG_ID_MATRIX_B, matrixB);
+                else if (countRows == rowsMatrixA) {
+                    setColumnsForSpinnerB(countColumns);
+                    setMatrixBFromSaving = true;
+                } else
+                    Toast.makeText(getContext(), "Rows matrix B not equals matrix A", Toast.LENGTH_SHORT).show();
+
+            }
+        };
+    }
+
+    private void setRowsMatrixA(int countRows) {
+        bufferRowsMatrixA = countRows;
+        for (int i = 0; i < spCountRowsMatrices.getCount(); i++)
+            if (Integer.parseInt((String) spCountRowsMatrices.getItemAtPosition(i)) == countRows)
+                spCountRowsMatrices.setSelection(i);
+    }
+
+    private void setColumnsForSpinnerB(int countColumns) {
+        bufferColumnsMatrixB = countColumns;
+        bufferRowsMatrixA = rowsMatrixA;
+        for (int i = 0; i < spCountColumnsMatrixB.getCount(); i++)
+            if (Integer.parseInt((String) spCountColumnsMatrixB.getItemAtPosition(i)) == countColumns)
+                spCountColumnsMatrixB.setSelection(i);
+
+    }
+
+    private void setColumnsForSpinnerA(int countColumns) {
+        bufferColumnsMatrixA = countColumns;
+        for (int i = 0; i < spCountColumnsMatrixA.getCount(); i++)
+            if (Integer.parseInt((String) spCountColumnsMatrixA.getItemAtPosition(i)) == countColumns)
+                spCountColumnsMatrixA.setSelection(i);
     }
 
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA) &&
-                managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB))
-        {
+                managerMatrix.allIsFill(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB)) {
             matrixA = managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA);
-            matrixB =  managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB);
+            matrixB = managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB);
 
-            MultiplicationMatrix multiplicationMatrix = new MultiplicationMatrix(matrixA,matrixB);
+            MultiplicationMatrix multiplicationMatrix = new MultiplicationMatrix(matrixA, matrixB);
             matrixResult = multiplicationMatrix.multiplicationMatrices();
             showResult(matrixResult);
         } else
@@ -118,12 +197,40 @@ public class FragmentMultiplicationMatrix extends Fragment implements
         removeResult();
         HidenKeyboard.hideKeyboardFrom(getContext(), view);
 
-        rowsMatrixA = Integer.parseInt(spCountRowsMatrixA.getSelectedItem().toString());
-        columnsMatrixA = Integer.parseInt(spCountColumnsMatrixA.getSelectedItem().toString());
-        columnsMatrixB = Integer.parseInt(spCountColumnsMatrixB.getSelectedItem().toString());
 
-        managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA, this);
+        switch (adapterView.getId())
+        {
+            case R.id.sp_count_rows_matrix_a:
+                rowsMatrixA = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
+                break;
+            case R.id.sp_count_columns_matrix_a:
+                columnsMatrixA = Integer.parseInt(spCountColumnsMatrixA.getSelectedItem().toString());
+                break;
+            case R.id.sp_count_columns_matrix_b:
+                columnsMatrixB = Integer.parseInt(spCountColumnsMatrixB.getSelectedItem().toString());
+                break;
+        }
+
+        if(!setMatrixBFromSaving)
+            managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA, this);
+
         managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB, this);
+
+        if ((bufferRowsMatrixA == rowsMatrixA && bufferColumnsMatrixA == columnsMatrixA) || (bufferRowsMatrixA == rowsMatrixA && bufferColumnsMatrixB == columnsMatrixB)) {
+            if (setMatrixAFromSaving)
+            {
+                managerMatrix.fillUpMatrix(glMatrixA, TAG_ID_MATRIX_A, matrixA);
+                setMatrixAFromSaving = false;
+                matrixA = null;
+            } else if (setMatrixBFromSaving) {
+                managerMatrix.fillUpMatrix(glMatrixB, TAG_ID_MATRIX_B, matrixB);
+                setMatrixBFromSaving = false;
+                matrixB = null;
+            }
+            bufferRowsMatrixA = 0;
+            bufferColumnsMatrixA = 0;
+            bufferColumnsMatrixB = 0;
+        }
     }
 
     @Override
@@ -171,5 +278,18 @@ public class FragmentMultiplicationMatrix extends Fragment implements
             }
         });
         alertDialogSave.show();
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_matrix_a:
+                savingHelper.callAlertListSavingForMatrix(setMatrixA);
+                break;
+            case R.id.tv_matrix_b:
+                savingHelper.callAlertListSavingForMatrix(setMatrixB);
+                break;
+        }
+        return true;
     }
 }

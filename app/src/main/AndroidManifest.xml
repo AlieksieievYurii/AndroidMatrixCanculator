@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".ActivityAbout">
         </activity>
+        <activity android:name=".ActivityShowSavedMatrix">
+        </activity>
     </application>
 
 </manifest>

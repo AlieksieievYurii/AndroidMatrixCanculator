@@ -6,11 +6,8 @@
         <item
                 android:id="@+id/nav_addition_matrix"
                 android:icon="@drawable/ic_addition_matrix"
-                android:title="@string/addition_of_matrix"/>
-        <item
-                android:id="@+id/nav_subtraction_matrix"
-                android:icon="@drawable/ic_subtraction_matrix"
-                android:title="@string/subtraction_of_matrix" />
+                android:title="@string/basic_actions_of_matrix"/>
+
         <item
                 android:id="@+id/nav_multiplication_matrix"
                 android:icon="@drawable/ic_multiplication_matrix"

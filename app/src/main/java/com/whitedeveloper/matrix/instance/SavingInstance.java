@@ -7,6 +7,10 @@ import com.whitedeveloper.matrix.Action;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class SavingInstance {
     static final String KEY_SHARED_MATRICES = "matrices";
     static final String KEY_SHARED_ACTION = "action";
@@ -177,7 +181,23 @@ public class SavingInstance {
 
         sharedPreferences.putString(nameSaving, jsonObject.toString());
         sharedPreferences.apply();
+    }
 
+    public static ArrayList<String> getAllSaving(Context context)
+    {
+        Map<String,?> all = context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE).getAll();
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(Map.Entry<String,?> entry : all.entrySet())
+            arrayList.add(entry.getKey());
+       return  arrayList;
+    }
+
+    public static void removeSaving(Context context, String nameSaving)
+    {
+        context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE)
+                .edit().
+                remove(nameSaving)
+                .apply();
     }
 
 }

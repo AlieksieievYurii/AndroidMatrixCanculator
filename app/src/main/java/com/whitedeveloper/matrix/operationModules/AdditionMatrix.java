@@ -34,10 +34,13 @@ public class AdditionMatrix {
     }
 
     public static double[][] doNegative(double[][] matrix) {
+
+        double[][] matrixNewInstance = new double[matrix.length][matrix[0].length];
+
         for (int i = 0; i < matrix.length; i++)
             for (int j = 0; j < matrix[i].length; j++)
-                matrix[i][j] = -matrix[i][j];
-        return matrix;
+                matrixNewInstance[i][j] = -matrix[i][j];
+        return matrixNewInstance;
 
     }
 }

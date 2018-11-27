@@ -5,6 +5,8 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import com.whitedeveloper.matrix.ListView.ListOfSavingMatrices;
+import com.whitedeveloper.matrix.fragments.SetMatrix;
 import com.whitedeveloper.matrix.fragments.Style;
 
 public class ManagerMatrix {
@@ -67,17 +69,41 @@ public class ManagerMatrix {
         }
     }
 
-    public void clearMatrix(GridLayout gridLayout,String tagId, int rowsMatrices, int columnsMatrices)
-    {
-        for(int i = 0; i < rowsMatrices; i++)
-            for(int j = 0; j < columnsMatrices; j++)
-            {
+    public void fillUpMatrix(GridLayout gridLayout, String tagId, double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                String tag = tagId + String.valueOf(i) + String.valueOf(j);
+                EditText editText = gridLayout.findViewWithTag(tag);
+                editText.setText(String.valueOf(matrix[i][j]));
+            }
+        }
+    }
+
+    public void clearMatrix(GridLayout gridLayout, String tagId, int rowsMatrices, int columnsMatrices) {
+        for (int i = 0; i < rowsMatrices; i++)
+            for (int j = 0; j < columnsMatrices; j++) {
                 String tag = tagId + String.valueOf(i) + String.valueOf(j);
                 EditText editText = gridLayout.findViewWithTag(tag);
                 editText.getText().clear();
             }
 
     }
+
+    public static boolean isSameDimension(double[][] matrixA, double[][] matrixB)
+    {
+        if(matrixA.length != matrixB.length)
+            return false;
+
+        for(int i = 0; i < matrixA.length; i++)
+        {
+            if(matrixA[i].length != matrixB[i].length)
+                return false;
+        }
+
+        return true;
+    }
+
+
 
 
 }

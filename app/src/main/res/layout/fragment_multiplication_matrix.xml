@@ -131,6 +131,7 @@
                            style="@style/matrix">
 
                         <TextView
+                                android:id="@+id/tv_matrix_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/matrix_a"
@@ -146,7 +147,7 @@
                     </LinearLayout>
 
                     <TextView
-                            android:id="@+id/tv_add_symbol"
+                            android:id="@+id/tv_action_symbol"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textColor"
@@ -160,10 +161,11 @@
                     <LinearLayout
                             android:id="@+id/ln_matrix_b"
                             style="@style/matrix"
-                            android:layout_toEndOf="@id/tv_add_symbol"
+                            android:layout_toEndOf="@id/tv_action_symbol"
                             android:layout_centerVertical="true">
 
                         <TextView
+                                android:id="@id/tv_matrix_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/matrix_b"

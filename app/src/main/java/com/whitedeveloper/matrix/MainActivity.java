@@ -3,7 +3,6 @@ package com.whitedeveloper.matrix;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -65,10 +64,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setSelectedFirstTime() {
         navigationView.getMenu().getItem(0).setChecked(true);
-        loadAdditionFragment();
+        loadBasicActionsFragment();
     }
 
-    private void loadAdditionFragment()
+    private void loadBasicActionsFragment()
     {
         FragmentAdditionMatrix fragmentAdditionMatrix = new FragmentAdditionMatrix();
         onPressSaveResualtListener = fragmentAdditionMatrix;
@@ -77,19 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .beginTransaction()
                 .replace(R.id.fragment_container,  fragmentAdditionMatrix)
                 .commit();
-        setTitle(getResources().getString(R.string.addition_of_matrix));
+        setTitle(getResources().getString(R.string.basic_actions_of_matrix));
     }
 
-    private void loadSubtractionFragment() {
-        FragmentSubtractionMatrix subtractionMatrix = new FragmentSubtractionMatrix();
-        onPressSaveResualtListener = subtractionMatrix;
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, subtractionMatrix)
-                .commit();
-        setTitle(getResources().getString(R.string.subtraction_of_matrix));
-    }
 
     private void loadMultiplicationFragment() {
 
@@ -145,13 +134,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
         switch (item.getItemId()) {
             case R.id.nav_addition_matrix:
-                loadAdditionFragment();
-                break;
-            case R.id.nav_subtraction_matrix:
-                loadSubtractionFragment();
+                loadBasicActionsFragment();
                 break;
             case R.id.nav_multiplication_matrix:
                 loadMultiplicationFragment();

@@ -92,4 +92,9 @@ public class GetInstance {
         return determinant;
     }
 
+    public String getNameSaving() {
+        return nameSaving;
+    }
+
+
 }
