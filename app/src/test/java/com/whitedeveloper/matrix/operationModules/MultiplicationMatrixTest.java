@@ -30,6 +30,22 @@ public class MultiplicationMatrixTest {
     private static final double[] shouldResult3 =
             {54, 64, 434};
 
+    private static final double[][] matrix3 = {
+            {1,2},
+            {1,3},
+            {3,54}
+    };
+
+    private static final double[][] matrix4 = {
+                {1,2},
+                {1,3},
+    };
+    private static final double[][] matrixRes = {
+                {3,8},
+                {4,11},
+                {57,168},
+        };
+
     @Test
     public void testOne() {
         assertArrayEquals(MultiplicationMatrix.getColumnFromMatrix(matrix, 0), shouldResult1, 0);
@@ -52,5 +68,13 @@ public class MultiplicationMatrixTest {
         assertTrue(multiplicationMatrix.isAvailableForAddition());
 
         assertArrayEquals(multiplicationMatrix.multiplicationMatrices(),matrixOfMultiplicationMatrixAndMatrix2);
+    }
+
+    @Test
+    public void testFour()
+    {
+        MultiplicationMatrix multiplicationMatrix = new MultiplicationMatrix(matrix3,matrix4);
+
+        assertArrayEquals(multiplicationMatrix.multiplicationMatrices(),matrixRes);
     }
 }

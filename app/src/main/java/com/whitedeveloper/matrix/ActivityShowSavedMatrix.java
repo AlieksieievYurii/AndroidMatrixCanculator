@@ -57,7 +57,6 @@ public class ActivityShowSavedMatrix extends AppCompatActivity {
                 .add(R.id.fragment_container, showSavedMatrixOne)
                 .commit();
     }
-
     private void loadFragmentMatrixTwo(Bundle bundle)
     {
         FragmentShowMatricesTwo fragmentShowMatricesTwo = new FragmentShowMatricesTwo();

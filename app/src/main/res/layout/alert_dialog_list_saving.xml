@@ -2,10 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
+   <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/colorPrimary"
+           android:text="@string/saving"
+           android:textColor="@color/white"
+           android:textSize="20sp"
+           android:padding="5dp"/>
    <com.baoyz.swipemenulistview.SwipeMenuListView
            android:id="@+id/ls_saving"
            android:layout_width="match_parent"
-           android:layout_height="match_parent"/>
+           android:layout_height="match_parent"
+           android:divider="#7d595959"
+           android:dividerHeight="1dp">
+   </com.baoyz.swipemenulistview.SwipeMenuListView>
 
 </LinearLayout>

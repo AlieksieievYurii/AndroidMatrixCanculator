@@ -45,6 +45,9 @@
     <string name="inversing">Inversed</string>
     <string name="transposing">Transposed</string>
     <string name="matrix_result">Result:</string>
+    <string name="saving">Saving</string>
+    <string name="save">Save</string>
+    <string name="text_existed_already">The name is existed already!</string>
 
 
     <string-array name="numbers_for_spinner">

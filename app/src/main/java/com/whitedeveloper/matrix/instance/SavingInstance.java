@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import com.whitedeveloper.matrix.Action;
+import com.whitedeveloper.matrix.ListView.ItemMatrices;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class SavingInstance {
@@ -68,14 +68,15 @@ public class SavingInstance {
         this.matrixResult = matrixResult;
         return this;
     }
-    public double getDeterminant() {
-          return determinant;
-      }
 
-      public SavingInstance setDeterminant(double determinant) {
-          this.determinant = determinant;
-          return this;
-      }
+    public double getDeterminant() {
+        return determinant;
+    }
+
+    public SavingInstance setDeterminant(double determinant) {
+        this.determinant = determinant;
+        return this;
+    }
 
 
     public void commit() throws Exception {
@@ -122,7 +123,7 @@ public class SavingInstance {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(KEY_SHARED_ACTION, Action.DETERMINATION.toString());
         jsonObject.put(KEY_SHARED_MATRIX_A, JsonMatrix.getJsonFromMatrix(matrixA));
-        jsonObject.put(KEY_SHARED_DETERMINANT,determinant);
+        jsonObject.put(KEY_SHARED_DETERMINANT, determinant);
 
         sharedPreferences.putString(nameSaving, jsonObject.toString());
         sharedPreferences.apply();
@@ -183,18 +184,56 @@ public class SavingInstance {
         sharedPreferences.apply();
     }
 
-    public static ArrayList<String> getAllSaving(Context context)
-    {
-        Map<String,?> all = context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE).getAll();
-        ArrayList<String> arrayList = new ArrayList<>();
-        for(Map.Entry<String,?> entry : all.entrySet())
-            arrayList.add(entry.getKey());
-       return  arrayList;
+    public static ArrayList<ItemMatrices> getAllSaving(Context context) {
+        Map<String, ?> all = context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE).getAll();
+        ArrayList<ItemMatrices> arrayList = new ArrayList<>();
+        for (Map.Entry<String, ?> entry : all.entrySet())
+            arrayList.add(getItemMatrix(context, entry.getKey()));
+        return arrayList;
     }
 
-    public static void removeSaving(Context context, String nameSaving)
-    {
-        context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE)
+    private static ArrayList<String> getNamesAllSaving(Context context) {
+        Map<String, ?> all = context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE).getAll();
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (Map.Entry<String, ?> entry : all.entrySet())
+            arrayList.add(entry.getKey());
+        return arrayList;
+    }
+
+    public static boolean isNameExisted(Context context, String nameSaving) {
+        ArrayList<String> existedNames = getNamesAllSaving(context);
+
+        for (String str : existedNames)
+            if (str.equals(nameSaving))
+                return true;
+        return false;
+    }
+
+    private static ItemMatrices getItemMatrix(Context context, String nameSaving) {
+        ItemMatrices itemMatrices = new ItemMatrices();
+        GetInstance getInstance;
+        try {
+            getInstance = new GetInstance(context, nameSaving);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        itemMatrices.setNameSaving(nameSaving);
+        itemMatrices.setAction(getInstance.getAction());
+
+        if (getInstance.getAction() == Action.DETERMINATION)
+            itemMatrices.setResultItem(String.valueOf(getInstance.getDeterminant()));
+        else {
+            itemMatrices.setCountRows(getInstance.getMatrixResult().length);
+            itemMatrices.setCountColumns(getInstance.getMatrixResult()[0].length);
+        }
+
+        return itemMatrices;
+    }
+
+    public static void removeSaving(Context context, String nameSaving) {
+        context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE)
                 .edit().
                 remove(nameSaving)
                 .apply();

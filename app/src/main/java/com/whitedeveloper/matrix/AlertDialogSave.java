@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.whitedeveloper.matrix.instance.SavingInstance;
 
 public class AlertDialogSave extends Dialog
 {
@@ -41,6 +42,11 @@ public class AlertDialogSave extends Dialog
             public void onClick(View view) {
                 if(!edtName.getText().toString().trim().equals(""))
                 {
+                    if(SavingInstance.isNameExisted(getContext(),edtName.getText().toString()))
+                    {
+                        Toast.makeText(getContext(), R.string.text_existed_already,Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     callBack.callBack(edtName.getText().toString());
                     hide();
                     dismiss();

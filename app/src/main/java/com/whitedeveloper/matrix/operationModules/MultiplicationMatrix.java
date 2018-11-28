@@ -11,7 +11,7 @@ public class MultiplicationMatrix {
     }
 
     public double[][] multiplicationMatrices() {
-        double[][] result = new double[matrixA[0].length][matrixB[0].length];
+        double[][] result = new double[matrixA.length][matrixB[0].length];
 
         for (int i = 0; i < result.length; i++)
             for (int j = 0; j < result[i].length; j++) {

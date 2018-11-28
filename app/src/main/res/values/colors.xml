@@ -7,4 +7,6 @@
     <color name="white">#fff</color>
     <color name="textColor">#000</color>
     <color name="activityBackground">#cccccc</color>
+    <color name="green">#27991b</color>
+    <color name="red_item">#810000</color>
 </resources>

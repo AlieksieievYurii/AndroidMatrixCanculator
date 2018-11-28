@@ -17,7 +17,7 @@ import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 
-public class FragmentAdditionMatrix extends Fragment implements
+public class FragmentBaseOperationsMatrix extends Fragment implements
         AdapterView.OnItemSelectedListener,
         TextWatcher,
         OnPressSaveResualtListener, View.OnLongClickListener {
@@ -55,7 +55,7 @@ public class FragmentAdditionMatrix extends Fragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_addition_matrix, container, false);
+        view = inflater.inflate(R.layout.fragment_base_operation_matrix, container, false);
         init();
         return view;
     }

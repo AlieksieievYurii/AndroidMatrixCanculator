@@ -3,9 +3,11 @@ package com.whitedeveloper.matrix.ListView;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.content.ContextCompat;
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.whitedeveloper.matrix.R;
 
 public class MenuCreator implements SwipeMenuCreator
 {
@@ -26,7 +28,7 @@ public class MenuCreator implements SwipeMenuCreator
     private SwipeMenuItem getItemShowing()
     {
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
-        swipeMenuItem.setBackground(new ColorDrawable(Color.GREEN));
+        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context,R.color.green)));
         swipeMenuItem.setWidth(200);
         swipeMenuItem.setTitle("Show");
         swipeMenuItem.setTitleSize(12);
@@ -37,7 +39,7 @@ public class MenuCreator implements SwipeMenuCreator
     private SwipeMenuItem getItemRemoving()
     {
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
-                swipeMenuItem.setBackground(new ColorDrawable(Color.RED));
+                swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context,R.color.red_item)));
                 swipeMenuItem.setWidth(200);
                 swipeMenuItem.setTitle("Remove");
                 swipeMenuItem.setTitleSize(12);

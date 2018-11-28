@@ -15,6 +15,8 @@ import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
 
+import java.util.Arrays;
+
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 
@@ -132,9 +134,9 @@ public class FragmentMultiplicationMatrix extends Fragment implements
 
             @Override
             public void setSizeMatrix(int countRows, int countColumns) {
-                if (countRows == rowsMatrixA && countColumns == columnsMatrixB)
+                if (countRows == columnsMatrixA && countColumns == columnsMatrixB)
                     managerMatrix.fillUpMatrix(glMatrixB, TAG_ID_MATRIX_B, matrixB);
-                else if (countRows == rowsMatrixA) {
+                else if (countRows == columnsMatrixA) {
                     setColumnsForSpinnerB(countColumns);
                     setMatrixBFromSaving = true;
                 } else

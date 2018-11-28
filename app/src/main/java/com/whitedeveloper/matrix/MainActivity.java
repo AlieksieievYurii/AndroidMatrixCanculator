@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadBasicActionsFragment()
     {
-        FragmentAdditionMatrix fragmentAdditionMatrix = new FragmentAdditionMatrix();
-        onPressSaveResualtListener = fragmentAdditionMatrix;
+        FragmentBaseOperationsMatrix fragmentBaseOperationsMatrix = new FragmentBaseOperationsMatrix();
+        onPressSaveResualtListener = fragmentBaseOperationsMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,  fragmentAdditionMatrix)
+                .replace(R.id.fragment_container, fragmentBaseOperationsMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.basic_actions_of_matrix));
     }

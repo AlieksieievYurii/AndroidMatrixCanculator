@@ -1,77 +1,69 @@
 package com.whitedeveloper.matrix.ListView;
 
+
 import com.whitedeveloper.matrix.Action;
 
 public class ItemMatrices
 {
-    private double[][] matrixA;
-    private double[][] matrixB;
-    private double[][] matrixResult;
-    private double determination;
+    private String nameSaving;
     private Action action;
+    private String resultItem;
+    private int countRows;
+    private int countColumns;
 
-    public ItemMatrices(double[][] matrixA) {
-        this.matrixA = matrixA;
+    public String getNameSaving() {
+        return nameSaving;
     }
 
-    public ItemMatrices() {
-    }
-
-    public ItemMatrices(double[][] matrixA, double[][] matrixResult, Action action) {
-        this.matrixA = matrixA;
-        this.matrixResult = matrixResult;
-        this.action = action;
-    }
-
-    public ItemMatrices(double[][] matrixA, double[][] matrixB, double[][] matrixResult, Action action) {
-        this.matrixA = matrixA;
-        this.matrixB = matrixB;
-        this.matrixResult = matrixResult;
-        this.action = action;
-    }
-
-    public double[][] getMatrixA() {
-        return matrixA;
-    }
-
-    public ItemMatrices setMatrixA(double[][] matrixA) {
-        this.matrixA = matrixA;
-        return this;
-    }
-
-    public double[][] getMatrixB() {
-        return matrixB;
-    }
-
-    public ItemMatrices setMatrixB(double[][] matrixB) {
-        this.matrixB = matrixB;
-        return this;
-    }
-
-    public double[][] getMatrixResult() {
-        return matrixResult;
-    }
-
-    public ItemMatrices setMatrixResult(double[][] matrixResult) {
-        this.matrixResult = matrixResult;
-        return this;
-    }
-
-    public double getDetermination() {
-        return determination;
-    }
-
-    public ItemMatrices setDetermination(double determination) {
-        this.determination = determination;
-        return this;
+    public void setNameSaving(String nameSaving) {
+        this.nameSaving = nameSaving;
     }
 
     public Action getAction() {
         return action;
     }
 
-    public ItemMatrices setAction(Action action) {
+    public void setAction(Action action) {
         this.action = action;
-        return this;
+    }
+
+    public String getResultItem() {
+        return resultItem;
+    }
+
+    public void setResultItem(String resultItem) {
+        this.resultItem = resultItem;
+    }
+
+    public int getCountRows() {
+        return countRows;
+    }
+
+    public void setCountRows(int countRows) {
+        this.countRows = countRows;
+    }
+
+    public int getCountColumns() {
+        return countColumns;
+    }
+
+    public void setCountColumns(int countColumns) {
+        this.countColumns = countColumns;
+    }
+
+    public ItemMatrices(String nameSaving, Action action, int countRows, int countColumns) {
+        this.nameSaving = nameSaving;
+        this.action = action;
+        this.countRows = countRows;
+        this.countColumns = countColumns;
+    }
+
+    public ItemMatrices() {
+    }
+
+    public ItemMatrices(String nameSaving, Action action, String resultItem) {
+        this.nameSaving = nameSaving;
+        this.action = action;
+        this.resultItem = resultItem;
     }
 }
