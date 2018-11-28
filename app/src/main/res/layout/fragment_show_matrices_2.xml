@@ -19,7 +19,7 @@
                     android:id="@+id/tv_matrix"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/matrix_b"
+                    android:text="@string/matrix"
                     android:textAlignment="center"
                     android:textColor="@color/textColor"/>
 

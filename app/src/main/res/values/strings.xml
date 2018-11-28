@@ -48,6 +48,7 @@
     <string name="saving">Saving</string>
     <string name="save">Save</string>
     <string name="text_existed_already">The name is existed already!</string>
+    <string name="matrix">Matrix:</string>
 
 
     <string-array name="numbers_for_spinner">
