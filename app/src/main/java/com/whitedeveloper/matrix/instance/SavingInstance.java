@@ -45,9 +45,6 @@ public class SavingInstance {
         return this;
     }
 
-    public String getNameSaving() {
-        return nameSaving;
-    }
 
     public SavingInstance setAction(Action action) {
         this.action = action;
@@ -211,22 +208,22 @@ public class SavingInstance {
 
     private static ItemMatrices getItemMatrix(Context context, String nameSaving) {
         ItemMatrices itemMatrices = new ItemMatrices();
-        GetInstance getInstance;
+        SavedInstance savedInstance;
         try {
-            getInstance = new GetInstance(context, nameSaving);
+            savedInstance = new SavedInstance(context, nameSaving);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
 
         itemMatrices.setNameSaving(nameSaving);
-        itemMatrices.setAction(getInstance.getAction());
+        itemMatrices.setAction(savedInstance.getAction());
 
-        if (getInstance.getAction() == Action.DETERMINATION)
-            itemMatrices.setResultItem(String.valueOf(getInstance.getDeterminant()));
+        if (savedInstance.getAction() == Action.DETERMINATION)
+            itemMatrices.setResultItem(String.valueOf(savedInstance.getDeterminant()));
         else {
-            itemMatrices.setCountRows(getInstance.getMatrixResult().length);
-            itemMatrices.setCountColumns(getInstance.getMatrixResult()[0].length);
+            itemMatrices.setCountRows(savedInstance.getMatrixResult().length);
+            itemMatrices.setCountColumns(savedInstance.getMatrixResult()[0].length);
         }
 
         return itemMatrices;

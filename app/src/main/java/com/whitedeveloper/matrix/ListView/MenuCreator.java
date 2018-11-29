@@ -14,7 +14,7 @@ public class MenuCreator implements SwipeMenuCreator
 
     private final Context context;
 
-    public MenuCreator(Context context) {
+    MenuCreator(Context context) {
         this.context = context;
     }
 
@@ -30,7 +30,7 @@ public class MenuCreator implements SwipeMenuCreator
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
         swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context,R.color.green)));
         swipeMenuItem.setWidth(200);
-        swipeMenuItem.setTitle("Show");
+        swipeMenuItem.setTitle(context.getString(R.string.show));
         swipeMenuItem.setTitleSize(12);
         swipeMenuItem.setTitleColor(Color.WHITE);
         return swipeMenuItem;
@@ -41,7 +41,7 @@ public class MenuCreator implements SwipeMenuCreator
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
                 swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context,R.color.red_item)));
                 swipeMenuItem.setWidth(200);
-                swipeMenuItem.setTitle("Remove");
+                swipeMenuItem.setTitle(context.getString(R.string.remove));
                 swipeMenuItem.setTitleSize(12);
                 swipeMenuItem.setTitleColor(Color.WHITE);
         return swipeMenuItem;

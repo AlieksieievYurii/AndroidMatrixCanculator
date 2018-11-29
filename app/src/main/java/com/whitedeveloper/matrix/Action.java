@@ -15,7 +15,6 @@ public enum Action
         this.nameAction = nameAction;
     }
 
-
     @Override
     public String toString() {
         return nameAction;
@@ -33,4 +32,6 @@ public enum Action
         }
         return null;
     }
+
+
 }

@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="operations_on_matrix">Operations on Matrix</string>
-    <string name="basic_actions_of_matrix">Basic actions of Matrix</string>
+    <string name="basic_actions_of_matrix">Basic operations of Matrix</string>
     <string name="multiplication_of_matrix">Multiplication of Matrix</string>
     <string name="transpose_of_matrix">Transpose of Matrix</string>
     <string name="determinant_of_matrix">Determinant of Matrix</string>
@@ -31,7 +31,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
-    <string name="special_for_dems">Special for Krzystof Dems</string>
+    <string name="special_for_dems">Special for Krzysztofa Demsa</string>
     <string name="the_app_matrix">The program Matrix</string>
     <string name="clear">CLEAR</string>
     <string name="text_save_result">Save result</string>
@@ -42,15 +42,18 @@
     <string name="text_calculate">Calculate!</string>
     <string name="text_not_allowed">Not allowed!</string>
     <string name="text_error_opening_saving">Error opening!</string>
-    <string name="inversing">Inversed</string>
+    <string name="inverted">Inverted</string>
     <string name="transposing">Transposed</string>
     <string name="matrix_result">Result:</string>
     <string name="saving">Saving</string>
     <string name="save">Save</string>
-    <string name="text_existed_already">The name is existed already!</string>
+    <string name="text_existed_already">Existed already!</string>
     <string name="matrix">Matrix:</string>
     <string name="rows_not_equals_columns">Number rows not equals number columns</string>
-
+    <string name="determinant">Determinant</string>
+    <string name="show">Show</string>
+    <string name="remove">Remove</string>
+    <string name="cannot_be_empty">Cannot be empty!</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

@@ -1,6 +1,6 @@
 package com.whitedeveloper.matrix;
 
-public interface OnPressSaveResualtListener
+public interface OnPressSaveResultListener
 {
     void onPressSave();
 }

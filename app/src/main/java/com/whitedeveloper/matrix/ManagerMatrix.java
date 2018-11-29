@@ -5,8 +5,6 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import com.whitedeveloper.matrix.ListView.ListOfSavingMatrices;
-import com.whitedeveloper.matrix.fragments.SetMatrix;
 import com.whitedeveloper.matrix.fragments.Style;
 
 public class ManagerMatrix {
@@ -88,22 +86,5 @@ public class ManagerMatrix {
             }
 
     }
-
-    public static boolean isSameDimension(double[][] matrixA, double[][] matrixB)
-    {
-        if(matrixA.length != matrixB.length)
-            return false;
-
-        for(int i = 0; i < matrixA.length; i++)
-        {
-            if(matrixA[i].length != matrixB[i].length)
-                return false;
-        }
-
-        return true;
-    }
-
-
-
 
 }

@@ -12,11 +12,11 @@ import android.widget.TextView;
 import com.whitedeveloper.matrix.ActivityShowSavedMatrix;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
-import com.whitedeveloper.matrix.instance.GetInstance;
+import com.whitedeveloper.matrix.instance.SavedInstance;
 
 public class FragmentShowSavedMatrixOne extends Fragment {
 
-    private GetInstance getInstance;
+    private SavedInstance savedInstance;
     private ManagerMatrix managerMatrix;
     private View view;
     private GridLayout glMatrixA;
@@ -44,7 +44,7 @@ public class FragmentShowSavedMatrixOne extends Fragment {
 
     private void setAction()
     {
-        switch (getInstance.getAction())
+        switch (savedInstance.getAction())
         {
             case ADDITION:
                 tvAction.setText(R.string.addition_symbol);
@@ -65,7 +65,7 @@ public class FragmentShowSavedMatrixOne extends Fragment {
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
         tvAction = view.findViewById(R.id.tv_action_symbol);
-        getInstance = new GetInstance(getContext(),getArguments().getString(ActivityShowSavedMatrix.EXTRA_NAME_SAVING));
+        savedInstance = new SavedInstance(getContext(),getArguments().getString(ActivityShowSavedMatrix.EXTRA_NAME_SAVING));
     }
 
     private void setAll() {
@@ -74,9 +74,9 @@ public class FragmentShowSavedMatrixOne extends Fragment {
         glMatrixB.setEnabled(false);
         glMatrixResult.setEnabled(false);
 
-        managerMatrix.generateAndFillUpMatrixResult(glMatrixA, getInstance.getMatrixA());
-        managerMatrix.generateAndFillUpMatrixResult(glMatrixB, getInstance.getMatrixB());
-        managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, getInstance.getMatrixResult());
+        managerMatrix.generateAndFillUpMatrixResult(glMatrixA, savedInstance.getMatrixA());
+        managerMatrix.generateAndFillUpMatrixResult(glMatrixB, savedInstance.getMatrixB());
+        managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, savedInstance.getMatrixResult());
 
     }
 

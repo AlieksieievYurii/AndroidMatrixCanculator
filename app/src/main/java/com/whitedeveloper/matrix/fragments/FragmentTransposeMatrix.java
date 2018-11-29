@@ -16,7 +16,7 @@ import com.whitedeveloper.matrix.operationModules.TransposeMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
-public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResualtListener {
+public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
     private View view;
 
     private Spinner spRowsMatrix;
@@ -137,7 +137,7 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glResult, matrixResult);
     }
@@ -164,7 +164,7 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
         switch (adapterView.getId())
         {

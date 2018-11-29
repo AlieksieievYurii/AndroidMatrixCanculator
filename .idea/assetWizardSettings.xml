@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/E:/Programs/IntelliJ%20IDEA%20Community%20Edition%202018.2/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_save_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/E:/Programs/IntelliJ%20IDEA%20Community%20Edition%202018.2/plugins/android/lib/android.jar!/images/material_design_icons/alert/ic_error_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_save" />
+                            <entry key="outputName" value="ic_error" />
                             <entry key="sourceFile" value="C:\Users\WhiteDeveloper" />
                           </map>
                         </option>

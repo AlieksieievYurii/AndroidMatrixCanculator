@@ -21,7 +21,7 @@ import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
 public class FragmentMultiplicationMatrix extends Fragment implements
         AdapterView.OnItemSelectedListener,
         TextWatcher,
-        OnPressSaveResualtListener, View.OnLongClickListener {
+        OnPressSaveResultListener, View.OnLongClickListener {
     private View view;
 
     private Spinner spCountRowsMatrices;
@@ -181,7 +181,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
     }
@@ -195,7 +195,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         removeResult();
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
 
         switch (adapterView.getId())

@@ -5,7 +5,7 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_addition_matrix"
-                android:icon="@drawable/ic_addition_matrix"
+                android:icon="@drawable/ic_basic_operation_matrices"
                 android:title="@string/basic_actions_of_matrix"/>
 
         <item

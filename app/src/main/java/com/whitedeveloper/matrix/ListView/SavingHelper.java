@@ -7,7 +7,7 @@ import com.whitedeveloper.matrix.Action;
 import com.whitedeveloper.matrix.ActivityShowSavedMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.fragments.SetMatrix;
-import com.whitedeveloper.matrix.instance.GetInstance;
+import com.whitedeveloper.matrix.instance.SavedInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 
 
@@ -31,15 +31,15 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     @Override
     public void selectedItem(String name) {
         try {
-            final GetInstance getInstance = new GetInstance(context, name);
+            final SavedInstance savedInstance = new SavedInstance(context, name);
 
-            if (getInstance.getAction() == Action.DETERMINATION) {
+            if (savedInstance.getAction() == Action.DETERMINATION) {
                 Toast.makeText(context, R.string.text_not_allowed, Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            setMatrix.setMatrix(getInstance.getMatrixResult());
-            setMatrix.setSizeMatrix(getInstance.getMatrixResult().length, getInstance.getMatrixResult()[0].length);
+            setMatrix.setMatrix(savedInstance.getMatrixResult());
+            setMatrix.setSizeMatrix(savedInstance.getMatrixResult().length, savedInstance.getMatrixResult()[0].length);
             listOfSavingMatrices.hide();
         } catch (Exception e) {
             e.printStackTrace();

@@ -17,7 +17,7 @@ import com.whitedeveloper.matrix.operationModules.InversionMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
-public class FragmentInversionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResualtListener {
+public class FragmentInversionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
     private View view;
 
     private GridLayout glMatrix;
@@ -128,7 +128,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void showResult(double[][] matrixResult) {
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glResult, matrixResult);
     }
@@ -157,7 +157,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         dimensionMatrix = i + 2;
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.whitedeveloper.matrix.ActivityShowSavedMatrix;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
-import com.whitedeveloper.matrix.instance.GetInstance;
+import com.whitedeveloper.matrix.instance.SavedInstance;
 
 public class FragmentShowMatricesTwo extends Fragment
 {
@@ -20,7 +20,7 @@ public class FragmentShowMatricesTwo extends Fragment
     private GridLayout glMatrixResult;
     private TextView tvAction;
     private ManagerMatrix managerMatrix;
-    private GetInstance getInstance;
+    private SavedInstance savedInstance;
 
     @Nullable
     @Override
@@ -43,10 +43,10 @@ public class FragmentShowMatricesTwo extends Fragment
 
     private void setAction()
     {
-        switch (getInstance.getAction())
+        switch (savedInstance.getAction())
         {
             case INVERSION:
-                tvAction.setText(R.string.inversing);
+                tvAction.setText(R.string.inverted);
                 break;
             case TRANSPOSING:
                 tvAction.setText(R.string.transposing);
@@ -56,8 +56,8 @@ public class FragmentShowMatricesTwo extends Fragment
 
     private void setAll()
     {
-        managerMatrix.generateAndFillUpMatrixResult(glMatrix,getInstance.getMatrixA());
-        managerMatrix.generateAndFillUpMatrixResult(glMatrixResult,getInstance.getMatrixResult());
+        managerMatrix.generateAndFillUpMatrixResult(glMatrix, savedInstance.getMatrixA());
+        managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, savedInstance.getMatrixResult());
     }
 
     private void init() throws Exception
@@ -70,7 +70,7 @@ public class FragmentShowMatricesTwo extends Fragment
         glMatrixResult.setEnabled(false);
 
         managerMatrix = new ManagerMatrix(getContext());
-        getInstance = new GetInstance(getContext(),getArguments().getString(ActivityShowSavedMatrix.EXTRA_NAME_SAVING));
+        savedInstance = new SavedInstance(getContext(),getArguments().getString(ActivityShowSavedMatrix.EXTRA_NAME_SAVING));
 
     }
 }

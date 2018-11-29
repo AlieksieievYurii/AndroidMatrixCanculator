@@ -16,7 +16,7 @@ import com.whitedeveloper.matrix.fragments.*;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AlertDialogExit.CallBack {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private OnPressSaveResualtListener onPressSaveResualtListener;
+    private OnPressSaveResultListener onPressSaveResultListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId())
         {
             case R.id.menu_save:
-                onPressSaveResualtListener.onPressSave();
+                onPressSaveResultListener.onPressSave();
                 break;
         }
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadBasicActionsFragment()
     {
         FragmentBaseOperationsMatrix fragmentBaseOperationsMatrix = new FragmentBaseOperationsMatrix();
-        onPressSaveResualtListener = fragmentBaseOperationsMatrix;
+        onPressSaveResultListener = fragmentBaseOperationsMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadMultiplicationFragment() {
 
         FragmentMultiplicationMatrix multiplicationMatrix = new FragmentMultiplicationMatrix();
-        onPressSaveResualtListener = multiplicationMatrix;
+        onPressSaveResultListener = multiplicationMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadTransposeFragment()
     {
         FragmentTransposeMatrix fragmentTransposeMatrix = new FragmentTransposeMatrix();
-        onPressSaveResualtListener = fragmentTransposeMatrix;
+        onPressSaveResultListener = fragmentTransposeMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadDeterminantFragment()
     {
         FragmentDeterminantMatrix fragmentDeterminantMatrix = new FragmentDeterminantMatrix();
-        onPressSaveResualtListener = fragmentDeterminantMatrix;
+        onPressSaveResultListener = fragmentDeterminantMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void loadInverseFragment()
     {
         FragmentInversionMatrix fragmentInversionMatrix = new FragmentInversionMatrix();
-        onPressSaveResualtListener = fragmentInversionMatrix;
+        onPressSaveResultListener = fragmentInversionMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction().

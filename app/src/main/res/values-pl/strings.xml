@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Macier</string>
+
+    <string name="navigation_drawer_open">Otwarta szuflada nawigacji</string>
+    <string name="navigation_drawer_close">Zamknij szufladę nawigacji</string>
+    <string name="operations_on_matrix">Operacje na macierzy</string>
+    <string name="basic_actions_of_matrix">Podstawowe operacje</string>
+    <string name="multiplication_of_matrix">Mnożenie macierzy</string>
+    <string name="transpose_of_matrix">Transpozycja macierzy</string>
+    <string name="determinant_of_matrix">Wyznacznik macierzy</string>
+    <string name="inverse_of_matrix">Inwersja macierzy</string>
+    <string name="count_rows">Ilość wierzchołków:</string>
+    <string name="count_columns">Ilość kolumn:</string>
+    <string name="enter_value_of_matrices">Wprowadź wartości macierzy:</string>
+    <string name="matrix_a">Macierza  A:</string>
+    <string name="addition_symbol">+</string>
+    <string name="matrix_b">Macierza B:</string>
+    <string name="equals_symbol">=</string>
+    <string name="text_warming_fill_up_matrix">Wypełnij Matryce!</string>
+    <string name="result">Wynik</string>
+    <string name="subtraction_symbol">-</string>
+    <string name="count_columns_matrix_a">Ilość wierzchołków A:</string>
+    <string name="count_columns_matrix_b">Columns of Matrix B:</string>
+    <string name="count_rows_matrix_a">Ilość kolumn A:</string>
+    <string name="multiplication_symbol">X</string>
+    <string name="size_matrix">Rozmiar Macierzy:</string>
+    <string name="text_determinant">Det(A)=</string>
+    <string name="enter_value_of_matrix">Wprowadź wartości macierzy:</string>
+    <string name="about">O programie</string>
+    <string name="question_exit">Czy chcesz wyjść?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
+    <string name="special_for_dems">Specjalnie dla Krzysztofa Demsa</string>
+    <string name="the_app_matrix">Program obliczanie Macierzy</string>
+    <string name="clear">USUN</string>
+    <string name="text_save_result">Zapisz wynik</string>
+    <string name="hint_enter_name_saving">Wprowadź nazwę Zapisu…</string>
+    <string name="text_btn_save">Zapisać</string>
+    <string name="text_btn_cancel">Anuluj</string>
+    <string name="text_name_can_not_be_empty">Nazwa nie może być pusta</string>
+    <string name="text_calculate">Przede wszystkim Oblicz!</string>
+    <string name="text_not_allowed">Nie dozwolony!</string>
+    <string name="text_error_opening_saving">Błąd podczas otwierania!</string>
+    <string name="inverted">Odwrócona</string>
+    <string name="transposing">Transponowana</string>
+    <string name="matrix_result">Wynik:</string>
+    <string name="saving">Zapisywanie</string>
+    <string name="save">Zapisać</string>
+    <string name="text_existed_already">Nazwa już istnieje!</string>
+    <string name="matrix">Macierza:</string>
+    <string name="rows_not_equals_columns">Liczba wierszy nie równa się liczbie kolumn!</string>
+    <string name="determinant">Wyznacznik</string>
+    <string name="show">Pokazać</string>
+    <string name="remove">Usunąć</string>
+    <string name="cannot_be_empty">Nie może być pusty!</string>
+
+    <string-array name="numbers_for_spinner">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="size_matrix_for_spinner">
+        <item>2x2</item>
+        <item>3x3</item>
+        <item>4x4</item>
+        <item>5x5</item>
+        <item>6x6</item>
+        <item>7x7</item>
+        <item>8x8</item>
+        <item>9x9</item>
+        <item>10x10</item>
+    </string-array>
+</resources>

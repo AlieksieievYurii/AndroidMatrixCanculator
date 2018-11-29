@@ -13,13 +13,12 @@ import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.instance.SavingInstance;
-import com.whitedeveloper.matrix.instance.TestClass;
 import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
 
-public class FragmentDeterminantMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResualtListener {
+public class FragmentDeterminantMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
     private View view;
 
     private GridLayout glMatrix;
@@ -134,7 +133,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     }
 
     private void showResult(double det) {
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         tvDet.setVisibility(View.VISIBLE);
         tvDet.setText(getResources().getString(R.string.text_determinant).concat(String.valueOf(det)));
         rlResult.setVisibility(View.VISIBLE);
@@ -149,7 +148,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         removeResult();
         dimensionMatrix = i + 2;
-        HidenKeyboard.hideKeyboardFrom(getContext(), view);
+        HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
 

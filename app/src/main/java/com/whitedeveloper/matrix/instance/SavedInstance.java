@@ -6,7 +6,7 @@ import com.whitedeveloper.matrix.Action;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
 import org.json.JSONObject;
 
-public class GetInstance {
+public class SavedInstance {
     private Context context;
     private String nameSaving;
     private Action action;
@@ -17,7 +17,7 @@ public class GetInstance {
 
     private JSONObject jsonObject;
 
-    public GetInstance(Context context, String nameSaving) throws Exception {
+    public SavedInstance(Context context, String nameSaving) throws Exception {
         this.context = context;
         this.nameSaving = nameSaving;
         readingFromSharedPref();
