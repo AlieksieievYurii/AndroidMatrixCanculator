@@ -31,6 +31,9 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     private int numberOfRows;
     private int numberOfColumns;
 
+    private int bufferCountRows;
+    private int bufferCountColumns;
+
     private double[][] matrix;
     private double[][] matrixResult;
 
@@ -110,6 +113,9 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
 
     private void setDimensionForSpinner(int countRows, int countColumns)
     {
+        bufferCountColumns = countColumns;
+        bufferCountRows = countRows;
+
         for(int i = 0; i < spRowsMatrix.getCount(); i++)
             if(Integer.parseInt((String) spRowsMatrix.getItemAtPosition(i)) == countRows)
                 spRowsMatrix.setSelection(i);
@@ -159,12 +165,20 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         HidenKeyboard.hideKeyboardFrom(getContext(), view);
-        numberOfRows = Integer.parseInt(spRowsMatrix.getSelectedItem().toString());
-        numberOfColumns = Integer.parseInt(spColumnMatrix.getSelectedItem().toString());
+
+        switch (adapterView.getId())
+        {
+            case R.id.sp_count_rows_matrix:
+                numberOfRows = Integer.parseInt(spRowsMatrix.getSelectedItem().toString());
+                break;
+            case R.id.sp_count_columns_matrix:
+                numberOfColumns = Integer.parseInt(spColumnMatrix.getSelectedItem().toString());
+                break;
+        }
 
         managerMatrix.generateMatrix(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns, this);
 
-        if(setMatrixFromSaving) {
+        if(setMatrixFromSaving && (bufferCountRows == numberOfRows) && (bufferCountColumns == numberOfColumns)) {
             managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);
             setMatrixFromSaving = false;
         }
