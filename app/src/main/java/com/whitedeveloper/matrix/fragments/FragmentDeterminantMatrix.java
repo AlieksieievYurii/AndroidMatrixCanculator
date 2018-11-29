@@ -1,5 +1,6 @@
 package com.whitedeveloper.matrix.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.instance.TestClass;
 import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
@@ -30,6 +32,9 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     private double determinant;
 
     private int dimensionMatrix;
+    private SetMatrix setMatrix;
+    private boolean setMatrixFromSaving = false;
+    private Spinner spSizeMatrix;
 
     @Nullable
     @Override
@@ -40,7 +45,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
     }
 
     private void init() {
-        final Spinner spSizeMatrix = view.findViewById(R.id.sp_dimension_matrix);
+        spSizeMatrix = view.findViewById(R.id.sp_dimension_matrix);
         spSizeMatrix.setOnItemSelectedListener(this);
         glMatrix = view.findViewById(R.id.gl_matrix_determinant);
 
@@ -67,6 +72,52 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
                 removeResult();
             }
         });
+
+        setMatrix = new SetMatrix() {
+            @Override
+            public void setMatrix(double[][] matrix) {
+                FragmentDeterminantMatrix.this.matrix = matrix;
+            }
+
+            @Override
+            public void setSizeMatrix(int countRows, int countColumns)
+            {
+                if(countColumns != countRows)
+                {
+                    Toast.makeText(getContext(), R.string.rows_not_equals_columns,Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(countColumns == dimensionMatrix)
+                {
+                    managerMatrix.fillUpMatrix(glMatrix,TAG_ID_MATRIX_A,matrix);
+                }else
+                {
+                    setDimensionForSpinnerBar(countRows);
+                    setMatrixFromSaving = true;
+                }
+
+            }
+        };
+
+        final TextView tvMatrix = view.findViewById(R.id.tv_matrix);
+        tvMatrix.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view)
+            {
+                SavingHelper savingHelper = new SavingHelper(getContext());
+                savingHelper.callAlertListSavingForMatrix(setMatrix);
+                return true;
+            }
+        });
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void setDimensionForSpinnerBar(int dim)
+    {
+        for(int i = 0; i < spSizeMatrix.getCount(); i++)
+            if(spSizeMatrix.getItemAtPosition(i).equals(String.format("%dx%d",dim,dim)))
+                spSizeMatrix.setSelection(i);
     }
 
     private void calculate() {
@@ -101,6 +152,12 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
         HidenKeyboard.hideKeyboardFrom(getContext(), view);
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
+
+        if(setMatrixFromSaving)
+        {
+            managerMatrix.fillUpMatrix(glMatrix,TAG_ID_MATRIX_A,matrix);
+            setMatrixFromSaving = false;
+        }
     }
 
     @Override

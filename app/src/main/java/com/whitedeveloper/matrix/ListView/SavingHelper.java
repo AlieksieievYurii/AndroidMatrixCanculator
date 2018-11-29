@@ -1,9 +1,7 @@
 package com.whitedeveloper.matrix.ListView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 import com.whitedeveloper.matrix.Action;
 import com.whitedeveloper.matrix.ActivityShowSavedMatrix;

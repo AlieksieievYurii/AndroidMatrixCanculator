@@ -49,6 +49,7 @@
     <string name="save">Save</string>
     <string name="text_existed_already">The name is existed already!</string>
     <string name="matrix">Matrix:</string>
+    <string name="rows_not_equals_columns">Number rows not equals number columns</string>
 
 
     <string-array name="numbers_for_spinner">
