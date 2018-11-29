@@ -19,9 +19,9 @@
     <string name="text_warming_fill_up_matrix">Fill up Matrices!</string>
     <string name="result">Result</string>
     <string name="subtraction_symbol">-</string>
-    <string name="count_columns_matrix_a">Count columns of Matrix A:</string>
-    <string name="count_columns_matrix_b">Count columns of Matrix B:</string>
-    <string name="count_rows_matrix_a">Count rows of Matrix A:</string>
+    <string name="count_columns_matrix_a">Columns of Matrix A:</string>
+    <string name="count_columns_matrix_b">Columns of Matrix B:</string>
+    <string name="count_rows_matrix_a">Rows of Matrix A:</string>
     <string name="multiplication_symbol">X</string>
     <string name="size_matrix">Size matrix:</string>
     <string name="text_determinant">Det(A)=</string>

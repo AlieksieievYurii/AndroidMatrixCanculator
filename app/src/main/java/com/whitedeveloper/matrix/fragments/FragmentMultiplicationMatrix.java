@@ -202,19 +202,22 @@ public class FragmentMultiplicationMatrix extends Fragment implements
         {
             case R.id.sp_count_rows_matrix_a:
                 rowsMatrixA = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
+                managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA, this);
+                managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB, this);
+
                 break;
             case R.id.sp_count_columns_matrix_a:
                 columnsMatrixA = Integer.parseInt(spCountColumnsMatrixA.getSelectedItem().toString());
+                if(!setMatrixBFromSaving)
+                    managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA, this);
+                managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB, this);
                 break;
             case R.id.sp_count_columns_matrix_b:
                 columnsMatrixB = Integer.parseInt(spCountColumnsMatrixB.getSelectedItem().toString());
+                managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB, this);
                 break;
         }
 
-        if(!setMatrixBFromSaving)
-            managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrixA, columnsMatrixA, this);
-
-        managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, columnsMatrixA, columnsMatrixB, this);
 
         if ((bufferRowsMatrixA == rowsMatrixA && bufferColumnsMatrixA == columnsMatrixA) || (bufferRowsMatrixA == rowsMatrixA && bufferColumnsMatrixB == columnsMatrixB)) {
             if (setMatrixAFromSaving)
