@@ -13,7 +13,9 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             tools:text="Saving_name"
-            android:textColor="@color/textColor"/>
+            android:textColor="@color/textColor"
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"/>
     <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

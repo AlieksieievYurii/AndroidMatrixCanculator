@@ -18,7 +18,6 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     private final Context context;
     private ListOfSavingMatrices listOfSavingMatrices;
     private SetMatrix setMatrix;
-    private GetInstance getInstance;
 
     public SavingHelper(Context context) {
         this.context = context;
@@ -34,7 +33,7 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     @Override
     public void selectedItem(String name) {
         try {
-            getInstance = new GetInstance(context, name);
+            final GetInstance getInstance = new GetInstance(context, name);
 
             if (getInstance.getAction() == Action.DETERMINATION) {
                 Toast.makeText(context, R.string.text_not_allowed, Toast.LENGTH_SHORT).show();

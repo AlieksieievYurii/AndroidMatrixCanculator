@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
@@ -8,9 +9,12 @@
            android:layout_height="wrap_content"
            android:background="@color/colorPrimary"
            android:text="@string/saving"
-           android:textColor="@color/white"
+           android:textStyle="bold"
            android:textSize="20sp"
-           android:padding="5dp"/>
+           android:paddingStart="25dp"
+           android:textColor="@color/white"
+           android:padding="5dp"
+           tools:ignore="RtlSymmetry"/>
    <com.baoyz.swipemenulistview.SwipeMenuListView
            android:id="@+id/ls_saving"
            android:layout_width="match_parent"

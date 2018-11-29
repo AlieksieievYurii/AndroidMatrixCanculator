@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
+import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.operationModules.TransposeMatrix;
 
@@ -32,6 +33,9 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
 
     private double[][] matrix;
     private double[][] matrixResult;
+
+    private SetMatrix setMatrix;
+    private boolean setMatrixFromSaving = false;
 
     @Nullable
     @Override
@@ -72,6 +76,47 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
                 removeResult();
             }
         });
+
+        setMatrix = new SetMatrix() {
+            @Override
+            public void setMatrix(double[][] matrix)
+            {
+                FragmentTransposeMatrix.this.matrix = matrix;
+            }
+
+            @Override
+            public void setSizeMatrix(int countRows, int countColumns)
+            {
+                if(countColumns == numberOfColumns && countRows == numberOfRows)
+                    managerMatrix.fillUpMatrix(glMatrix,TAG_ID_MATRIX_A,matrix);
+                else {
+                    setDimensionForSpinner(countRows, countColumns);
+                    setMatrixFromSaving = true;
+                }
+
+            }
+        };
+        final TextView tvMatrix = view.findViewById(R.id.tv_matrix);
+        tvMatrix.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view)
+            {
+                SavingHelper savingHelper = new SavingHelper(getContext());
+                savingHelper.callAlertListSavingForMatrix(setMatrix);
+                return true;
+            }
+        });
+    }
+
+    private void setDimensionForSpinner(int countRows, int countColumns)
+    {
+        for(int i = 0; i < spRowsMatrix.getCount(); i++)
+            if(Integer.parseInt((String) spRowsMatrix.getItemAtPosition(i)) == countRows)
+                spRowsMatrix.setSelection(i);
+
+        for(int i = 0; i < spColumnMatrix.getCount(); i++)
+            if(Integer.parseInt((String)spColumnMatrix.getItemAtPosition(i)) == countColumns)
+                spColumnMatrix.setSelection(i);
     }
 
     private void calculate() {
@@ -118,6 +163,11 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
         numberOfColumns = Integer.parseInt(spColumnMatrix.getSelectedItem().toString());
 
         managerMatrix.generateMatrix(glMatrix, TAG_ID_MATRIX_A, numberOfRows, numberOfColumns, this);
+
+        if(setMatrixFromSaving) {
+            managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);
+            setMatrixFromSaving = false;
+        }
     }
 
     @Override
