@@ -2,7 +2,6 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import com.whitedeveloper.matrix.Action;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +18,9 @@ public class SavingStateInstance {
     public static final String KEY_SHARED_rows_matrix_a = "key_shared_rows_matrix_a_position";
     public static final String KEY_SHARED_columns_matrix_b = "key_shared_columns_matrix_b_position";
     public static final String KEY_SHARED_columns_matrix_a = "key_shared_columns_matrix_a_position";
+    public static final String KEY_SHARED_DIMENSION_MATRIX = "key_shared_dimension_matrix";
+    public static final String KEY_SHARED_ROWS_MATRIX = "key_shared_rows_matrix";
+    public static final String KEY_SHARED_COLUMNS_MATRIX = "key_shared_columns_matrix";
     public static final String KEY_SHARED_IS_CALCULATED = "key_shared_is_calculated";
 
     private int spRowsMatrixAPosition = 0;
@@ -90,13 +92,30 @@ public class SavingStateInstance {
             case SUBTRACTION:
                 saveStateBasicOperation();
                 break;
-            case TRANSPOSING:break;
+            case TRANSPOSING:
+                saveStateTranspose();
+                break;
             case DETERMINATION:break;
             case INVERSION:break;
             case MULTIPLICATION:
                 saveStateMultiplication();
                 break;
         }
+    }
+
+    private void saveStateTranspose() throws JSONException {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put(KEY_SHARED_ROWS_MATRIX,spRowsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_COLUMNS_MATRIX,spColumnsMatrixAPosition);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+
+        editor.putString(KEY_SAVE_STATE_TRANSOPSE,jsonObject.toString());
+
+        editor.apply();
     }
 
     private void saveStateMultiplication() throws Exception {
@@ -111,8 +130,6 @@ public class SavingStateInstance {
         jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B,jsonObjectMatrixB.toString());
         jsonObject.put(SavingInstance.KEY_SHARED_ACTION,action.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
-
-        Log.i("TAG","MULT:"+jsonObject.toString());
 
         editor.putString(KEY_SAVE_STATE_MULTIPLICATION,jsonObject.toString());
         editor.apply();
@@ -129,8 +146,6 @@ public class SavingStateInstance {
         jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B,jsonObjectMatrixB.toString());
         jsonObject.put(SavingInstance.KEY_SHARED_ACTION,action.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
-
-        Log.i("TAG",jsonObject.toString());
 
         editor.putString(KEY_SAVE_STATE_BASIC_OPERATIONS,jsonObject.toString());
         editor.apply();

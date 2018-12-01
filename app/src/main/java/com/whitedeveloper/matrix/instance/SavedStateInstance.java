@@ -36,6 +36,9 @@ public class SavedStateInstance {
             case SavingStateInstance.KEY_SAVE_STATE_MULTIPLICATION:
                 loadLastStateMultiplication(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_MULTIPLICATION, "")));
                 break;
+            case SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE:
+                loadLastStateTranspose(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE,"")));
+                break;
         }
 
     }
@@ -71,6 +74,15 @@ public class SavedStateInstance {
 
     public boolean isCalculated() {
         return isCalculated;
+    }
+
+    private void loadLastStateTranspose(JSONObject jsonObject) throws JSONException {
+        spRowsMatrixAPosition = jsonObject.getInt(SavingStateInstance.KEY_SHARED_ROWS_MATRIX);
+        spColumnsMatrixAPosition = jsonObject.getInt(SavingStateInstance.KEY_SHARED_COLUMNS_MATRIX);
+
+        jsonObjectMatrixA = new JSONObject(jsonObject.getString(SavingInstance.KEY_SHARED_MATRIX_A));
+
+        isCalculated = jsonObject.getBoolean(SavingStateInstance.KEY_SHARED_IS_CALCULATED);
     }
 
     private void loadLastStateBasicOperation(JSONObject jsonObject) throws JSONException {
