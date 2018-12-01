@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
+import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.AdditionMatrix;
+import org.json.JSONException;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
@@ -37,6 +40,7 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
     private int bufferColumnsMatrices;
 
     private ManagerMatrix managerMatrix;
+    private SavedStateInstance savedStateInstance;
     private SavingHelper savingHelper;
     private RelativeLayout tvResult;
 
@@ -48,8 +52,11 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
 
     private boolean setMatrixAFromSaving = false;
     private boolean setMatrixBFromSaving = false;
+    private boolean setSavedState = false;
+    private boolean isCalculated = false;
 
     private Action action = Action.ADDITION;
+    private Button btnChangeAction;
 
 
     @Nullable
@@ -57,9 +64,32 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_base_operation_matrix, container, false);
         init();
+
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        try {
+            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_BASIC_OPERATIONS);
+            loadLastState();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadLastState() {
+        bufferRowsMatrices = Integer.parseInt((String) spCountRowsMatrices.getItemAtPosition(savedStateInstance.getSpRowsMatrixAPosition()));
+        bufferColumnsMatrices = Integer.parseInt((String) spCountRowsMatrices.getItemAtPosition(savedStateInstance.getSpColumnsMatrixAPosition()));
+        spCountRowsMatrices.setSelection(savedStateInstance.getSpRowsMatrixAPosition());
+        spCountColumnsMatrices.setSelection(savedStateInstance.getSpColumnsMatrixAPosition());
+
+        action = savedStateInstance.getAction();
+        setAction(action);
+
+        setSavedState = true;
+    }
 
     private void init() {
         spCountRowsMatrices = view.findViewById(R.id.sp_count_rows_matrix);
@@ -80,6 +110,7 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
 
         managerMatrix = new ManagerMatrix(getContext());
         savingHelper = new SavingHelper(getContext());
+        savedStateInstance = new SavedStateInstance(getContext());
 
 
         final Button btnRun = view.findViewById(R.id.btn_run);
@@ -103,17 +134,17 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
             }
         });
 
-        final Button btnChangeAction = view.findViewById(R.id.tv_action_symbol);
+        btnChangeAction = view.findViewById(R.id.tv_action_symbol);
         btnChangeAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (action == Action.ADDITION) {
-                    btnChangeAction.setText(R.string.subtraction_symbol);
+
+                if (action == Action.ADDITION)
                     action = Action.SUBTRACTION;
-                } else if (action == Action.SUBTRACTION) {
-                    btnChangeAction.setText(R.string.addition_symbol);
+                else
                     action = Action.ADDITION;
-                }
+
+                setAction(action);
             }
         });
 
@@ -154,6 +185,13 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
         };
     }
 
+    private void setAction(Action action) {
+        if (action == Action.ADDITION)
+            btnChangeAction.setText(R.string.addition_symbol);
+        else if (action == Action.SUBTRACTION)
+            btnChangeAction.setText(R.string.subtraction_symbol);
+    }
+
     private void setDimensionsForSpinners(int countRows, int countColumns) {
         bufferRowsMatrices = countRows;
         bufferColumnsMatrices = countColumns;
@@ -174,9 +212,8 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
             matrixA = managerMatrix.readMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices);
             matrixB = managerMatrix.readMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices);
 
-            AdditionMatrix additionMatrix = new AdditionMatrix(matrixA, action == Action.SUBTRACTION?AdditionMatrix.doNegative(matrixB):matrixB);
+            AdditionMatrix additionMatrix = new AdditionMatrix(matrixA, action == Action.SUBTRACTION ? AdditionMatrix.doNegative(matrixB) : matrixB);
             matrixResult = additionMatrix.additionMatrix();
-
 
             showResult(matrixResult);
 
@@ -188,11 +225,13 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
         HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         tvResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glMatrixResult, matrixResult);
+        isCalculated = true;
     }
 
     private void removeResult() {
         glMatrixResult.removeAllViews();
         tvResult.setVisibility(View.INVISIBLE);
+        isCalculated = false;
     }
 
     @Override
@@ -204,31 +243,43 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
         switch (adapterView.getId()) {
             case R.id.sp_count_rows_matrix:
                 rowsMatrices = Integer.parseInt(spCountRowsMatrices.getSelectedItem().toString());
+
                 break;
             case R.id.sp_count_columns_matrix:
                 columnsMatrices = Integer.parseInt(spCountColumnsMatrices.getSelectedItem().toString());
+
                 break;
         }
-
         managerMatrix.generateMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices, this);
         managerMatrix.generateMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices, this);
-
 
         if (bufferRowsMatrices == rowsMatrices && bufferColumnsMatrices == columnsMatrices) {
             if (setMatrixAFromSaving) {
                 managerMatrix.fillUpMatrix(glMatrixA, TAG_ID_MATRIX_A, matrixA);
-                setMatrixAFromSaving = false;
                 matrixA = null;
+                setMatrixAFromSaving = false;
             } else if (setMatrixBFromSaving) {
                 managerMatrix.fillUpMatrix(glMatrixB, TAG_ID_MATRIX_B, matrixB);
                 setMatrixBFromSaving = false;
                 matrixB = null;
+            } else if (setSavedState) {
+                try {
+                    managerMatrix.fillUpMatrixByJson(glMatrixA, TAG_ID_MATRIX_A, savedStateInstance.getJsonObjectMatrixA(), rowsMatrices, columnsMatrices);
+                    managerMatrix.fillUpMatrixByJson(glMatrixB, TAG_ID_MATRIX_B, savedStateInstance.getJsonObjectMatrixB(), rowsMatrices, columnsMatrices);
+
+                    if (savedStateInstance.isCalculated())
+                        calculate();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                setSavedState = false;
             }
 
             bufferColumnsMatrices = 0;
             bufferRowsMatrices = 0;
         }
-
 
     }
 
@@ -291,4 +342,25 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
         }
         return true;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            SavingStateInstance savingStateInstance = new SavingStateInstance(getContext())
+                    .setSpColumnsMatrixAPosition(spCountColumnsMatrices.getSelectedItemPosition())
+                    .setSpRowsMatrixAPosition(spCountRowsMatrices.getSelectedItemPosition())
+                    .setAction(action)
+                    .setJsonObjectMatrixA(managerMatrix.getJsonMatrix(glMatrixA, TAG_ID_MATRIX_A, rowsMatrices, columnsMatrices))
+                    .setJsonObjectMatrixB(managerMatrix.getJsonMatrix(glMatrixB, TAG_ID_MATRIX_B, rowsMatrices, columnsMatrices))
+                    .setCalculated(isCalculated);
+
+            savingStateInstance.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

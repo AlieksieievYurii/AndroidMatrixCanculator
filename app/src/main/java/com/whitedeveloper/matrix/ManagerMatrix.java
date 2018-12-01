@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import com.whitedeveloper.matrix.fragments.Style;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ManagerMatrix {
     private Context context;
@@ -38,6 +40,33 @@ public class ManagerMatrix {
                 matrix[i][j] = Double.parseDouble(editText.getText().toString());
             }
         return matrix;
+    }
+
+    public JSONObject getJsonMatrix(GridLayout gridLayout, String tagId, int rowsMatrices, int columnsMatrices) throws JSONException {
+        JSONObject rowObject = new JSONObject();
+
+        for (int i = 0; i < rowsMatrices; i++) {
+            JSONObject columnObject = new JSONObject();
+            for (int j = 0; j < columnsMatrices; j++) {
+                String tag = tagId + String.valueOf(i) + String.valueOf(j);
+                EditText editText = gridLayout.findViewWithTag(tag);
+                columnObject.put(String.valueOf(j), editText.getText().toString());
+            }
+            rowObject.put(String.valueOf(i), columnObject);
+        }
+
+        return rowObject;
+    }
+
+    public void fillUpMatrixByJson(GridLayout gridLayout, String tagId,JSONObject jsonObject, int rowsMatrices, int columnsMatrices) throws JSONException {
+        for(int i = 0; i < rowsMatrices; i++)
+            for (int j = 0; j < columnsMatrices; j++)
+            {
+                String tag = tagId + String.valueOf(i) + String.valueOf(j);
+                EditText editText = gridLayout.findViewWithTag(tag);
+                String text = jsonObject.getJSONObject(String.valueOf(i)).getString(String.valueOf(j));
+                editText.setText(text);
+            }
     }
 
     public boolean allIsFill(GridLayout gridLayout, String tagId, int rowsMatrices, int columnsMatrices) {

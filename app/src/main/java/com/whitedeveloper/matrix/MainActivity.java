@@ -13,18 +13,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.whitedeveloper.matrix.fragments.*;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AlertDialogExit.CallBack {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private OnPressSaveResultListener onPressSaveResultListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(null);
         setContentView(R.layout.activity_main);
 
         init();
-        setSelectedFirstTime();
+
+        if(savedInstanceState == null)
+            setSelectedFirstTime();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        onNavigationItemSelected(Objects.requireNonNull(getCheckedItem()));
     }
 
     private void init() {
@@ -45,15 +57,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu,menu);
+        getMenuInflater().inflate(R.menu.option_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.menu_save:
                 onPressSaveResultListener.onPressSave();
                 break;
@@ -67,8 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         loadBasicActionsFragment();
     }
 
-    private void loadBasicActionsFragment()
-    {
+    private void loadBasicActionsFragment() {
         FragmentBaseOperationsMatrix fragmentBaseOperationsMatrix = new FragmentBaseOperationsMatrix();
         onPressSaveResultListener = fragmentBaseOperationsMatrix;
 
@@ -87,13 +96,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,multiplicationMatrix)
+                .replace(R.id.fragment_container, multiplicationMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.multiplication_of_matrix));
     }
 
-    private void loadTransposeFragment()
-    {
+    private void loadTransposeFragment() {
         FragmentTransposeMatrix fragmentTransposeMatrix = new FragmentTransposeMatrix();
         onPressSaveResultListener = fragmentTransposeMatrix;
 
@@ -104,38 +112,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle(getResources().getString(R.string.transpose_of_matrix));
     }
 
-    private void loadDeterminantFragment()
-    {
+    private void loadDeterminantFragment() {
         FragmentDeterminantMatrix fragmentDeterminantMatrix = new FragmentDeterminantMatrix();
         onPressSaveResultListener = fragmentDeterminantMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,fragmentDeterminantMatrix)
+                .replace(R.id.fragment_container, fragmentDeterminantMatrix)
                 .commit();
         setTitle(getResources().getString(R.string.determinant_of_matrix));
     }
 
-    private void loadInverseFragment()
-    {
+    private void loadInverseFragment() {
         FragmentInversionMatrix fragmentInversionMatrix = new FragmentInversionMatrix();
         onPressSaveResultListener = fragmentInversionMatrix;
 
         getSupportFragmentManager()
                 .beginTransaction().
-                replace(R.id.fragment_container,fragmentInversionMatrix)
+                replace(R.id.fragment_container, fragmentInversionMatrix)
                 .commit();
 
         setTitle(getResources().getString(R.string.inverse_of_matrix));
     }
 
     private void startActivityAbout() {
-        startActivity(new Intent(this,ActivityAbout.class));
+        startActivity(new Intent(this, ActivityAbout.class));
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.nav_addition_matrix:
                 loadBasicActionsFragment();
@@ -172,7 +178,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
         else
-            new AlertDialogExit(this,this).showAlert();
+            new AlertDialogExit(this, this).showAlert();
     }
 
+    private MenuItem getCheckedItem() {
+        Menu menu = navigationView.getMenu();
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item.isChecked()) {
+                return item;
+            }
+        }
+        return null;
+    }
 }

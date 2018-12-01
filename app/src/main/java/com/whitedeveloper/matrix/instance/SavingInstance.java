@@ -2,7 +2,6 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import com.whitedeveloper.matrix.Action;
 import com.whitedeveloper.matrix.ListView.ItemMatrices;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
@@ -18,6 +17,7 @@ public class SavingInstance {
     static final String KEY_SHARED_MATRIX_B = "matrix_b";
     static final String KEY_SHARED_MATRIX_RESULT = "matrix_result";
     static final String KEY_SHARED_DETERMINANT = "matrix_determinant";
+
 
     private Context context;
     private String nameSaving;
@@ -45,6 +45,13 @@ public class SavingInstance {
         return this;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public Action getAction() {
+        return action;
+    }
 
     public SavingInstance setAction(Action action) {
         this.action = action;
@@ -106,8 +113,6 @@ public class SavingInstance {
         jsonObject.put(KEY_SHARED_ACTION, Action.TRANSPOSING.toString());
         jsonObject.put(KEY_SHARED_MATRIX_A, JsonMatrix.getJsonFromMatrix(matrixA));
         jsonObject.put(KEY_SHARED_MATRIX_RESULT, JsonMatrix.getJsonFromMatrix(matrixResult));
-
-        Log.i("TEST", jsonObject.toString());
 
         sharedPreferences.putString(nameSaving, jsonObject.toString());
         sharedPreferences.apply();

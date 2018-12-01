@@ -41,6 +41,7 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
             setMatrix.setMatrix(savedInstance.getMatrixResult());
             setMatrix.setSizeMatrix(savedInstance.getMatrixResult().length, savedInstance.getMatrixResult()[0].length);
             listOfSavingMatrices.hide();
+            listOfSavingMatrices.dismiss();
         } catch (Exception e) {
             e.printStackTrace();
         }
