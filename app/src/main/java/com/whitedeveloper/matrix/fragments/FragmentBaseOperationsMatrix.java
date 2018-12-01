@@ -80,10 +80,11 @@ public class FragmentBaseOperationsMatrix extends Fragment implements
     }
 
     private void loadLastState() {
-        bufferRowsMatrices = Integer.parseInt((String) spCountRowsMatrices.getItemAtPosition(savedStateInstance.getSpRowsMatrixAPosition()));
-        bufferColumnsMatrices = Integer.parseInt((String) spCountRowsMatrices.getItemAtPosition(savedStateInstance.getSpColumnsMatrixAPosition()));
         spCountRowsMatrices.setSelection(savedStateInstance.getSpRowsMatrixAPosition());
         spCountColumnsMatrices.setSelection(savedStateInstance.getSpColumnsMatrixAPosition());
+
+        bufferRowsMatrices = Integer.parseInt((String)spCountRowsMatrices.getSelectedItem());
+        bufferColumnsMatrices = Integer.parseInt((String)spCountColumnsMatrices.getSelectedItem());
 
         action = savedStateInstance.getAction();
         setAction(action);
