@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
+import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.InversionMatrix;
+import org.json.JSONException;
 
 import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
 
@@ -26,6 +29,8 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     private RelativeLayout rlResult;
 
     private ManagerMatrix managerMatrix;
+    private SavedStateInstance savedStateInstance;
+
     private double[][] matrix;
     private double[][] matrixResult;
 
@@ -34,6 +39,8 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     private SetMatrix setMatrix;
     private Spinner spDimensionMatrix;
     private boolean setMatrixFromSaving = false;
+    private boolean isCalculated = false;
+    private boolean setSavedState = false;
 
     @Nullable
     @Override
@@ -41,6 +48,23 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         view = inflater.inflate(R.layout.fragment_inversion_matrix, container, false);
         init();
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        try {
+            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_INVERSE);
+            loadLastState();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadLastState() {
+        spDimensionMatrix.setSelection(savedStateInstance.getSpDimensionMatrix());
+        setSavedState = true;
     }
 
     private void init() {
@@ -53,6 +77,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         rlResult = view.findViewById(R.id.rl_result);
 
         managerMatrix = new ManagerMatrix(getContext());
+        savedStateInstance = new SavedStateInstance(getContext());
 
         final Button btnRun = view.findViewById(R.id.btn_run);
         btnRun.setOnClickListener(new View.OnClickListener() {
@@ -77,18 +102,15 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
             }
 
             @Override
-            public void setSizeMatrix(int countRows, int countColumns)
-            {
-                if(countColumns != countRows)
-                {
-                    Toast.makeText(getContext(),R.string.rows_not_equals_columns,Toast.LENGTH_SHORT).show();
+            public void setSizeMatrix(int countRows, int countColumns) {
+                if (countColumns != countRows) {
+                    Toast.makeText(getContext(), R.string.rows_not_equals_columns, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(countColumns == dimensionMatrix)
-                    managerMatrix.fillUpMatrix(glMatrix,TAG_ID_MATRIX_A,matrix);
-                else
-                {
+                if (countColumns == dimensionMatrix)
+                    managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);
+                else {
                     setDimensionForSpinner(countColumns);
                     setMatrixFromSaving = true;
                 }
@@ -98,8 +120,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         final TextView tvMatrix = view.findViewById(R.id.tv_matrix);
         tvMatrix.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View view)
-            {
+            public boolean onLongClick(View view) {
                 SavingHelper savingHelper = new SavingHelper(getContext());
                 savingHelper.callAlertListSavingForMatrix(setMatrix);
                 return true;
@@ -108,16 +129,14 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     @SuppressLint("DefaultLocale")
-    private void setDimensionForSpinner(int dim)
-    {
-        for(int i = 0; i < spDimensionMatrix.getCount(); i++)
-            if(spDimensionMatrix.getItemAtPosition(i).equals(String.format("%dx%d",dim,dim)))
+    private void setDimensionForSpinner(int dim) {
+        for (int i = 0; i < spDimensionMatrix.getCount(); i++)
+            if (spDimensionMatrix.getItemAtPosition(i).equals(String.format("%dx%d", dim, dim)))
                 spDimensionMatrix.setSelection(i);
     }
 
     private void calculate() {
-        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix))
-        {
+        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
             matrix = managerMatrix.readMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
             InversionMatrix inversionMatrix = new InversionMatrix(matrix);
             matrixResult = inversionMatrix.inversionMatrix();
@@ -131,11 +150,13 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         HiddenKeyboard.hideKeyboardFrom(getContext(), view);
         rlResult.setVisibility(View.VISIBLE);
         managerMatrix.generateAndFillUpMatrixResult(glResult, matrixResult);
+        isCalculated = true;
     }
 
     private void removeResult() {
         glResult.removeAllViews();
         rlResult.setVisibility(View.INVISIBLE);
+        isCalculated = false;
     }
 
     @Override
@@ -161,10 +182,20 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
 
         managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
 
-        if(setMatrixFromSaving)
-        {
-            managerMatrix.fillUpMatrix(glMatrix,TAG_ID_MATRIX_A,matrix);
+        if (setMatrixFromSaving) {
+            managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);
             setMatrixFromSaving = false;
+        } else if (setSavedState) {
+            try {
+                managerMatrix.fillUpMatrixByJson(glMatrix, TAG_ID_MATRIX_A, savedStateInstance.getJsonObjectMatrixA(), dimensionMatrix, dimensionMatrix);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (savedStateInstance.isCalculated())
+                calculate();
+
+            setSavedState = false;
         }
     }
 
@@ -174,8 +205,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     @Override
-    public void onPressSave()
-    {
+    public void onPressSave() {
         if (rlResult.getVisibility() == View.INVISIBLE) {
             Toast.makeText(getContext(), R.string.text_calculate, Toast.LENGTH_SHORT).show();
             return;
@@ -197,5 +227,23 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
             }
         });
         alertDialogSave.show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            SavingStateInstance savingStateInstance = new SavingStateInstance(getContext());
+
+            savingStateInstance.setSpDimensionMatrix(spDimensionMatrix.getSelectedItemPosition())
+                    .setJsonObjectMatrixA(managerMatrix.getJsonMatrix(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix))
+                    .setAction(Action.INVERSION)
+                    .setCalculated(isCalculated);
+
+            savingStateInstance.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

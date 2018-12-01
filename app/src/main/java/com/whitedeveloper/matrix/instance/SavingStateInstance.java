@@ -27,10 +27,11 @@ public class SavingStateInstance {
     private int spColumnsMatrixAPosition = 0;
     private int spColumnsMatrixBPosition = 0;
 
+    private int spDimensionMatrix = 0;
+
     private JSONObject jsonObjectMatrixA;
     private JSONObject jsonObjectMatrixB;
 
-    private double determinant;
 
     private Action action;
 
@@ -40,6 +41,11 @@ public class SavingStateInstance {
 
     public SavingStateInstance(Context context) {
         this.context = context;
+    }
+
+    public SavingStateInstance setSpDimensionMatrix(int spDimensionMatrix) {
+        this.spDimensionMatrix = spDimensionMatrix;
+        return this;
     }
 
     public SavingStateInstance setSpRowsMatrixAPosition(int spRowsMatrixAPosition) {
@@ -78,14 +84,9 @@ public class SavingStateInstance {
         return this;
     }
 
-    public SavingStateInstance setDeterminant(double determinant) {
-        this.determinant = determinant;
-        return this;
-    }
 
     public void commit() throws Exception {
-        switch (action)
-        {
+        switch (action) {
             case ADDITION:
                 saveStateBasicOperation();
                 break;
@@ -95,59 +96,89 @@ public class SavingStateInstance {
             case TRANSPOSING:
                 saveStateTranspose();
                 break;
-            case DETERMINATION:break;
-            case INVERSION:break;
+            case DETERMINATION:
+                saveStateDeterminant();
+                break;
+            case INVERSION:
+                saveStateInverse();
+                break;
             case MULTIPLICATION:
                 saveStateMultiplication();
                 break;
         }
     }
 
-    private void saveStateTranspose() throws JSONException {
-        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+    private void saveStateInverse() throws JSONException {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put(KEY_SHARED_ROWS_MATRIX,spRowsMatrixAPosition);
-        jsonObject.put(KEY_SHARED_COLUMNS_MATRIX,spColumnsMatrixAPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
-        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+        jsonObject.put(KEY_SHARED_DIMENSION_MATRIX, spDimensionMatrix);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
-        editor.putString(KEY_SAVE_STATE_TRANSOPSE,jsonObject.toString());
+        editor.putString(KEY_SAVE_STATE_INVERSE, jsonObject.toString());
+        editor.apply();
+    }
+
+    private void saveStateDeterminant() throws JSONException {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put(KEY_SHARED_DIMENSION_MATRIX, spDimensionMatrix);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
+
+        editor.putString(KEY_SAVE_STATE_DETERMINANT, jsonObject.toString());
+        editor.apply();
+    }
+
+    private void saveStateTranspose() throws JSONException {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put(KEY_SHARED_ROWS_MATRIX, spRowsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_COLUMNS_MATRIX, spColumnsMatrixAPosition);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
+
+        editor.putString(KEY_SAVE_STATE_TRANSOPSE, jsonObject.toString());
 
         editor.apply();
     }
 
     private void saveStateMultiplication() throws Exception {
-        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put(KEY_SHARED_rows_matrix_a,spRowsMatrixAPosition);
-        jsonObject.put(KEY_SHARED_columns_matrix_a,spColumnsMatrixAPosition);
-        jsonObject.put(KEY_SHARED_columns_matrix_b,spColumnsMatrixBPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B,jsonObjectMatrixB.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_ACTION,action.toString());
-        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+        jsonObject.put(KEY_SHARED_rows_matrix_a, spRowsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_columns_matrix_a, spColumnsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_columns_matrix_b, spColumnsMatrixBPosition);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_ACTION, action.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
-        editor.putString(KEY_SAVE_STATE_MULTIPLICATION,jsonObject.toString());
+        editor.putString(KEY_SAVE_STATE_MULTIPLICATION, jsonObject.toString());
         editor.apply();
     }
 
     private void saveStateBasicOperation() throws Exception {
-        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put(KEY_SHARED_columns_matrix_a,spColumnsMatrixAPosition);
-        jsonObject.put(KEY_SHARED_rows_matrix_a,spRowsMatrixAPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B,jsonObjectMatrixB.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_ACTION,action.toString());
-        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+        jsonObject.put(KEY_SHARED_columns_matrix_a, spColumnsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_rows_matrix_a, spRowsMatrixAPosition);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_ACTION, action.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
-        editor.putString(KEY_SAVE_STATE_BASIC_OPERATIONS,jsonObject.toString());
+        editor.putString(KEY_SAVE_STATE_BASIC_OPERATIONS, jsonObject.toString());
         editor.apply();
     }
 }

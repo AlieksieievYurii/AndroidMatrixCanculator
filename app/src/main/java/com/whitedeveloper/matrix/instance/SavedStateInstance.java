@@ -12,11 +12,10 @@ public class SavedStateInstance {
     private int spRowsMatrixAPosition = 0;
     private int spColumnsMatrixAPosition = 0;
     private int spColumnsMatrixBPosition = 0;
+    private int spDimensionMatrix = 0;
 
     private JSONObject jsonObjectMatrixA;
     private JSONObject jsonObjectMatrixB;
-
-    private double determinant;
 
     private Action action;
 
@@ -37,10 +36,20 @@ public class SavedStateInstance {
                 loadLastStateMultiplication(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_MULTIPLICATION, "")));
                 break;
             case SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE:
-                loadLastStateTranspose(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE,"")));
+                loadLastStateTranspose(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE, "")));
+                break;
+            case SavingStateInstance.KEY_SAVE_STATE_DETERMINANT:
+                loadLastStateDeterminant(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_DETERMINANT, "")));
+                break;
+            case SavingStateInstance.KEY_SAVE_STATE_INVERSE:
+                loadLastStateInverse(new JSONObject(sharedPreferences.getString(SavingStateInstance.KEY_SAVE_STATE_INVERSE, "")));
                 break;
         }
 
+    }
+
+    public int getSpDimensionMatrix() {
+        return spDimensionMatrix;
     }
 
     public int getSpRowsMatrixAPosition() {
@@ -63,10 +72,6 @@ public class SavedStateInstance {
         return jsonObjectMatrixB;
     }
 
-
-    public double getDeterminant() {
-        return determinant;
-    }
 
     public Action getAction() {
         return action;
@@ -105,6 +110,18 @@ public class SavedStateInstance {
         jsonObjectMatrixA = new JSONObject(jsonObject.getString(SavingInstance.KEY_SHARED_MATRIX_A));
         jsonObjectMatrixB = new JSONObject(jsonObject.getString(SavingInstance.KEY_SHARED_MATRIX_B));
 
+        isCalculated = jsonObject.getBoolean(SavingStateInstance.KEY_SHARED_IS_CALCULATED);
+    }
+
+    private void loadLastStateDeterminant(JSONObject jsonObject) throws JSONException {
+        spDimensionMatrix = jsonObject.getInt(SavingStateInstance.KEY_SHARED_DIMENSION_MATRIX);
+        jsonObjectMatrixA = new JSONObject(jsonObject.getString(SavingInstance.KEY_SHARED_MATRIX_A));
+        isCalculated = jsonObject.getBoolean(SavingStateInstance.KEY_SHARED_IS_CALCULATED);
+    }
+
+    private void loadLastStateInverse(JSONObject jsonObject) throws JSONException {
+        spDimensionMatrix = jsonObject.getInt(SavingStateInstance.KEY_SHARED_DIMENSION_MATRIX);
+        jsonObjectMatrixA = new JSONObject(jsonObject.getString(SavingInstance.KEY_SHARED_MATRIX_A));
         isCalculated = jsonObject.getBoolean(SavingStateInstance.KEY_SHARED_IS_CALCULATED);
     }
 }
