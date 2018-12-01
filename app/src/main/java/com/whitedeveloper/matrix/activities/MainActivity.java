@@ -1,4 +1,4 @@
-package com.whitedeveloper.matrix;
+package com.whitedeveloper.matrix.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.whitedeveloper.matrix.alerts.AlertDialogExit;
+import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.fragments.*;
 
 import java.util.Objects;

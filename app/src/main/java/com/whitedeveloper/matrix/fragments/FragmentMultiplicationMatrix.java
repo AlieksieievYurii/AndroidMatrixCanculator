@@ -11,14 +11,18 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.activities.OnPressSaveResultListener;
+import com.whitedeveloper.matrix.alerts.AlertDialogSave;
 import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
+import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
 
-import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
-import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_B;
+import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_B;
 
 public class FragmentMultiplicationMatrix extends Fragment implements
         AdapterView.OnItemSelectedListener,
@@ -78,7 +82,7 @@ public class FragmentMultiplicationMatrix extends Fragment implements
         super.onActivityCreated(savedInstanceState);
 
         try {
-            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_MULTIPLICATION);
+            savedStateInstance.load(TagKeys.KEY_SAVE_STATE_MULTIPLICATION);
             loadLastState();
         } catch (JSONException e) {
             e.printStackTrace();

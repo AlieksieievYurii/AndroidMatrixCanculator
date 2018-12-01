@@ -2,26 +2,15 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.whitedeveloper.matrix.Action;
+import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.whitedeveloper.matrix.tags.TagKeys.*;
+
 public class SavingStateInstance {
-    public static final String KEY_STATE_INSTANCE = "save_state_instance";
-    public static final String KEY_SAVE_STATE_BASIC_OPERATIONS = "save_state_basic_operation";
-    public static final String KEY_SAVE_STATE_MULTIPLICATION = "save_state_multiplication";
-    public static final String KEY_SAVE_STATE_TRANSOPSE = "save_state_transpose";
-    public static final String KEY_SAVE_STATE_DETERMINANT = "save_state_determinant";
-    public static final String KEY_SAVE_STATE_INVERSE = "save_state_INVERSE";
 
-
-    public static final String KEY_SHARED_rows_matrix_a = "key_shared_rows_matrix_a_position";
-    public static final String KEY_SHARED_columns_matrix_b = "key_shared_columns_matrix_b_position";
-    public static final String KEY_SHARED_columns_matrix_a = "key_shared_columns_matrix_a_position";
-    public static final String KEY_SHARED_DIMENSION_MATRIX = "key_shared_dimension_matrix";
-    public static final String KEY_SHARED_ROWS_MATRIX = "key_shared_rows_matrix";
-    public static final String KEY_SHARED_COLUMNS_MATRIX = "key_shared_columns_matrix";
-    public static final String KEY_SHARED_IS_CALCULATED = "key_shared_is_calculated";
 
     private int spRowsMatrixAPosition = 0;
     private int spColumnsMatrixAPosition = 0;
@@ -114,7 +103,7 @@ public class SavingStateInstance {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put(KEY_SHARED_DIMENSION_MATRIX, spDimensionMatrix);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
         editor.putString(KEY_SAVE_STATE_INVERSE, jsonObject.toString());
@@ -127,7 +116,7 @@ public class SavingStateInstance {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put(KEY_SHARED_DIMENSION_MATRIX, spDimensionMatrix);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
         editor.putString(KEY_SAVE_STATE_DETERMINANT, jsonObject.toString());
@@ -141,10 +130,10 @@ public class SavingStateInstance {
 
         jsonObject.put(KEY_SHARED_ROWS_MATRIX, spRowsMatrixAPosition);
         jsonObject.put(KEY_SHARED_COLUMNS_MATRIX, spColumnsMatrixAPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
-        editor.putString(KEY_SAVE_STATE_TRANSOPSE, jsonObject.toString());
+        editor.putString(KEY_SAVE_STATE_TRANSPOSE, jsonObject.toString());
 
         editor.apply();
     }
@@ -157,9 +146,9 @@ public class SavingStateInstance {
         jsonObject.put(KEY_SHARED_rows_matrix_a, spRowsMatrixAPosition);
         jsonObject.put(KEY_SHARED_columns_matrix_a, spColumnsMatrixAPosition);
         jsonObject.put(KEY_SHARED_columns_matrix_b, spColumnsMatrixBPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_ACTION, action.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_ACTION, action.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
         editor.putString(KEY_SAVE_STATE_MULTIPLICATION, jsonObject.toString());
@@ -173,9 +162,9 @@ public class SavingStateInstance {
 
         jsonObject.put(KEY_SHARED_columns_matrix_a, spColumnsMatrixAPosition);
         jsonObject.put(KEY_SHARED_rows_matrix_a, spRowsMatrixAPosition);
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
-        jsonObject.put(SavingInstance.KEY_SHARED_ACTION, action.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_B, jsonObjectMatrixB.toString());
+        jsonObject.put(TagKeys.KEY_SHARED_ACTION, action.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
         editor.putString(KEY_SAVE_STATE_BASIC_OPERATIONS, jsonObject.toString());

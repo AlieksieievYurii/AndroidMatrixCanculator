@@ -1,18 +1,20 @@
-package com.whitedeveloper.matrix;
+package com.whitedeveloper.matrix.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
+import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.fragments.FragmentShowMatricesTwo;
 import com.whitedeveloper.matrix.fragments.FragmentShowSavedMatrixOne;
 import com.whitedeveloper.matrix.fragments.FragmentShowSavedMatrixThree;
 import com.whitedeveloper.matrix.instance.SavedInstance;
+import com.whitedeveloper.matrix.tags.Action;
+
+import static com.whitedeveloper.matrix.tags.TagKeys.EXTRA_NAME_SAVING;
 
 
 public class ActivityShowSavedMatrix extends AppCompatActivity {
-
-    public static final String EXTRA_NAME_SAVING = "name_saving";
     private SavedInstance savedInstance;
 
     @Override

@@ -1,19 +1,20 @@
-package com.whitedeveloper.matrix;
+package com.whitedeveloper.matrix.alerts;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import com.whitedeveloper.matrix.R;
 
-class AlertDialogExit {
+public class AlertDialogExit {
 
-    interface CallBack {
+    public interface CallBack {
         void doFinishActivity();
     }
 
     private AlertDialog alertDialog;
 
-    AlertDialogExit(final Context context, final CallBack callBack) {
+    public AlertDialogExit(final Context context, final CallBack callBack) {
 
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -47,7 +48,7 @@ class AlertDialogExit {
         });
     }
 
-    void showAlert() {
+    public void showAlert() {
         alertDialog.show();
     }
 }

@@ -11,13 +11,16 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.activities.OnPressSaveResultListener;
+import com.whitedeveloper.matrix.alerts.AlertDialogSave;
 import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.TransposeMatrix;
+import com.whitedeveloper.matrix.tags.Action;
 import org.json.JSONException;
 
-import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.tags.TagKeys.*;
 
 public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
     private View view;
@@ -60,7 +63,7 @@ public class FragmentTransposeMatrix extends Fragment implements AdapterView.OnI
         super.onActivityCreated(savedInstanceState);
 
         try {
-            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_TRANSOPSE);
+            savedStateInstance.load(KEY_SAVE_STATE_TRANSPOSE);
             loadLastState();
         } catch (JSONException e) {
             e.printStackTrace();

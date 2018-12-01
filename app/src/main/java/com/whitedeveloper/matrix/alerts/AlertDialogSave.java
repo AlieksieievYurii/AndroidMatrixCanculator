@@ -1,4 +1,4 @@
-package com.whitedeveloper.matrix;
+package com.whitedeveloper.matrix.alerts;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 
 public class AlertDialogSave extends Dialog {

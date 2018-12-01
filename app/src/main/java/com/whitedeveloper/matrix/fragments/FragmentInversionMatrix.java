@@ -12,13 +12,17 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.activities.OnPressSaveResultListener;
+import com.whitedeveloper.matrix.alerts.AlertDialogSave;
 import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.InversionMatrix;
+import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
 
-import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
 
 public class FragmentInversionMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
     private View view;
@@ -55,7 +59,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         super.onActivityCreated(savedInstanceState);
 
         try {
-            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_INVERSE);
+            savedStateInstance.load(TagKeys.KEY_SAVE_STATE_INVERSE);
             loadLastState();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -137,7 +141,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
 
     private void calculate() {
         if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
-            matrix = managerMatrix.readMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
+            matrix = managerMatrix.readMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
             InversionMatrix inversionMatrix = new InversionMatrix(matrix);
             matrixResult = inversionMatrix.inversionMatrix();
             showResult(matrixResult);
@@ -180,7 +184,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         dimensionMatrix = i + 2;
         HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
-        managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
+        managerMatrix.generateMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
 
         if (setMatrixFromSaving) {
             managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);

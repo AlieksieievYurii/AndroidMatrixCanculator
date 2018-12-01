@@ -2,7 +2,7 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.whitedeveloper.matrix.Action;
+import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.ListView.ItemMatrices;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
 import org.json.JSONObject;
@@ -10,13 +10,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.whitedeveloper.matrix.tags.TagKeys.*;
+
 public class SavingInstance {
-    static final String KEY_SHARED_MATRICES = "matrices";
-    static final String KEY_SHARED_ACTION = "action";
-    static final String KEY_SHARED_MATRIX_A = "matrix_a";
-    static final String KEY_SHARED_MATRIX_B = "matrix_b";
-    static final String KEY_SHARED_MATRIX_RESULT = "matrix_result";
-    static final String KEY_SHARED_DETERMINANT = "matrix_determinant";
+
 
 
     private Context context;

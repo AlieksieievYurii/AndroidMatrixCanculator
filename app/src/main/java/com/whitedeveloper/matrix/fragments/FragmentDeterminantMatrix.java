@@ -12,13 +12,17 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
+import com.whitedeveloper.matrix.activities.OnPressSaveResultListener;
+import com.whitedeveloper.matrix.alerts.AlertDialogSave;
 import com.whitedeveloper.matrix.instance.SavedStateInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.DeterminantMatrix;
+import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
 
-import static com.whitedeveloper.matrix.fragments.Tags.TAG_ID_MATRIX_A;
+import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
 
 
 public class FragmentDeterminantMatrix extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, OnPressSaveResultListener {
@@ -53,7 +57,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
         super.onActivityCreated(savedInstanceState);
 
         try {
-            savedStateInstance.load(SavingStateInstance.KEY_SAVE_STATE_DETERMINANT);
+            savedStateInstance.load(TagKeys.KEY_SAVE_STATE_DETERMINANT);
             loadLastState();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -170,7 +174,7 @@ public class FragmentDeterminantMatrix extends Fragment implements AdapterView.O
         dimensionMatrix = i + 2;
         HiddenKeyboard.hideKeyboardFrom(getContext(), view);
 
-        managerMatrix.generateMatrix(glMatrix, Tags.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
+        managerMatrix.generateMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix, this);
 
         if (setMatrixFromSaving) {
             managerMatrix.fillUpMatrix(glMatrix, TAG_ID_MATRIX_A, matrix);

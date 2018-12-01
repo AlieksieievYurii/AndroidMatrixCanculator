@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.whitedeveloper.matrix.Action;
+import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.R;
 
 import java.util.ArrayList;

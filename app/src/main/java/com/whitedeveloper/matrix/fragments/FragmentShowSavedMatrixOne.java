@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import com.whitedeveloper.matrix.ActivityShowSavedMatrix;
+import com.whitedeveloper.matrix.activities.ActivityShowSavedMatrix;
 import com.whitedeveloper.matrix.ManagerMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.instance.SavedInstance;
+
+import static com.whitedeveloper.matrix.tags.TagKeys.EXTRA_NAME_SAVING;
 
 public class FragmentShowSavedMatrixOne extends Fragment {
 
@@ -65,7 +67,7 @@ public class FragmentShowSavedMatrixOne extends Fragment {
         glMatrixB = view.findViewById(R.id.gl_matrix_b);
         glMatrixResult = view.findViewById(R.id.gl_matrix_result);
         tvAction = view.findViewById(R.id.tv_action_symbol);
-        savedInstance = new SavedInstance(getContext(),getArguments().getString(ActivityShowSavedMatrix.EXTRA_NAME_SAVING));
+        savedInstance = new SavedInstance(getContext(),getArguments().getString(EXTRA_NAME_SAVING));
     }
 
     private void setAll() {

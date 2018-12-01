@@ -3,12 +3,14 @@ package com.whitedeveloper.matrix.ListView;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-import com.whitedeveloper.matrix.Action;
-import com.whitedeveloper.matrix.ActivityShowSavedMatrix;
+import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.activities.ActivityShowSavedMatrix;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.fragments.SetMatrix;
 import com.whitedeveloper.matrix.instance.SavedInstance;
 import com.whitedeveloper.matrix.instance.SavingInstance;
+
+import static com.whitedeveloper.matrix.tags.TagKeys.EXTRA_NAME_SAVING;
 
 
 public class SavingHelper implements ListOfSavingMatrices.CallBack {
@@ -56,7 +58,7 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     @Override
     public void showItem(String name) {
         Intent intent = new Intent(context,ActivityShowSavedMatrix.class);
-        intent.putExtra(ActivityShowSavedMatrix.EXTRA_NAME_SAVING,name);
+        intent.putExtra(EXTRA_NAME_SAVING,name);
         context.startActivity(intent);
     }
 }

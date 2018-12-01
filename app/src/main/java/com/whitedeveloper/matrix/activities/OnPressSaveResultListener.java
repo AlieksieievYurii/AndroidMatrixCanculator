@@ -1,4 +1,4 @@
-package com.whitedeveloper.matrix;
+package com.whitedeveloper.matrix.activities;
 
 public interface OnPressSaveResultListener
 {

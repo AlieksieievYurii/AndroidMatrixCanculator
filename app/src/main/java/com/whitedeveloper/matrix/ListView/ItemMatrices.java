@@ -1,7 +1,7 @@
 package com.whitedeveloper.matrix.ListView;
 
 
-import com.whitedeveloper.matrix.Action;
+import com.whitedeveloper.matrix.tags.Action;
 
 public class ItemMatrices
 {
