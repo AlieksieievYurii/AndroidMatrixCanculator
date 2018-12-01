@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import com.whitedeveloper.matrix.Action;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SavingStateInstance {
@@ -92,8 +93,29 @@ public class SavingStateInstance {
             case TRANSPOSING:break;
             case DETERMINATION:break;
             case INVERSION:break;
-            case MULTIPLICATION:break;
+            case MULTIPLICATION:
+                saveStateMultiplication();
+                break;
         }
+    }
+
+    private void saveStateMultiplication() throws Exception {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put(KEY_SHARED_rows_matrix_a,spRowsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_columns_matrix_a,spColumnsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_columns_matrix_b,spColumnsMatrixBPosition);
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_MATRIX_B,jsonObjectMatrixB.toString());
+        jsonObject.put(SavingInstance.KEY_SHARED_ACTION,action.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+
+        Log.i("TAG","MULT:"+jsonObject.toString());
+
+        editor.putString(KEY_SAVE_STATE_MULTIPLICATION,jsonObject.toString());
+        editor.apply();
     }
 
     private void saveStateBasicOperation() throws Exception {
