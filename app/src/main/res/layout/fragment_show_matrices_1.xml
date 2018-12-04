@@ -1,89 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="10dp">
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
 
-    <HorizontalScrollView
-            android:layout_width="match_parent"
+    <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
 
-        <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <LinearLayout
-                    android:id="@+id/ln_matrix_a"
-                    style="@style/matrix">
-
-                <TextView
-                        android:id="@+id/tv_matrix_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/matrix_a"
-                        android:textAlignment="center"
-                        android:textColor="@color/textColor"/>
-
-                <GridLayout
-                        android:id="@+id/gl_matrix_a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                </GridLayout>
-
-            </LinearLayout>
+        <LinearLayout
+                android:id="@+id/ln_matrix_a"
+                style="@style/matrix">
 
             <TextView
-                    android:id="@+id/tv_action_symbol"
-                    android:layout_width="60dp"
+                    android:id="@+id/tv_matrix_a"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:text="@string/addition_symbol"
-                    android:textSize="60sp"
-                    android:layout_toEndOf="@id/ln_matrix_a"
-                    android:layout_centerVertical="true"
+                    android:text="@string/matrix_a"
                     android:textAlignment="center"
-                    android:layout_margin="10dp"/>
-
-            <LinearLayout
-                    android:id="@+id/ln_matrix_b"
-                    android:layout_toEndOf="@id/tv_action_symbol"
-                    style="@style/matrix">
-
-                <TextView
-                        android:id="@+id/tv_matrix_b"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/matrix_b"
-                        android:textAlignment="center"
-                        android:textColor="@color/textColor"/>
-
-                <GridLayout
-                        android:id="@+id/gl_matrix_b"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                </GridLayout>
-
-            </LinearLayout>
-
-            <TextView
-                    android:id="@+id/tv_symbol_equal"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/equals_symbol"
-                    android:textSize="60sp"
-                    android:layout_toEndOf="@id/ln_matrix_b"
-                    android:textAlignment="center"
-                    android:layout_centerVertical="true"
                     android:textColor="@color/textColor"/>
 
-            <LinearLayout
-                    android:id="@+id/ln_matrix_result"
-                    android:layout_toEndOf="@id/tv_symbol_equal"
-                    style="@style/matrix">
+            <GridLayout
+                    android:id="@+id/gl_matrix_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+            </GridLayout>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_action_symbol"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:text="@string/addition_symbol"
+                android:textSize="60sp"
+                android:layout_toEndOf="@id/ln_matrix_a"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:layout_margin="10dp"/>
+
+        <LinearLayout
+                android:id="@+id/ln_matrix_b"
+                android:layout_toEndOf="@id/tv_action_symbol"
+                style="@style/matrix">
+
+            <TextView
+                    android:id="@+id/tv_matrix_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matrix_b"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"/>
+
+            <GridLayout
+                    android:id="@+id/gl_matrix_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_symbol_equal"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="@string/equals_symbol"
+                android:textSize="60sp"
+                android:layout_toEndOf="@id/ln_matrix_b"
+                android:textAlignment="center"
+                android:layout_centerVertical="true"
+                android:textColor="@color/textColor"/>
+
+        <LinearLayout
+                android:id="@+id/ln_matrix_result"
+                android:layout_toEndOf="@id/tv_symbol_equal"
+                style="@style/matrix">
 
             <TextView
                     android:id="@+id/tv_matrix_result"
@@ -100,11 +97,9 @@
 
             </GridLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-    </HorizontalScrollView>
-
-</LinearLayout>
+</HorizontalScrollView>

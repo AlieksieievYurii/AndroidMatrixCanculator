@@ -2,34 +2,38 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="match_parent">
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
         <LinearLayout
                 android:id="@+id/ln_matrix"
-                style="@style/matrix"
-                android:layout_centerHorizontal="true">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp">
 
-            <TextView
-                    android:id="@+id/tv_matrix"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/matrix"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColor"/>
+            <LinearLayout
+                    style="@style/matrix">
 
-            <GridLayout
-                    android:id="@+id/gl_matrix"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/tv_matrix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/matrix"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColor"/>
 
-            </GridLayout>
+                <GridLayout
+                        android:id="@+id/gl_matrix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
+                </GridLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -43,26 +47,33 @@
                 android:textSize="30sp"/>
 
         <LinearLayout
-                android:id="@+id/ln_matrix_result"
-                style="@style/matrix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_action"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
 
-            <TextView
-                    android:id="@+id/tv_matrix_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/matrix_result"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColor"/>
+            <LinearLayout
+                    android:id="@+id/ln_matrix_result"
+                    style="@style/matrix">
 
-            <GridLayout
-                    android:id="@+id/gl_matrix_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/tv_matrix_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/matrix_result"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColor"/>
 
-            </GridLayout>
+                <GridLayout
+                        android:id="@+id/gl_matrix_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
+                </GridLayout>
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
