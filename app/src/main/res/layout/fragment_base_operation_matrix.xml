@@ -4,16 +4,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/activityBackground"
-                android:padding="10dp"
                 android:focusableInTouchMode="true">
 
     <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
         <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="100dp">
 
             <LinearLayout
                     android:id="@+id/ln_count_rows_matrix"
@@ -23,7 +26,8 @@
                     android:orientation="horizontal"
                     android:gravity="start"
                     android:background="@color/white"
-                    android:layout_toStartOf="@id/btn_clear">
+                    android:layout_toStartOf="@id/ln_btn_clear"
+                    android:layout_marginStart="10dp">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -49,7 +53,8 @@
                     android:layout_below="@id/ln_count_rows_matrix"
                     android:gravity="start"
                     android:background="@color/white"
-                    android:layout_toStartOf="@id/btn_clear">
+                    android:layout_toStartOf="@id/ln_btn_clear"
+                    android:layout_marginStart="10dp">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -67,15 +72,24 @@
                         android:textColor="@color/textColor"
                         android:entries="@array/numbers_for_spinner"/>
             </LinearLayout>
-            <Button
-                    android:id="@+id/btn_clear"
+
+            <LinearLayout
+                    android:id="@+id/ln_btn_clear"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignTop="@id/ln_count_rows_matrix"
                     android:layout_alignBottom="@id/ln_count_columns_matrix"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/clear"/>
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                <Button
+                        android:id="@+id/btn_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/clear"/>
+            </LinearLayout>
+
 
             <TextView
                     android:id="@+id/tv_text_enter_value"
@@ -99,7 +113,9 @@
                 <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
                     <LinearLayout
                             android:id="@+id/ln_matrix_a"
@@ -166,32 +182,39 @@
                     android:layout_below="@id/hsv_matrix_a_b"
                     android:layout_centerHorizontal="true">
 
-                <RelativeLayout
-                        android:id="@+id/rl_result"
-                        style="@style/matrix_result"
-                        android:visibility="invisible">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
-                    <TextView
-                            android:id="@+id/tv_result"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/result"
-                            android:textSize="30sp"
-                            android:textColor="@color/textColor"
-                            android:layout_marginBottom="5dp"
-                            android:layout_centerHorizontal="true"/>
+                    <RelativeLayout
+                            android:id="@+id/rl_result"
+                            style="@style/matrix_result"
+                            android:visibility="invisible"
+                            android:layout_marginBottom="0dp">
 
-                    <GridLayout
-                            android:id="@+id/gl_matrix_result"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tv_result"
-                            android:layout_centerHorizontal="true">
-                    </GridLayout>
+                        <TextView
+                                android:id="@+id/tv_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/result"
+                                android:textSize="30sp"
+                                android:textColor="@color/textColor"
+                                android:layout_marginBottom="5dp"
+                                android:layout_centerHorizontal="true"/>
 
-
-                </RelativeLayout>
+                        <GridLayout
+                                android:id="@+id/gl_matrix_result"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_result"
+                                android:layout_centerHorizontal="true">
+                        </GridLayout>
+                    </RelativeLayout>
+                </LinearLayout>
             </HorizontalScrollView>
+
         </RelativeLayout>
 
     </ScrollView>
@@ -202,6 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="@string/equals_symbol"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:layout_margin="10dp"/>
 
 </RelativeLayout>
