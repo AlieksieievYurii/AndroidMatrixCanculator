@@ -3,7 +3,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/activityBackground"
-                android:padding="10dp"
                 android:focusableInTouchMode="true">
 
     <ScrollView
@@ -12,7 +11,9 @@
 
         <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="100dp">
 
             <LinearLayout
                     android:id="@+id/ln_count_rows_matrix"
@@ -22,7 +23,8 @@
                     android:orientation="horizontal"
                     android:gravity="start"
                     android:background="@color/white"
-                    android:layout_toStartOf="@id/btn_clear">
+                    android:layout_toStartOf="@id/ln_btn_clear"
+                    android:layout_marginStart="10dp">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -48,7 +50,8 @@
                     android:layout_below="@id/ln_count_rows_matrix"
                     android:gravity="start"
                     android:background="@color/white"
-                    android:layout_toStartOf="@id/btn_clear">
+                    android:layout_toStartOf="@id/ln_btn_clear"
+                    android:layout_marginStart="10dp">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -65,15 +68,22 @@
                         android:entries="@array/numbers_for_spinner"/>
             </LinearLayout>
 
-            <Button
-                    android:id="@+id/btn_clear"
+            <LinearLayout
+                    android:id="@+id/ln_btn_clear"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignTop="@id/ln_count_rows_matrix"
                     android:layout_alignBottom="@id/ln_count_columns_matrix"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/clear"/>
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                <Button
+                        android:id="@+id/btn_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/clear"/>
+            </LinearLayout>
 
             <TextView
                     android:id="@+id/tv_text_enter_value"
@@ -89,27 +99,36 @@
 
             <HorizontalScrollView
                     android:id="@+id/hsv_matrix_a_b"
-                    style="@style/matrix"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:layout_below="@id/tv_text_enter_value"
                     android:layout_marginTop="20dp"
                     android:layout_centerHorizontal="true">
+
                 <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                    <TextView
-                            android:id="@+id/tv_matrix"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/matrix"
-                            android:textAlignment="center"
-                            android:textColor="@color/textColor"/>
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                    <LinearLayout
+                            style="@style/matrix"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/tv_matrix"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/matrix"
+                                android:textAlignment="center"
+                                android:textColor="@color/textColor"/>
 
                         <GridLayout
                                 android:id="@+id/gl_matrix_transpose"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                         </GridLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
             </HorizontalScrollView>
@@ -120,30 +139,38 @@
                     android:layout_below="@id/hsv_matrix_a_b"
                     android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                    android:id="@+id/rl_result"
-                    style="@style/matrix_result"
-                    android:visibility="invisible">
-
-                <TextView
-                        android:id="@+id/tv_result"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/result"
-                        android:textSize="30sp"
-                        android:textColor="@color/textColor"
-                        android:layout_centerHorizontal="true"/>
-
-                <GridLayout
-                        android:id="@+id/gl_matrix_result"
+                <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_result"
-                        android:layout_centerHorizontal="true">
-                </GridLayout>
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                    <RelativeLayout
+                            android:id="@+id/rl_result"
+                            style="@style/matrix_result"
+                            android:visibility="invisible"
+                            android:layout_marginBottom="0dp">
+
+                        <TextView
+                                android:id="@+id/tv_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/result"
+                                android:textSize="30sp"
+                                android:textColor="@color/textColor"
+                                android:layout_centerHorizontal="true"/>
+
+                        <GridLayout
+                                android:id="@+id/gl_matrix_result"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_result"
+                                android:layout_centerHorizontal="true">
+                        </GridLayout>
 
 
-            </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
             </HorizontalScrollView>
         </RelativeLayout>
 
