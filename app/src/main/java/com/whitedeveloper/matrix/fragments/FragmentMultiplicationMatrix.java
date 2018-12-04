@@ -265,15 +265,16 @@ public class FragmentMultiplicationMatrix extends Fragment implements
                 managerMatrix.fillUpMatrix(glMatrixA, TAG_ID_MATRIX_A, matrixA);
                 setMatrixAFromSaving = false;
                 matrixA = null;
+                clearBuffers();
             } else if (setMatrixBFromSaving) {
                 managerMatrix.fillUpMatrix(glMatrixB, TAG_ID_MATRIX_B, matrixB);
                 setMatrixBFromSaving = false;
                 matrixB = null;
+                clearBuffers();
             } else if (setSavedState && bufferColumnsMatrixA == columnsMatrixA && columnsMatrixB == bufferColumnsMatrixB) {
                 try {
                     managerMatrix.fillUpMatrixByJson(glMatrixA, TAG_ID_MATRIX_A, savedStateInstance.getJsonObjectMatrixA(), rowsMatrixA, columnsMatrixA);
                     managerMatrix.fillUpMatrixByJson(glMatrixB, TAG_ID_MATRIX_B, savedStateInstance.getJsonObjectMatrixB(), columnsMatrixA, columnsMatrixB);
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -282,10 +283,17 @@ public class FragmentMultiplicationMatrix extends Fragment implements
                 if (savedStateInstance.isCalculated())
                     calculate();
 
+                clearBuffers();
                 setSavedState = false;
             }
 
         }
+    }
+
+    private void clearBuffers() {
+        bufferColumnsMatrixA = 0;
+        bufferColumnsMatrixB = 0;
+        bufferRowsMatrixA = 0;
     }
 
     @Override

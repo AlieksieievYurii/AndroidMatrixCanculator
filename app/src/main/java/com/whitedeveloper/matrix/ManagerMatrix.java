@@ -2,6 +2,7 @@ package com.whitedeveloper.matrix;
 
 import android.content.Context;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
