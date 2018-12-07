@@ -28,9 +28,6 @@ public class MenuCreator implements SwipeMenuCreator {
             case TagKeys.TYPE_MENU_M_R:
                 menu.addMenuItem(getItemMatrix());
                 break;
-            case TagKeys.TYPE_MENU_M:
-                menu.addMenuItem(getItemMatrix());
-                break;
         }
         menu.addMenuItem(getItemRemoving());
         menu.addMenuItem(getItemShowing());

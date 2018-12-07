@@ -63,10 +63,7 @@ public class ListOfSavingMatrices extends Dialog {
                         enterListenerABR(index, position);
                         break;
                     case TagKeys.TYPE_MENU_M_R:
-                        enterListenerMRorM(index,position);
-                        break;
-                    case TagKeys.TYPE_MENU_M:
-                        enterListenerMRorM(index,position);
+                        enterListenerMR(index,position);
                         break;
                 }
 
@@ -94,7 +91,7 @@ public class ListOfSavingMatrices extends Dialog {
                 }
             }
 
-            private void enterListenerMRorM(int index, int position) {
+            private void enterListenerMR(int index, int position) {
                 switch (index) {
                     case 0:
                         //Matrix A

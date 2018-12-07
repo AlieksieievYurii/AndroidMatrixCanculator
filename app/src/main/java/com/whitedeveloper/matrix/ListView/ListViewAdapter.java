@@ -62,7 +62,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 3;
+        return 2;
     }
 
     @Override

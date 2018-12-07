@@ -5,7 +5,7 @@ public enum Action
     ADDITION("addition",TagKeys.TYPE_MENU_A_B_R),
     SUBTRACTION("subtraction", TagKeys.TYPE_MENU_A_B_R),
     MULTIPLICATION("multiplication",TagKeys.TYPE_MENU_A_B_R),
-    DETERMINATION("determination",TagKeys.TYPE_MENU_M),
+    DETERMINATION("determination",TagKeys.TYPE_MENU_M_R),
     TRANSPOSING("transposing",TagKeys.TYPE_MENU_M_R),
     INVERSION("inversion",TagKeys.TYPE_MENU_M_R);
 
