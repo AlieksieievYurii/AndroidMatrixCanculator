@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/activityBackground"
+                android:focusableInTouchMode="true">
+
+    <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="100dp">
+
+            <LinearLayout
+                    android:id="@+id/ln_count_rows_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="7dp"
+                    android:orientation="horizontal"
+                    android:gravity="start"
+                    android:background="@color/white"
+                    android:layout_toStartOf="@id/ln_btn_clear"
+                    android:layout_marginStart="10dp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/size_matrix"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/textColor"/>
+
+                <Spinner
+                        android:id="@+id/sp_dimension_matrix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:entries="@array/size_matrix_for_spinner"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_btn_clear"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/ln_count_rows_matrix"
+                    android:layout_alignBottom="@id/ln_count_rows_matrix"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                <Button
+                        android:id="@+id/btn_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/clear"/>
+            </LinearLayout>
+
+
+            <TextView
+                    android:id="@+id/tv_text_enter_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_value_of_matrix"
+                    android:layout_below="@id/ln_count_rows_matrix"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:padding="8dp"/>
+
+            <HorizontalScrollView
+                    android:id="@+id/hsv_matrix_a_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_text_enter_value"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                    <LinearLayout
+                            style="@style/matrix"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/tv_matrix"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/textColor"
+                                android:text="@string/matrix"
+                                android:textAlignment="center"/>
+
+                        <GridLayout
+                                android:id="@+id/gl_matrix_inversion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                        </GridLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hsv_matrix_a_b"
+                    android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/tv_determinant_zero"
+                            android:layout_marginTop="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bc_matrix"
+                            android:text="@string/determinant_is_zero"
+                            android:textSize="20sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:textColor="@color/red"
+                            android:visibility="gone"/>
+
+                    <LinearLayout
+                            android:id="@+id/ln_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <RelativeLayout
+                                android:id="@+id/rl_matrix_l"
+                                style="@style/matrix_result"
+                                android:visibility="visible"
+                                android:layout_marginBottom="0dp">
+
+                            <TextView
+                                    android:id="@+id/tv_matrix_l"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/matrix_l"
+                                    android:textSize="30sp"
+                                    android:textColor="@color/textColor"
+                                    android:layout_centerHorizontal="true"/>
+
+                            <GridLayout
+                                    android:id="@+id/gl_matrix_l_result"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tv_matrix_l"
+                                    android:layout_centerHorizontal="true">
+                            </GridLayout>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                                android:id="@+id/rl_matrix_u"
+                                style="@style/matrix_result"
+                                android:visibility="visible"
+                                android:layout_marginBottom="0dp"
+                                android:layout_marginStart="20dp">
+
+                            <TextView
+                                    android:id="@+id/tv_matrix_u"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/matrix_u"
+                                    android:textSize="30sp"
+                                    android:textColor="@color/textColor"
+                                    android:layout_centerHorizontal="true"/>
+
+                            <GridLayout
+                                    android:id="@+id/gl_matrix_u_result"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tv_result"
+                                    android:layout_centerHorizontal="true">
+
+                            </GridLayout>
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+            android:id="@+id/btn_run"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/equals_symbol"
+            android:textSize="30sp"/>
+
+</RelativeLayout>

@@ -22,13 +22,4 @@ public class InversionMatrixTest {
 
         assertArrayEquals(inversionMatrix.inversionMatrix(),res);
     }
-
-    @Test
-    public void testRounding()
-    {
-        double number = -1.9999999999999998;
-        double expected = -2;
-
-        assertEquals(expected,InversionMatrix.round(number),0);
-    }
 }

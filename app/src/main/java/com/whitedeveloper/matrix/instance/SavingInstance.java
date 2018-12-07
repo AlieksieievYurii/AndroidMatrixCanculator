@@ -23,6 +23,8 @@ public class SavingInstance {
     private double[][] matrixA;
     private double[][] matrixB;
     private double[][] matrixResult;
+    private double[][] matrixL;
+    private double[][] matrixU;
 
     public SavingInstance(Context context) {
         this.context = context;
@@ -70,6 +72,16 @@ public class SavingInstance {
         return this;
     }
 
+    public SavingInstance setMatrixL(double[][] matrixL) {
+        this.matrixL = matrixL;
+        return this;
+    }
+
+    public SavingInstance setMatrixU(double[][] matrixU) {
+        this.matrixU = matrixU;
+        return this;
+    }
+
     public double getDeterminant() {
         return determinant;
     }
@@ -100,7 +112,24 @@ public class SavingInstance {
             case TRANSPOSING:
                 saveTransposing();
                 break;
+            case SEPARATION:
+                saveSeparation();
+                break;
         }
+    }
+
+    private void saveSeparation() throws Exception
+    {
+        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(KEY_SHARED_ACTION,Action.SEPARATION.toString());
+        jsonObject.put(KEY_SHARED_MATRIX_A,JsonMatrix.getJsonFromMatrix(matrixA));
+        jsonObject.put(KEY_SHARED_MATRIX_L,JsonMatrix.getJsonFromMatrix(matrixL));
+        jsonObject.put(KEY_SHARED_MATRIX_U,JsonMatrix.getJsonFromMatrix(matrixU));
+
+        sharedPreferences.putString(nameSaving,jsonObject.toString());
+        sharedPreferences.apply();
     }
 
     private void saveTransposing() throws Exception {

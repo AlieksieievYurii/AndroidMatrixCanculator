@@ -94,7 +94,21 @@ public class SavingStateInstance {
             case MULTIPLICATION:
                 saveStateMultiplication();
                 break;
+            case SEPARATION:
+                saveStateSeparation();
+                break;
         }
+    }
+
+    private void saveStateSeparation() throws JSONException {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_STATE_INSTANCE, Context.MODE_PRIVATE).edit();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(KEY_SHARED_DIMENSION_MATRIX, spDimensionMatrix);
+        jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
+
+        editor.putString(KEY_SAVE_STATE_INVERSE, jsonObject.toString());
+        editor.apply();
     }
 
     private void saveStateInverse() throws JSONException {

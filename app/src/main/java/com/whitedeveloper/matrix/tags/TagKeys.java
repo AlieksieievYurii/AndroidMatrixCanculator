@@ -24,6 +24,8 @@ public class TagKeys {
     public static final String KEY_SHARED_ACTION = "action";
     public static final String KEY_SHARED_MATRIX_A = "matrix_a";
     public static final String KEY_SHARED_MATRIX_B = "matrix_b";
+    public static final String KEY_SHARED_MATRIX_U = "matrix_u";
+    public static final String KEY_SHARED_MATRIX_L = "matrix_l";
     public static final String KEY_SHARED_MATRIX_RESULT = "matrix_result";
     public static final String KEY_SHARED_DETERMINANT = "matrix_determinant";
 
@@ -31,4 +33,5 @@ public class TagKeys {
 
     public static final int TYPE_MENU_A_B_R = 0;
     public static final int TYPE_MENU_M_R = 1;
+    public static final int TYPE_MENU_L_U = 2;
 }

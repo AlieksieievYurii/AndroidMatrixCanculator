@@ -24,6 +24,9 @@
         <item android:id="@+id/nav_inverse_matrix"
               android:icon="@drawable/ic_inversion_matrix"
               android:title="@string/inverse_of_matrix"/>
+        <item android:id="@+id/nav_separate_matrix_on_lu"
+              android:icon="@drawable/ic_error"
+              android:title="@string/separate_lu"/>
     </group>
 
    <group android:id="@+id/test" android:checkableBehavior="none">

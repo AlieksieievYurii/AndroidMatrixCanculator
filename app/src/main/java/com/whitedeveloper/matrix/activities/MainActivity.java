@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         init();
 
-        if(savedInstanceState == null)
+        if (savedInstanceState == null)
             setSelectedFirstTime();
     }
 
@@ -137,6 +137,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle(getResources().getString(R.string.inverse_of_matrix));
     }
 
+    private void loadSeparationLUFragment()
+    {
+        FragmentSeparateOnLU fragmentSeparateOnLU = new FragmentSeparateOnLU();
+        onPressSaveResultListener = fragmentSeparateOnLU;
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,fragmentSeparateOnLU)
+                .commit();
+    }
+
     private void startActivityAbout() {
         startActivity(new Intent(this, ActivityAbout.class));
     }
@@ -160,15 +171,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_inverse_matrix:
                 loadInverseFragment();
                 break;
+            case R.id.nav_separate_matrix_on_lu:
+                loadSeparationLUFragment();
+                break;
             case R.id.nav_about:
                 startActivityAbout();
                 break;
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
 
     @Override
     public void doFinishActivity() {

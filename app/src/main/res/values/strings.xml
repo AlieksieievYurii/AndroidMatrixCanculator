@@ -59,6 +59,9 @@
     <string name="item_matrix_b">Matrix B</string>
     <string name="item_matrix">Matrix</string>
     <string name="determinant_is_zero">Determinant is zero!</string>
+    <string name="matrix_l">Matrix L:</string>
+    <string name="matrix_u">Matrix U:</string>
+    <string name="separate_lu">Saparation LU</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
