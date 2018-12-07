@@ -2,17 +2,19 @@ package com.whitedeveloper.matrix.tags;
 
 public enum Action
 {
-    ADDITION("addition"),
-    SUBTRACTION("subtraction"),
-    MULTIPLICATION("multiplication"),
-    DETERMINATION("determination"),
-    TRANSPOSING("transposing"),
-    INVERSION("inversion");
+    ADDITION("addition",TagKeys.TYPE_MENU_A_B_R),
+    SUBTRACTION("subtraction", TagKeys.TYPE_MENU_A_B_R),
+    MULTIPLICATION("multiplication",TagKeys.TYPE_MENU_A_B_R),
+    DETERMINATION("determination",TagKeys.TYPE_MENU_M),
+    TRANSPOSING("transposing",TagKeys.TYPE_MENU_M_R),
+    INVERSION("inversion",TagKeys.TYPE_MENU_M_R);
 
     private String nameAction;
+    private int typeMenu;
 
-    Action(String nameAction) {
+    Action(String nameAction, int typeMenu) {
         this.nameAction = nameAction;
+        this.typeMenu = typeMenu;
     }
 
     @Override
@@ -33,5 +35,7 @@ public enum Action
         return null;
     }
 
-
+    public int getTypeMenu() {
+        return typeMenu;
+    }
 }

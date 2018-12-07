@@ -28,4 +28,8 @@ public class TagKeys {
     public static final String KEY_SHARED_DETERMINANT = "matrix_determinant";
 
     public static final String EXTRA_NAME_SAVING = "name_saving";
+
+    public static final int TYPE_MENU_A_B_R = 0;
+    public static final int TYPE_MENU_M_R = 1;
+    public static final int TYPE_MENU_M = 2;
 }

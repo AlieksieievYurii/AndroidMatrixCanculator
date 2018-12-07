@@ -55,6 +55,9 @@
     <string name="remove">Remove</string>
     <string name="cannot_be_empty">Cannot be empty!</string>
     <string name="rows_not_equal_columns">Count  Rows of matrix B not equals count matrix of A</string>
+    <string name="item_matrix_a">Matrix A</string>
+    <string name="item_matrix_b">Matrix B</string>
+    <string name="item_matrix">Matrix</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

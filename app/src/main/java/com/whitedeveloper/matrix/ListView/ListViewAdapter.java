@@ -42,7 +42,6 @@ public class ListViewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup)
     {
         View item = view;
-
         if(item == null)
             item = layoutInflater.inflate(R.layout.item_list_view_saving,viewGroup,false);
 
@@ -59,5 +58,17 @@ public class ListViewAdapter extends BaseAdapter {
             tvResult.setText(String.format("%dx%d",arrayList.get(i).getCountRows(),arrayList.get(i).getCountColumns()));
 
         return item;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 3;
+    }
+
+    @Override
+    public int getItemViewType(int position)
+    {
+
+        return arrayList.get(position).getAction().getTypeMenu();
     }
 }

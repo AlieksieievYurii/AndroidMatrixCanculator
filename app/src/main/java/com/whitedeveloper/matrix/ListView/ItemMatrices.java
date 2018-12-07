@@ -2,6 +2,7 @@ package com.whitedeveloper.matrix.ListView;
 
 
 import com.whitedeveloper.matrix.tags.Action;
+import com.whitedeveloper.matrix.tags.TagKeys;
 
 public class ItemMatrices
 {
@@ -10,6 +11,7 @@ public class ItemMatrices
     private String resultItem;
     private int countRows;
     private int countColumns;
+    private int typeMenu;
 
     public String getNameSaving() {
         return nameSaving;
@@ -19,11 +21,13 @@ public class ItemMatrices
         this.nameSaving = nameSaving;
     }
 
-    public Action getAction() {
+    public Action getAction()
+    {
         return action;
     }
 
     public void setAction(Action action) {
+
         this.action = action;
     }
 

@@ -15,8 +15,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
 
             <LinearLayout
                     style="@style/matrix">
