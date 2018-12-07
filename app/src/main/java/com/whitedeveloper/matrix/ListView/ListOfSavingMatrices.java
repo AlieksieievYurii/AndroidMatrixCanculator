@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -19,11 +18,17 @@ import java.util.ArrayList;
 public class ListOfSavingMatrices extends Dialog {
 
     public interface CallBack {
-        void selectedItem(String name);
+        void selectedItem(String nameSaving);
 
-        void removeItem(String name);
+        void selectedMatrixA(String nameSaving);
 
-        void showItem(String name);
+        void selectedMatrixB(String nameSaving);
+
+        void selectedMatrix(String nameSaving);
+
+        void removeItem(String nameSaving);
+
+        void showItem(String nameSaving);
     }
 
     private CallBack callBack;
@@ -63,22 +68,20 @@ public class ListOfSavingMatrices extends Dialog {
                         enterListenerABR(index, position);
                         break;
                     case TagKeys.TYPE_MENU_M_R:
-                        enterListenerMR(index,position);
+                        enterListenerMR(index, position);
                         break;
                 }
 
-                return false;
+                return true;
             }
 
             private void enterListenerABR(int index, int position) {
                 switch (index) {
                     case 0:
-                        //Matrix A
-                        Log.i("TAG","MATRIX_A");
+                        callBack.selectedMatrixA(arrayList.get(position).getNameSaving());
                         break;
                     case 1:
-                        //Matrix B
-                        Log.i("TAG","MATRIX_B");
+                        callBack.selectedMatrixB(arrayList.get(position).getNameSaving());
                         break;
                     case 2:
                         callBack.removeItem(arrayList.get(position).getNameSaving());
@@ -94,8 +97,7 @@ public class ListOfSavingMatrices extends Dialog {
             private void enterListenerMR(int index, int position) {
                 switch (index) {
                     case 0:
-                        //Matrix A
-                        Log.i("TAG","MATRIX");
+                        callBack.selectedMatrix(arrayList.get(position).getNameSaving());
                         break;
                     case 1:
                         callBack.removeItem(arrayList.get(position).getNameSaving());

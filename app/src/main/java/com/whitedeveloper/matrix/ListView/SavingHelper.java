@@ -31,9 +31,9 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     }
 
     @Override
-    public void selectedItem(String name) {
+    public void selectedItem(String nameSaving) {
         try {
-            final SavedInstance savedInstance = new SavedInstance(context, name);
+            final SavedInstance savedInstance = new SavedInstance(context, nameSaving);
 
             if (savedInstance.getAction() == Action.DETERMINATION) {
                 Toast.makeText(context, R.string.text_not_allowed, Toast.LENGTH_SHORT).show();
@@ -51,14 +51,51 @@ public class SavingHelper implements ListOfSavingMatrices.CallBack {
     }
 
     @Override
-    public void removeItem(String name) {
-        SavingInstance.removeSaving(context,name);
+    public void selectedMatrixA(String nameSaving) {
+        try {
+            final SavedInstance savedInstance = new SavedInstance(context, nameSaving);
+
+            setMatrix.setMatrix(savedInstance.getMatrixA());
+            setMatrix.setSizeMatrix(savedInstance.getMatrixA().length, savedInstance.getMatrixA()[0].length);
+            listOfSavingMatrices.hide();
+            listOfSavingMatrices.dismiss();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void showItem(String name) {
-        Intent intent = new Intent(context,ActivityShowSavedMatrix.class);
-        intent.putExtra(EXTRA_NAME_SAVING,name);
+    public void selectedMatrixB(String nameSaving) {
+        try {
+            final SavedInstance savedInstance = new SavedInstance(context, nameSaving);
+
+            setMatrix.setMatrix(savedInstance.getMatrixB());
+            setMatrix.setSizeMatrix(savedInstance.getMatrixB().length, savedInstance.getMatrixB()[0].length);
+            listOfSavingMatrices.hide();
+            listOfSavingMatrices.dismiss();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void selectedMatrix(String nameSaving) {
+        selectedMatrixA(nameSaving);
+        //"MatrixA" equals Matrix
+        //In SavedInstance object is "MatrixA", it means just "Matrix"
+    }
+
+    @Override
+    public void removeItem(String nameSaving) {
+        SavingInstance.removeSaving(context, nameSaving);
+    }
+
+    @Override
+    public void showItem(String nameSaving) {
+        Intent intent = new Intent(context, ActivityShowSavedMatrix.class);
+        intent.putExtra(EXTRA_NAME_SAVING, nameSaving);
         context.startActivity(intent);
     }
 }
