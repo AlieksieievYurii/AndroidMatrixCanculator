@@ -31,6 +31,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     private GridLayout glResult;
 
     private RelativeLayout rlResult;
+    private TextView tvDeterminantZero;
 
     private ManagerMatrix managerMatrix;
     private SavedStateInstance savedStateInstance;
@@ -79,6 +80,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
         glResult = view.findViewById(R.id.gl_matrix_result);
 
         rlResult = view.findViewById(R.id.rl_result);
+        tvDeterminantZero = view.findViewById(R.id.tv_determinant_zero);
 
         managerMatrix = new ManagerMatrix(getContext());
         savedStateInstance = new SavedStateInstance(getContext());
@@ -140,14 +142,18 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     }
 
     private void calculate() {
-        if (managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
-            matrix = managerMatrix.readMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
-            InversionMatrix inversionMatrix = new InversionMatrix(matrix);
+        if (!managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
+            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        matrix = managerMatrix.readMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
+        InversionMatrix inversionMatrix = new InversionMatrix(matrix);
+        if (inversionMatrix.canBeInverted(matrix)) {
             matrixResult = inversionMatrix.inversionMatrix();
             showResult(matrixResult);
+        }else
+            tvDeterminantZero.setVisibility(View.VISIBLE);
 
-        } else
-            Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(double[][] matrixResult) {
@@ -160,6 +166,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
     private void removeResult() {
         glResult.removeAllViews();
         rlResult.setVisibility(View.INVISIBLE);
+        tvDeterminantZero.setVisibility(View.GONE);
         isCalculated = false;
     }
 
@@ -170,7 +177,7 @@ public class FragmentInversionMatrix extends Fragment implements AdapterView.OnI
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if (rlResult.getVisibility() == View.VISIBLE)
+        if (rlResult.getVisibility() == View.VISIBLE || tvDeterminantZero.getVisibility() == View.VISIBLE)
             removeResult();
     }
 

@@ -56,7 +56,7 @@ public class MenuCreator implements SwipeMenuCreator {
 
     private SwipeMenuItem getItemMatrixA() {
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
-        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorAccent)));
+        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimary)));
         swipeMenuItem.setWidth(200);
         swipeMenuItem.setTitle(context.getString(R.string.item_matrix_a));
         swipeMenuItem.setTitleSize(12);
@@ -66,7 +66,7 @@ public class MenuCreator implements SwipeMenuCreator {
 
     private SwipeMenuItem getItemMatrixB() {
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
-        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorAccent)));
+        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimaryDark)));
         swipeMenuItem.setWidth(200);
         swipeMenuItem.setTitle(context.getString(R.string.item_matrix_b));
         swipeMenuItem.setTitleSize(12);
@@ -76,7 +76,7 @@ public class MenuCreator implements SwipeMenuCreator {
 
     private SwipeMenuItem getItemMatrix() {
         SwipeMenuItem swipeMenuItem = new SwipeMenuItem(context);
-        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorAccent)));
+        swipeMenuItem.setBackground(new ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimary)));
         swipeMenuItem.setWidth(200);
         swipeMenuItem.setTitle(context.getString(R.string.item_matrix));
         swipeMenuItem.setTitleSize(12);

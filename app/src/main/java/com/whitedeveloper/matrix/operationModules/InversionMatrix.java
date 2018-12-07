@@ -17,6 +17,13 @@ public class InversionMatrix {
         return matrixCopy;
     }
 
+    public boolean canBeInverted(double[][] matrix)
+    {
+        DeterminantMatrix determinantMatrix = new DeterminantMatrix(matrix);
+
+        return !(determinantMatrix.countDeterminant() == 0);
+    }
+
     public double[][] inversionMatrix() {
         return roundMatrix(invert());
     }

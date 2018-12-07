@@ -58,6 +58,7 @@
     <string name="item_matrix_a">Matrix A</string>
     <string name="item_matrix_b">Matrix B</string>
     <string name="item_matrix">Matrix</string>
+    <string name="determinant_is_zero">Determinant is zero!</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
