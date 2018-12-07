@@ -1,27 +1,27 @@
 <resources>
-    <string name="app_name">Macier</string>
+    <string name="app_name">Macierz</string>
 
     <string name="navigation_drawer_open">Otwarta szuflada nawigacji</string>
     <string name="navigation_drawer_close">Zamknij szufladę nawigacji</string>
-    <string name="operations_on_matrix">Operacje na macierzy</string>
+    <string name="operations_on_matrix">Operacja na macierze</string>
     <string name="basic_actions_of_matrix">Podstawowe operacje</string>
     <string name="multiplication_of_matrix">Mnożenie macierzy</string>
     <string name="transpose_of_matrix">Transpozycja macierzy</string>
     <string name="determinant_of_matrix">Wyznacznik macierzy</string>
     <string name="inverse_of_matrix">Inwersja macierzy</string>
-    <string name="count_rows">Ilość wierzchołków:</string>
-    <string name="count_columns">Ilość kolumn:</string>
+    <string name="count_rows">Liczba wierszy:</string>
+    <string name="count_columns">Liczba kolumn:</string>
     <string name="enter_value_of_matrices">Wprowadź wartości macierzy:</string>
-    <string name="matrix_a">Macierza  A:</string>
+    <string name="matrix_a">Macierz  A:</string>
     <string name="addition_symbol">+</string>
-    <string name="matrix_b">Macierza B:</string>
+    <string name="matrix_b">Macierz B:</string>
     <string name="equals_symbol">=</string>
     <string name="text_warming_fill_up_matrix">Wypełnij Matryce!</string>
     <string name="result">Wynik</string>
     <string name="subtraction_symbol">-</string>
-    <string name="count_columns_matrix_a">Ilość wierzchołków A:</string>
-    <string name="count_columns_matrix_b">Columns of Matrix B:</string>
-    <string name="count_rows_matrix_a">Ilość kolumn A:</string>
+    <string name="count_columns_matrix_a">Liczba wierszy A:</string>
+    <string name="count_columns_matrix_b">Liczba wierszy B:</string>
+    <string name="count_rows_matrix_a">Liczba kolumn A:</string>
     <string name="multiplication_symbol">X</string>
     <string name="size_matrix">Rozmiar Macierzy:</string>
     <string name="text_determinant">Det(A)=</string>
@@ -55,6 +55,10 @@
     <string name="remove">Usunąć</string>
     <string name="cannot_be_empty">Nie może być pusty!</string>
     <string name="rows_not_equal_columns">Liczba wierszy z macierzy B nie równa się liczbie macierz A</string>
+    <string name="item_matrix_a">Macierz A</string>
+    <string name="item_matrix_b">Macierz B</string>
+    <string name="item_matrix">Macierz</string>
+    <string name="determinant_is_zero">Wyznacznik równy zero</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

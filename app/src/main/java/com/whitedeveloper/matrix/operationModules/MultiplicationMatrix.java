@@ -17,7 +17,7 @@ public class MultiplicationMatrix {
             for (int j = 0; j < result[i].length; j++) {
                 result[i][j] = calculateMultiplicationColumnOnRow(matrixA[i], getColumnFromMatrix(matrixB, j));
             }
-        return result;
+        return InversionMatrix.roundMatrix(result);
     }
 
     static double[] getColumnFromMatrix(double[][] matrix, int numColumn) {

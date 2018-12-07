@@ -100,7 +100,7 @@ public class InversionMatrix {
         }
     }
 
-    private double[][] roundMatrix(double[][] matrix) {
+    static double[][] roundMatrix(double[][] matrix) {
         double[][] matrixRounded = new double[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrix.length; i++)
@@ -109,8 +109,8 @@ public class InversionMatrix {
         return matrixRounded;
     }
 
-    static double round(double number) {
-        return (double) Math.round(number * 100000d) / 100000d;
+    private static double round(double number) {
+        return (double) Math.round(number * 100d) / 100d;
     }
 
 
