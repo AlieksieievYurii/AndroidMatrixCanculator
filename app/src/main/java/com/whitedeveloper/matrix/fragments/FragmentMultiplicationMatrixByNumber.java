@@ -24,7 +24,6 @@ import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
 
 import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
-import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_B;
 
 public class FragmentMultiplicationMatrixByNumber extends Fragment implements
         AdapterView.OnItemSelectedListener,
@@ -132,6 +131,7 @@ public class FragmentMultiplicationMatrixByNumber extends Fragment implements
             @Override
             public void onClick(View view) {
                 managerMatrix.clearMatrix(glMatrix, TAG_ID_MATRIX_A, rowsMatrix, columnsMatrix);
+                edtNumberK.setText("");
                 removeResult();
             }
         });

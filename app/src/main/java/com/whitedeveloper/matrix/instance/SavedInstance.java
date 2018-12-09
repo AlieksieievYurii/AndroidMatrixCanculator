@@ -58,6 +58,7 @@ public class SavedInstance {
                 break;
             case SEPARATION:
                 loadSeparationLU();
+                break;
             case MULTIPLICATION_BY_NUMBER:
                 loadMatrixAndMatrixResultAndNumberK();
                 break;

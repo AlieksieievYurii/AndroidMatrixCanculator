@@ -68,7 +68,6 @@ public class ListViewAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position)
     {
-
         return arrayList.get(position).getAction().getTypeMenu();
     }
 }

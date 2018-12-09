@@ -122,7 +122,7 @@
                                 android:id="@+id/edt_number"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
+                                android:inputType="numberDecimal|numberSigned"
                                 android:gravity="fill_horizontal"
                                 android:maxLines="1"
                                 android:background="@drawable/background_edit_text"
