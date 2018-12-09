@@ -59,6 +59,14 @@
     <string name="item_matrix_b">Macierz B</string>
     <string name="item_matrix">Macierz</string>
     <string name="determinant_is_zero">Wyznacznik równy zero</string>
+    <string name="matrix_l">Macierz L:</string>
+    <string name="matrix_u">Macierz U:</string>
+    <string name="separate_lu">Rozkład macierzy LU</string>
+    <string name="text_matrix_l">Macierz L</string>
+    <string name="text_matrix_u">Macierz U</string>
+    <string name="text_select_matrix">Wybierz Matrix</string>
+    <string name="multiplication_matrix_by_number">Mnożenie przez liczbę</string>
+    <string name="text_warming_enter_number_k">Wprowadź liczbę K!</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
