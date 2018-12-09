@@ -18,6 +18,7 @@ public class SavingStateInstance {
     private int spColumnsMatrixBPosition = 0;
 
     private int spDimensionMatrix = 0;
+    private int k;//This this for multiplication matrix by a number
 
     private JSONObject jsonObjectMatrixA;
     private JSONObject jsonObjectMatrixB;
@@ -50,6 +51,11 @@ public class SavingStateInstance {
 
     public SavingStateInstance setSpColumnsMatrixBPosition(int spColumnsMatrixBPosition) {
         this.spColumnsMatrixBPosition = spColumnsMatrixBPosition;
+        return this;
+    }
+
+    public SavingStateInstance setK(int k) {
+        this.k = k;
         return this;
     }
 
@@ -98,7 +104,24 @@ public class SavingStateInstance {
             case SEPARATION:
                 saveStateSeparation();
                 break;
+            case MULTIPLICATION_BY_NUMBER:
+                saveStateMultiplicationByNumber();
+                break;
         }
+    }
+
+    private void saveStateMultiplicationByNumber() throws JSONException {
+        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(KEY_STATE_INSTANCE,Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(KEY_SHARED_rows_matrix_a,spRowsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_columns_matrix_a,spColumnsMatrixAPosition);
+        jsonObject.put(KEY_SHARED_MATRIX_A,jsonObjectMatrixA.toString());
+        jsonObject.put(KEY_SHARED_K,k);
+        jsonObject.put(KEY_SHARED_IS_CALCULATED,isCalculated);
+
+        sharedPreferences.putString(KEY_SAVE_STATE_MULTIPLICATION_BY_NUMBER,jsonObject.toString());
+        sharedPreferences.apply();
     }
 
     private void saveStateSeparation() throws JSONException {

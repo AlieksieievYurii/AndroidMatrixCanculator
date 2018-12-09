@@ -149,6 +149,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle(R.string.separate_lu);
     }
 
+    private void loadMultiplicationByNumber()
+    {
+        FragmentMultiplicationMatrixByNumber multiplicationMatrixByNumber = new FragmentMultiplicationMatrixByNumber();
+
+        onPressSaveResultListener = multiplicationMatrixByNumber;
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,multiplicationMatrixByNumber)
+                .commit();
+
+        setTitle(R.string.multiplication_matrix_by_number);
+
+        }
+
+
     private void startActivityAbout() {
         startActivity(new Intent(this, ActivityAbout.class));
     }
@@ -177,6 +193,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_about:
                 startActivityAbout();
+                break;
+            case R.id.nav_multiplication_matrix_by_number:
+                loadMultiplicationByNumber();
                 break;
 
         }

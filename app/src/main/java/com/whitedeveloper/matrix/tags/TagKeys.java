@@ -7,6 +7,7 @@ public class TagKeys {
     public static final String KEY_STATE_INSTANCE = "save_state_instance";
     public static final String KEY_SAVE_STATE_BASIC_OPERATIONS = "save_state_basic_operation";
     public static final String KEY_SAVE_STATE_MULTIPLICATION = "save_state_multiplication";
+    public static final String KEY_SAVE_STATE_MULTIPLICATION_BY_NUMBER = "save_state_multiplication_by_zero";
     public static final String KEY_SAVE_STATE_TRANSPOSE = "save_state_transpose";
     public static final String KEY_SAVE_STATE_DETERMINANT = "save_state_determinant";
     public static final String KEY_SAVE_STATE_INVERSE = "save_state_inverse";
@@ -29,6 +30,7 @@ public class TagKeys {
     public static final String KEY_SHARED_MATRIX_L = "matrix_l";
     public static final String KEY_SHARED_MATRIX_RESULT = "matrix_result";
     public static final String KEY_SHARED_DETERMINANT = "matrix_determinant";
+    public static final String KEY_SHARED_K = "matrix_k";
 
     public static final String EXTRA_NAME_SAVING = "name_saving";
 

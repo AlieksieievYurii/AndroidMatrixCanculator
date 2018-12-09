@@ -14,6 +14,8 @@ public class SavedStateInstance {
     private int spColumnsMatrixAPosition = 0;
     private int spColumnsMatrixBPosition = 0;
     private int spDimensionMatrix = 0;
+    private double k;//This this for multiplication matrix by a number
+
 
     private JSONObject jsonObjectMatrixA;
     private JSONObject jsonObjectMatrixB;
@@ -48,6 +50,9 @@ public class SavedStateInstance {
             case TagKeys.KEY_SAVE_STATE_LU:
                 loadLastStateSeparationLU(new JSONObject(sharedPreferences.getString(TagKeys.KEY_SAVE_STATE_LU, "")));
                 break;
+            case TagKeys.KEY_SAVE_STATE_MULTIPLICATION_BY_NUMBER:
+                loadLastStateMultiplicationByNumber(new JSONObject(sharedPreferences.getString(TagKeys.KEY_SAVE_STATE_MULTIPLICATION_BY_NUMBER, "")));
+
         }
 
     }
@@ -77,6 +82,9 @@ public class SavedStateInstance {
         return jsonObjectMatrixB;
     }
 
+    public double getK() {
+        return k;
+    }
 
     public Action getAction() {
         return action;
@@ -130,9 +138,20 @@ public class SavedStateInstance {
         isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);
     }
 
-    private void loadLastStateSeparationLU(JSONObject jsonObject) throws  JSONException{
+    private void loadLastStateSeparationLU(JSONObject jsonObject) throws JSONException {
         spDimensionMatrix = jsonObject.getInt(TagKeys.KEY_SHARED_DIMENSION_MATRIX);
         jsonObjectMatrixA = new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A));
         isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);
     }
+
+    private void loadLastStateMultiplicationByNumber(JSONObject jsonObject) throws JSONException {
+
+        spRowsMatrixAPosition = jsonObject.getInt(TagKeys.KEY_SHARED_rows_matrix_a);
+        spColumnsMatrixAPosition = jsonObject.getInt(TagKeys.KEY_SHARED_columns_matrix_a);
+        jsonObjectMatrixA = new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A));
+        k = jsonObject.getDouble(TagKeys.KEY_SHARED_K);
+        isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);
+
+    }
+
 }

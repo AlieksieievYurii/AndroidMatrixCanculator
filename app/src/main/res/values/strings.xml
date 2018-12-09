@@ -10,7 +10,7 @@
     <string name="determinant_of_matrix">Determinant of Matrix</string>
     <string name="inverse_of_matrix">Inverse of Matrix</string>
     <string name="count_rows">Count rows of Matrix:</string>
-    <string name="count_columns">Count columns of Matrix</string>
+    <string name="count_columns">Count columns of Matrix:</string>
     <string name="enter_value_of_matrices">Enter value of matrices:</string>
     <string name="matrix_a">Matrix A:</string>
     <string name="addition_symbol">+</string>
@@ -66,6 +66,8 @@
     <string name="text_matrix_l">Matrix L</string>
     <string name="text_matrix_u">Matrix U</string>
     <string name="text_select_matrix">Select Matrix</string>
+    <string name="multiplication_matrix_by_number">Multiplication by number</string>
+    <string name="text_warming_enter_number_k">Enter number K</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

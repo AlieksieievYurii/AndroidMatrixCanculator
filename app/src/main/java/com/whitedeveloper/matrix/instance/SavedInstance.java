@@ -20,6 +20,7 @@ public class SavedInstance {
     private double[][] matrixL = null;
     private double[][] matrixU = null;
     private double determinant;
+    private double numberK;
 
     private JSONObject jsonObject;
 
@@ -58,7 +59,17 @@ public class SavedInstance {
                 break;
             case SEPARATION:
                 loadSeparationLU();
+            case MULTIPLICATION_BY_NUMBER:
+                loadMatrixAndMatrixResultAndNumberK();
+                break;
         }
+    }
+
+    private void loadMatrixAndMatrixResultAndNumberK() throws Exception
+    {
+        matrixA = JsonMatrix.getMatrixFromJsonObject(new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A)));
+        matrixResult = JsonMatrix.getMatrixFromJsonObject(new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_RESULT)));
+        numberK = jsonObject.getDouble(TagKeys.KEY_SHARED_K);
     }
 
     private void loadSeparationLU() throws Exception {

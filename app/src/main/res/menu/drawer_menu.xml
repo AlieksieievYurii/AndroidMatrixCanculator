@@ -12,6 +12,9 @@
                 android:id="@+id/nav_multiplication_matrix"
                 android:icon="@drawable/ic_multiplication_matrix"
                 android:title="@string/multiplication_of_matrix"/>
+        <item android:id="@+id/nav_multiplication_matrix_by_number"
+              android:icon="@drawable/ic_error"
+              android:title="@string/multiplication_matrix_by_number"/>
 
         <item android:id="@+id/nav_transpose_matrix"
               android:icon="@drawable/ic_transpose_matrix"

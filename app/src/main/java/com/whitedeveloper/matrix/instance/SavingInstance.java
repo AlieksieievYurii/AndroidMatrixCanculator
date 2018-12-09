@@ -2,6 +2,7 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.ListView.ItemMatrices;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
@@ -23,6 +24,7 @@ public class SavingInstance {
     private double[][] matrixResult;
     private double[][] matrixL;
     private double[][] matrixU;
+    private double numberK;
 
     public SavingInstance(Context context) {
         this.context = context;
@@ -80,6 +82,11 @@ public class SavingInstance {
         return this;
     }
 
+    public SavingInstance setNumberK(double numberK) {
+        this.numberK = numberK;
+        return this;
+    }
+
     public double getDeterminant() {
         return determinant;
     }
@@ -101,6 +108,9 @@ public class SavingInstance {
             case MULTIPLICATION:
                 saveMultiplication();
                 break;
+            case MULTIPLICATION_BY_NUMBER:
+                saveMultiplicationByNumber();
+                break;
             case INVERSION:
                 saveInversion();
                 break;
@@ -114,6 +124,23 @@ public class SavingInstance {
                 saveSeparation();
                 break;
         }
+    }
+
+    private void saveMultiplicationByNumber()  throws Exception
+    {
+        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE).edit();
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put(KEY_SHARED_MATRIX_A,JsonMatrix.getJsonFromMatrix(matrixA));
+        jsonObject.put(KEY_SHARED_ACTION,action);
+        jsonObject.put(KEY_SHARED_MATRIX_RESULT,JsonMatrix.getJsonFromMatrix(matrixResult));
+        jsonObject.put(KEY_SHARED_K,numberK);
+
+        Log.i("TAG",jsonObject.toString());
+
+        sharedPreferences.putString(nameSaving,jsonObject.toString());
+        sharedPreferences.apply();
     }
 
     private void saveSeparation() throws Exception {
