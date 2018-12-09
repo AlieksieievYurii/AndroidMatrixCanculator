@@ -25,7 +25,7 @@
               android:icon="@drawable/ic_inversion_matrix"
               android:title="@string/inverse_of_matrix"/>
         <item android:id="@+id/nav_separate_matrix_on_lu"
-              android:icon="@drawable/ic_error"
+              android:icon="@drawable/ic_separation_l_u"
               android:title="@string/separate_lu"/>
     </group>
 
