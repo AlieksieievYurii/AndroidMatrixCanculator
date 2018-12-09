@@ -64,7 +64,7 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
         super.onActivityCreated(savedInstanceState);
 
         try {
-            savedStateInstance.load(TagKeys.KEY_SAVE_STATE_INVERSE);
+            savedStateInstance.load(TagKeys.KEY_SAVE_STATE_LU);
             loadLastState();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -205,7 +205,7 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
         } else if (setSavedState) {
             try {
                 managerMatrix.fillUpMatrixByJson(glMatrix, TAG_ID_MATRIX_A, savedStateInstance.getJsonObjectMatrixA(), dimensionMatrix, dimensionMatrix);
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

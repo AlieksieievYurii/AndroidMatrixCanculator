@@ -9,7 +9,8 @@ public class TagKeys {
     public static final String KEY_SAVE_STATE_MULTIPLICATION = "save_state_multiplication";
     public static final String KEY_SAVE_STATE_TRANSPOSE = "save_state_transpose";
     public static final String KEY_SAVE_STATE_DETERMINANT = "save_state_determinant";
-    public static final String KEY_SAVE_STATE_INVERSE = "save_state_INVERSE";
+    public static final String KEY_SAVE_STATE_INVERSE = "save_state_inverse";
+    public static final String KEY_SAVE_STATE_LU = "save_state_lu";
 
 
     public static final String KEY_SHARED_rows_matrix_a = "key_shared_rows_matrix_a_position";

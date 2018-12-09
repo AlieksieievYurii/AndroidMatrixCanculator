@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .beginTransaction()
                 .replace(R.id.fragment_container,fragmentSeparateOnLU)
                 .commit();
+        setTitle(R.string.separate_lu);
     }
 
     private void startActivityAbout() {

@@ -45,9 +45,13 @@ public class SavedStateInstance {
             case TagKeys.KEY_SAVE_STATE_INVERSE:
                 loadLastStateInverse(new JSONObject(sharedPreferences.getString(TagKeys.KEY_SAVE_STATE_INVERSE, "")));
                 break;
+            case TagKeys.KEY_SAVE_STATE_LU:
+                loadLastStateSeparationLU(new JSONObject(sharedPreferences.getString(TagKeys.KEY_SAVE_STATE_LU, "")));
+                break;
         }
 
     }
+
 
     public int getSpDimensionMatrix() {
         return spDimensionMatrix;
@@ -121,6 +125,12 @@ public class SavedStateInstance {
     }
 
     private void loadLastStateInverse(JSONObject jsonObject) throws JSONException {
+        spDimensionMatrix = jsonObject.getInt(TagKeys.KEY_SHARED_DIMENSION_MATRIX);
+        jsonObjectMatrixA = new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A));
+        isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);
+    }
+
+    private void loadLastStateSeparationLU(JSONObject jsonObject) throws  JSONException{
         spDimensionMatrix = jsonObject.getInt(TagKeys.KEY_SHARED_DIMENSION_MATRIX);
         jsonObjectMatrixA = new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A));
         isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);

@@ -2,6 +2,7 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
@@ -107,7 +108,7 @@ public class SavingStateInstance {
         jsonObject.put(TagKeys.KEY_SHARED_MATRIX_A, jsonObjectMatrixA.toString());
         jsonObject.put(KEY_SHARED_IS_CALCULATED, isCalculated);
 
-        editor.putString(KEY_SAVE_STATE_INVERSE, jsonObject.toString());
+        editor.putString(KEY_SAVE_STATE_LU, jsonObject.toString());
         editor.apply();
     }
 
