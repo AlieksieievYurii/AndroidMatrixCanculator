@@ -11,7 +11,6 @@ public class ItemMatrices
     private String resultItem;
     private int countRows;
     private int countColumns;
-    private int typeMenu;
 
     public String getNameSaving() {
         return nameSaving;
@@ -69,5 +68,16 @@ public class ItemMatrices
         this.nameSaving = nameSaving;
         this.action = action;
         this.resultItem = resultItem;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemMatrices{" +
+                "nameSaving='" + nameSaving + '\'' +
+                ", action=" + action +
+                ", resultItem='" + resultItem + '\'' +
+                ", countRows=" + countRows +
+                ", countColumns=" + countColumns +
+                '}';
     }
 }

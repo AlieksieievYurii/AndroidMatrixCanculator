@@ -15,11 +15,11 @@ public class MatrixOnLU {
     }
 
     public double[][] getMatrixL() {
-        return matrixL;
+        return InversionMatrix.roundMatrix(matrixL);
     }
 
     public double[][] getMatrixU() {
-        return matrixU;
+        return InversionMatrix.roundMatrix(matrixU);
     }
 
     private void calculate() {

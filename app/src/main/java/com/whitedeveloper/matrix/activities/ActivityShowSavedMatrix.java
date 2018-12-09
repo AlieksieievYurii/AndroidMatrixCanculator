@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 import com.whitedeveloper.matrix.R;
-import com.whitedeveloper.matrix.fragments.FragmentShowMatricesTwo;
-import com.whitedeveloper.matrix.fragments.FragmentShowSavedMatrixOne;
-import com.whitedeveloper.matrix.fragments.FragmentShowSavedMatrixThree;
+import com.whitedeveloper.matrix.fragments.*;
 import com.whitedeveloper.matrix.instance.SavedInstance;
 import com.whitedeveloper.matrix.tags.Action;
 
@@ -49,7 +47,20 @@ public class ActivityShowSavedMatrix extends AppCompatActivity {
             case INVERSION:
                 loadFragmentMatrixTwo(bundle);
                 break;
+            case SEPARATION:
+                loadFragmentSeparationLU(bundle);
         }
+    }
+
+    private void loadFragmentSeparationLU(Bundle bundle)
+    {
+        FragmentShowMatricesLU showMatricesLU = new FragmentShowMatricesLU();
+        showMatricesLU.setArguments(bundle);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,showMatricesLU)
+                .commit();
     }
 
     private void loadFragmentMatrixThree(Bundle bundle)

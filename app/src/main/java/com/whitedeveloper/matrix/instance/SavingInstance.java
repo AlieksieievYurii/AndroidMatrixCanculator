@@ -6,14 +6,12 @@ import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.ListView.ItemMatrices;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Map;
 
 import static com.whitedeveloper.matrix.tags.TagKeys.*;
 
 public class SavingInstance {
-
 
 
     private Context context;
@@ -118,17 +116,16 @@ public class SavingInstance {
         }
     }
 
-    private void saveSeparation() throws Exception
-    {
-        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(KEY_SHARED_MATRICES,Context.MODE_PRIVATE).edit();
+    private void saveSeparation() throws Exception {
+        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE).edit();
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put(KEY_SHARED_ACTION,Action.SEPARATION.toString());
-        jsonObject.put(KEY_SHARED_MATRIX_A,JsonMatrix.getJsonFromMatrix(matrixA));
-        jsonObject.put(KEY_SHARED_MATRIX_L,JsonMatrix.getJsonFromMatrix(matrixL));
-        jsonObject.put(KEY_SHARED_MATRIX_U,JsonMatrix.getJsonFromMatrix(matrixU));
+        jsonObject.put(KEY_SHARED_ACTION, Action.SEPARATION.toString());
+        jsonObject.put(KEY_SHARED_MATRIX_A, JsonMatrix.getJsonFromMatrix(matrixA));
+        jsonObject.put(KEY_SHARED_MATRIX_L, JsonMatrix.getJsonFromMatrix(matrixL));
+        jsonObject.put(KEY_SHARED_MATRIX_U, JsonMatrix.getJsonFromMatrix(matrixU));
 
-        sharedPreferences.putString(nameSaving,jsonObject.toString());
+        sharedPreferences.putString(nameSaving, jsonObject.toString());
         sharedPreferences.apply();
     }
 
@@ -213,6 +210,7 @@ public class SavingInstance {
     }
 
     public static ArrayList<ItemMatrices> getAllSaving(Context context) {
+
         Map<String, ?> all = context.getSharedPreferences(KEY_SHARED_MATRICES, Context.MODE_PRIVATE).getAll();
         ArrayList<ItemMatrices> arrayList = new ArrayList<>();
         for (Map.Entry<String, ?> entry : all.entrySet())
@@ -247,12 +245,16 @@ public class SavingInstance {
             return null;
         }
 
+
         itemMatrices.setNameSaving(nameSaving);
         itemMatrices.setAction(savedInstance.getAction());
 
         if (savedInstance.getAction() == Action.DETERMINATION)
             itemMatrices.setResultItem(String.valueOf(savedInstance.getDeterminant()));
-        else {
+        else if (savedInstance.getAction() == Action.SEPARATION) {
+            itemMatrices.setCountRows(savedInstance.getMatrixA().length);
+            itemMatrices.setCountColumns(savedInstance.getMatrixA()[0].length);
+        } else {
             itemMatrices.setCountRows(savedInstance.getMatrixResult().length);
             itemMatrices.setCountColumns(savedInstance.getMatrixResult()[0].length);
         }

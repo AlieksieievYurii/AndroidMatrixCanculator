@@ -34,5 +34,4 @@ public class TagKeys {
 
     public static final int TYPE_MENU_A_B_R = 0;
     public static final int TYPE_MENU_M_R = 1;
-    public static final int TYPE_MENU_L_U = 2;
 }

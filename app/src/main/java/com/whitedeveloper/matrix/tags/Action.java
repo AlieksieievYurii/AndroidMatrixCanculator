@@ -8,7 +8,7 @@ public enum Action
     DETERMINATION("determination",TagKeys.TYPE_MENU_M_R),
     TRANSPOSING("transposing",TagKeys.TYPE_MENU_M_R),
     INVERSION("inversion",TagKeys.TYPE_MENU_M_R),
-    SEPARATION("separation",TagKeys.TYPE_MENU_L_U);
+    SEPARATION("separation",TagKeys.TYPE_MENU_M_R);
 
     private String nameAction;
     private int typeMenu;

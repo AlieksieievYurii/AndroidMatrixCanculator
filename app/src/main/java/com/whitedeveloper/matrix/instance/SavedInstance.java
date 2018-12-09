@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.tags.TagKeys;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 public class SavedInstance {
     private Context context;
@@ -14,6 +17,8 @@ public class SavedInstance {
     private double[][] matrixA = null;
     private double[][] matrixB = null;
     private double[][] matrixResult = null;
+    private double[][] matrixL = null;
+    private double[][] matrixU = null;
     private double determinant;
 
     private JSONObject jsonObject;
@@ -51,7 +56,15 @@ public class SavedInstance {
             case INVERSION:
                 loadMatrixAndMatrixResult();
                 break;
+            case SEPARATION:
+                loadSeparationLU();
         }
+    }
+
+    private void loadSeparationLU() throws Exception {
+        matrixA = JsonMatrix.getMatrixFromJsonObject(new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A)));
+        matrixL = JsonMatrix.getMatrixFromJsonObject(new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_L)));
+        matrixU = JsonMatrix.getMatrixFromJsonObject(new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_U)));
     }
 
     private void loadDefault() throws Exception {
@@ -88,8 +101,7 @@ public class SavedInstance {
         return action;
     }
 
-    public double getDeterminant()
-    {
+    public double getDeterminant() {
         return determinant;
     }
 
@@ -97,5 +109,27 @@ public class SavedInstance {
         return nameSaving;
     }
 
+    public double[][] getMatrixL() {
+        return matrixL;
+    }
 
+    public double[][] getMatrixU() {
+        return matrixU;
+    }
+
+    @Override
+    public String toString() {
+        return "SavedInstance{" +
+                "context=" + context +
+                ", nameSaving='" + nameSaving + '\'' +
+                ", action=" + action +
+                ", matrixA=" + Arrays.toString(matrixA) +
+                ", matrixB=" + Arrays.toString(matrixB) +
+                ", matrixResult=" + Arrays.toString(matrixResult) +
+                ", matrixL=" + Arrays.toString(matrixL) +
+                ", matrixU=" + Arrays.toString(matrixU) +
+                ", determinant=" + determinant +
+                ", jsonObject=" + jsonObject +
+                '}';
+    }
 }
