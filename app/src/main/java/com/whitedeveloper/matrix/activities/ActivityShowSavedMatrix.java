@@ -29,7 +29,6 @@ public class ActivityShowSavedMatrix extends AppCompatActivity {
         setTitle(savedInstance.getNameSaving());
         switch (action) {
             case ADDITION:
-
                 loadFragmentMatrixOne(bundle);
                 break;
             case SUBTRACTION:
@@ -49,7 +48,22 @@ public class ActivityShowSavedMatrix extends AppCompatActivity {
                 break;
             case SEPARATION:
                 loadFragmentSeparationLU(bundle);
+                break;
+            case MULTIPLICATION_BY_NUMBER:
+                loadFragmentMatrixFour(bundle);
+                break;
         }
+    }
+
+    private void loadFragmentMatrixFour(Bundle bundle)
+    {
+        FragmentShowSavedMatrixFour matrixFour = new FragmentShowSavedMatrixFour();
+        matrixFour.setArguments(bundle);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,matrixFour)
+                .commit();
     }
 
     private void loadFragmentSeparationLU(Bundle bundle)

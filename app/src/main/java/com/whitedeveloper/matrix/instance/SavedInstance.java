@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.tags.TagKeys;
 import com.whitedeveloper.matrix.operationModules.JsonMatrix;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -114,6 +113,10 @@ public class SavedInstance {
 
     public double getDeterminant() {
         return determinant;
+    }
+
+    public double getNumberK() {
+        return numberK;
     }
 
     public String getNameSaving() {

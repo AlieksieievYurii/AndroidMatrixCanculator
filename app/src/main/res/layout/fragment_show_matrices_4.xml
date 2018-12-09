@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+        <LinearLayout
+                android:id="@+id/ln_matrix_a"
+                style="@style/matrix"
+                android:layout_centerVertical="true">
+
+            <EditText
+                    android:id="@+id/edt_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill_horizontal"
+                    android:maxLines="1"
+                    android:background="@drawable/background_edit_text"
+                    android:minWidth="20dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/textColor"
+                    tools:ignore="LabelFor,TextFields"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_action_symbol"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:text="@string/multiplication_symbol"
+                android:textSize="60sp"
+                android:layout_toEndOf="@id/ln_matrix_a"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:layout_margin="10dp"/>
+
+        <LinearLayout
+                android:id="@+id/ln_matrix"
+                android:layout_toEndOf="@id/tv_action_symbol"
+                style="@style/matrix">
+
+            <TextView
+                    android:id="@+id/tv_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matrix"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"/>
+
+            <GridLayout
+                    android:id="@+id/gl_matrix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_symbol_equal"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="@string/equals_symbol"
+                android:textSize="60sp"
+                android:layout_toEndOf="@id/ln_matrix"
+                android:textAlignment="center"
+                android:layout_centerVertical="true"
+                android:textColor="@color/textColor"/>
+
+        <LinearLayout
+                android:id="@+id/ln_matrix_result"
+                android:layout_toEndOf="@id/tv_symbol_equal"
+                style="@style/matrix">
+
+            <TextView
+                    android:id="@+id/tv_matrix_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matrix_result"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"/>
+
+            <GridLayout
+                    android:id="@+id/gl_matrix_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+            </GridLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</HorizontalScrollView>
