@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-   <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="@color/colorPrimary"
-           android:text="@string/saving"
-           android:textStyle="bold"
-           android:textSize="20sp"
-           android:paddingStart="25dp"
-           android:textColor="@color/white"
-           android:padding="5dp"
-           tools:ignore="RtlSymmetry"/>
-   <com.baoyz.swipemenulistview.SwipeMenuListView
-           android:id="@+id/ls_saving"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:divider="#7d595959"
-           android:dividerHeight="1dp">
-   </com.baoyz.swipemenulistview.SwipeMenuListView>
 
-</LinearLayout>
+    <TextView
+            android:id="@+id/tv_saving"
+            android:text="@string/saving"
+            style="@style/header_alert_dialog"
+            android:layout_alignParentTop="true"/>
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/ls_saving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_saving"
+            android:divider="#7d595959"
+            android:dividerHeight="1dp">
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
+
+</RelativeLayout>

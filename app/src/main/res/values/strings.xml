@@ -63,6 +63,9 @@
     <string name="matrix_u">Matrix U:</string>
     <string name="separate_lu">Saparation LU</string>
     <string name="here_are_two_matrices_l_u">Here are two matrices(L and U)!</string>
+    <string name="text_matrix_l">Matrix L</string>
+    <string name="text_matrix_u">Matrix U</string>
+    <string name="text_select_matrix">Select Matrix</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
