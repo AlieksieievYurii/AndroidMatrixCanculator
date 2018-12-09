@@ -110,7 +110,7 @@ public class InversionMatrix {
     }
 
     private static double round(double number) {
-        return (double) Math.round(number * 10d) / 10d;
+        return (double) Math.round(number * 100d) / 100d;
     }
 
 

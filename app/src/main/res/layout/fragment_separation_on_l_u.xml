@@ -114,6 +114,7 @@
                     android:layout_below="@id/hsv_matrix_a_b"
                     android:layout_centerHorizontal="true">
 
+
                 <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -132,18 +133,19 @@
                             android:textAlignment="center"
                             android:padding="10dp"
                             android:textColor="@color/red"
-                            android:visibility="gone"/>
+                            android:visibility="gone"
+                            android:layout_gravity="center"/>
 
                     <LinearLayout
                             android:id="@+id/ln_result"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="invisible">
 
                         <RelativeLayout
                                 android:id="@+id/rl_matrix_l"
                                 style="@style/matrix_result"
-                                android:visibility="visible"
                                 android:layout_marginBottom="0dp">
 
                             <TextView
@@ -169,7 +171,6 @@
                         <RelativeLayout
                                 android:id="@+id/rl_matrix_u"
                                 style="@style/matrix_result"
-                                android:visibility="visible"
                                 android:layout_marginBottom="0dp"
                                 android:layout_marginStart="20dp">
 

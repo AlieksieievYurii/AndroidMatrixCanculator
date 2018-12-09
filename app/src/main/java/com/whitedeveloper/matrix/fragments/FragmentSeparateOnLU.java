@@ -35,6 +35,7 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
     private GridLayout glMatrixU;
 
     private LinearLayout lnResult;
+    private TextView tvDeterminantZero;
 
     private ManagerMatrix managerMatrix;
     private SavedStateInstance savedStateInstance;
@@ -85,6 +86,7 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
         glMatrixU = view.findViewById(R.id.gl_matrix_u_result);
 
         lnResult = view.findViewById(R.id.ln_result);
+        tvDeterminantZero = view.findViewById(R.id.tv_determinant_zero);
 
         managerMatrix = new ManagerMatrix(getContext());
         savedStateInstance = new SavedStateInstance(getContext());
@@ -146,13 +148,19 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
     }
 
     private void calculate() {
+
+
         if (!managerMatrix.allIsFill(glMatrix, TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix)) {
             Toast.makeText(getContext(), R.string.text_warming_fill_up_matrix, Toast.LENGTH_SHORT).show();
             return;
         }
         matrix = managerMatrix.readMatrix(glMatrix, TagKeys.TAG_ID_MATRIX_A, dimensionMatrix, dimensionMatrix);
-
         MatrixOnLU matrixOnLU = new MatrixOnLU(matrix);
+
+        if(!matrixOnLU.calculate()) {
+            tvDeterminantZero.setVisibility(View.VISIBLE);
+            return;
+        }
 
         matrixL = matrixOnLU.getMatrixL();
         matrixU = matrixOnLU.getMatrixU();
@@ -173,6 +181,10 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
         glMatrixU.removeAllViews();
         glMatrixL.removeAllViews();
         lnResult.setVisibility(View.INVISIBLE);
+
+        if(tvDeterminantZero.getVisibility() == View.VISIBLE)
+            tvDeterminantZero.setVisibility(View.GONE);
+
         isCalculated = false;
     }
 
@@ -183,7 +195,7 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        if (lnResult.getVisibility() == View.VISIBLE)
+        if (lnResult.getVisibility() == View.VISIBLE || tvDeterminantZero.getVisibility() == View.VISIBLE)
             removeResult();
     }
 

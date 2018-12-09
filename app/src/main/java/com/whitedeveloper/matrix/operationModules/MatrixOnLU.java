@@ -11,7 +11,7 @@ public class MatrixOnLU {
         dimension = matrix.length;
         matrixL = new double[dimension][dimension];
         matrixU = new double[dimension][dimension];
-        calculate();
+
     }
 
     public double[][] getMatrixL() {
@@ -22,7 +22,17 @@ public class MatrixOnLU {
         return InversionMatrix.roundMatrix(matrixU);
     }
 
-    private void calculate() {
+    public boolean calculate()
+    {
+        DeterminantMatrix determinantMatrix = new DeterminantMatrix(matrix);
+        if(determinantMatrix.countDeterminant() != 0)
+        {
+            run();
+            return true;
+        }else return false;
+    }
+
+    private void run() {
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 if (j < i)
