@@ -88,7 +88,7 @@ public class FragmentMultiplicationMatrixByNumber extends Fragment implements
         spCountRowsMatrix.setSelection(savedStateInstance.getSpRowsMatrixAPosition());
         spCountColumnsMatrix.setSelection(savedStateInstance.getSpColumnsMatrixAPosition());
 
-        edtNumberK.setText(String.valueOf(savedStateInstance.getK()));
+        edtNumberK.setText(savedStateInstance.getK());
 
         bufferRowsMatrix = Integer.parseInt((String) spCountRowsMatrix.getSelectedItem());
         bufferColumnsMatrix = Integer.parseInt((String) spCountColumnsMatrix.getSelectedItem());
@@ -321,7 +321,7 @@ public class FragmentMultiplicationMatrixByNumber extends Fragment implements
                     .setSpColumnsMatrixAPosition(spCountColumnsMatrix.getSelectedItemPosition())
                     .setJsonObjectMatrixA(managerMatrix.getJsonMatrix(glMatrix, TAG_ID_MATRIX_A, rowsMatrix, columnsMatrix))
                     .setAction(Action.MULTIPLICATION_BY_NUMBER)
-                    .setK(Integer.parseInt(edtNumberK.getText().toString().equals("") ? "0" : edtNumberK.getText().toString()))
+                    .setK(edtNumberK.getText().toString())
                     .setCalculated(isCalculated);
 
             savingStateInstance.commit();

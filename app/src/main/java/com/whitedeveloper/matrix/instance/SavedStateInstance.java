@@ -14,7 +14,7 @@ public class SavedStateInstance {
     private int spColumnsMatrixAPosition = 0;
     private int spColumnsMatrixBPosition = 0;
     private int spDimensionMatrix = 0;
-    private double k;//This this for multiplication matrix by a number
+    private String k;//This this for multiplication matrix by a number
 
 
     private JSONObject jsonObjectMatrixA;
@@ -82,7 +82,7 @@ public class SavedStateInstance {
         return jsonObjectMatrixB;
     }
 
-    public double getK() {
+    public String getK() {
         return k;
     }
 
@@ -149,7 +149,7 @@ public class SavedStateInstance {
         spRowsMatrixAPosition = jsonObject.getInt(TagKeys.KEY_SHARED_rows_matrix_a);
         spColumnsMatrixAPosition = jsonObject.getInt(TagKeys.KEY_SHARED_columns_matrix_a);
         jsonObjectMatrixA = new JSONObject(jsonObject.getString(TagKeys.KEY_SHARED_MATRIX_A));
-        k = jsonObject.getDouble(TagKeys.KEY_SHARED_K);
+        k = jsonObject.getString(TagKeys.KEY_SHARED_K);
         isCalculated = jsonObject.getBoolean(TagKeys.KEY_SHARED_IS_CALCULATED);
 
     }

@@ -18,7 +18,7 @@ public class SavingStateInstance {
     private int spColumnsMatrixBPosition = 0;
 
     private int spDimensionMatrix = 0;
-    private int k;//This this for multiplication matrix by a number
+    private String k;//This this for multiplication matrix by a number
 
     private JSONObject jsonObjectMatrixA;
     private JSONObject jsonObjectMatrixB;
@@ -54,7 +54,7 @@ public class SavingStateInstance {
         return this;
     }
 
-    public SavingStateInstance setK(int k) {
+    public SavingStateInstance setK(String k) {
         this.k = k;
         return this;
     }
