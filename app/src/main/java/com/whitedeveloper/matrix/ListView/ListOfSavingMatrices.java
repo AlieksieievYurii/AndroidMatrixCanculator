@@ -1,10 +1,9 @@
 package com.whitedeveloper.matrix.ListView;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -16,7 +15,7 @@ import com.whitedeveloper.matrix.tags.TagKeys;
 import java.util.ArrayList;
 
 
-public class ListOfSavingMatrices extends Dialog {
+public class ListOfSavingMatrices extends AlertDialog {
 
     public interface CallBack {
         void selectedItem(String nameSaving);

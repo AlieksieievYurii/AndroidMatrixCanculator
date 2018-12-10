@@ -1,6 +1,6 @@
 package com.whitedeveloper.matrix.alerts;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.whitedeveloper.matrix.R;
 import com.whitedeveloper.matrix.instance.SavingInstance;
 
-public class AlertDialogSave extends Dialog {
+public class AlertDialogSave extends AlertDialog {
     public interface CallBackFromAlertDialogSave {
         void callBack(String name);
     }
