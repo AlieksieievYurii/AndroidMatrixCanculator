@@ -2,7 +2,6 @@ package com.whitedeveloper.matrix.instance;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.tags.TagKeys;
 import org.json.JSONException;
