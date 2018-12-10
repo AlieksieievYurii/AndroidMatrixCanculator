@@ -3,13 +3,14 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+        android:scrollbars="none">
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:paddingBottom="100dp">
+            android:paddingBottom="20dp">
         <HorizontalScrollView
                 android:id="@+id/hsv_matrix"
                 android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
                 style="@style/matrix"
                 android:layout_below="@id/hsv_matrix"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                >
 
             <TextView
                     android:id="@+id/tv_matrix_result"

@@ -3,17 +3,24 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+        <HorizontalScrollView
+                android:id="@+id/hsv_matrix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:scrollbars="none">
+
         <LinearLayout
                 android:id="@+id/ln_matrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
                 android:layout_marginTop="10dp">
@@ -38,12 +45,14 @@
 
             </LinearLayout>
         </LinearLayout>
+        </HorizontalScrollView>
 
         <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ln_matrix"
-                android:layout_centerHorizontal="true">
+                android:layout_below="@id/hsv_matrix"
+                android:layout_centerHorizontal="true"
+                android:scrollbars="none">
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -58,7 +67,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        tools:ignore="UselessParent">
+                        tools:ignore="UselessParent"
+                        android:paddingBottom="20dp">
 
                     <RelativeLayout
                             android:id="@+id/rl_matrix_l"

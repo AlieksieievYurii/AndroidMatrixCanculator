@@ -3,13 +3,15 @@
                       xmlns:tools="http://schemas.android.com/tools"
                       android:orientation="vertical"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+                      android:layout_height="wrap_content"
+                      android:paddingTop="20dp"
+                      android:paddingBottom="20dp"
+                      android:scrollbars="none">
 
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:paddingEnd="10dp"
             android:paddingStart="10dp">
 
