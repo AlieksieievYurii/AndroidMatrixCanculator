@@ -112,7 +112,7 @@ public class ActivityShowSavedMatrix extends AppCompatActivity {
     private void init()
     {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        //toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         setSupportActionBar(toolbar);
 
         try {

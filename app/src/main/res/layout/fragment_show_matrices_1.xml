@@ -2,13 +2,15 @@
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                       android:orientation="vertical"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+                      android:layout_height="wrap_content"
+                      android:paddingBottom="20dp"
+                      android:scrollbars="none"
+                      android:paddingTop="20dp">
 
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:paddingEnd="10dp"
             android:paddingStart="10dp">
 

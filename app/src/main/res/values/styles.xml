@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="matrix">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

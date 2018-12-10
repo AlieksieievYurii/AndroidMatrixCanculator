@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".activities.ActivityAbout">
         </activity>
-        <activity android:name=".activities.ActivityShowSavedMatrix">
+        <activity android:name=".activities.ActivityShowSavedMatrix"
+                android:theme="@style/CustomDialog">
         </activity>
     </application>
 
