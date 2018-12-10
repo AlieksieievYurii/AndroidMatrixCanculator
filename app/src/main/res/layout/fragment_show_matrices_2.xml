@@ -3,7 +3,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        android:minWidth="300dp">
+        android:minWidth="300dp"
+        android:scrollbars="none">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -13,7 +14,8 @@
                 android:id="@+id/hsv_matrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:scrollbars="none">
 
             <LinearLayout
                     android:id="@+id/ln_matrix"
@@ -59,7 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_action"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:scrollbars="none">
 
             <LinearLayout
                     android:layout_width="wrap_content"
