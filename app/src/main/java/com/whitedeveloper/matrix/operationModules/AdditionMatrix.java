@@ -20,18 +20,9 @@ public class AdditionMatrix {
             for (int j = 0; j < columnsMatrix; j++)
                 matrixResult[i][j] = matrixA[i][j] + matrixB[i][j];
 
-        return matrixResult;
+        return InversionMatrix.roundMatrix(matrixResult);
     }
 
-    public boolean isAvailableForAddition() {
-        int rowMatrixA = matrixA.length;
-        int columnsMatrixA = matrixA[0].length;
-
-        int rowMatrixB = matrixB.length;
-        int columnsMatrixB = matrixB[0].length;
-
-        return (rowMatrixA == rowMatrixB || columnsMatrixA == columnsMatrixB);
-    }
 
     public static double[][] doNegative(double[][] matrix) {
 
