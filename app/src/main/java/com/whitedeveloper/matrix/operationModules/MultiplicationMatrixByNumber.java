@@ -16,6 +16,6 @@ public class MultiplicationMatrixByNumber
             for(int j = 0; j < m[i].length; j++)
                 m[i][j] =  matrix[i][j] * k;
 
-        return m;
+        return InversionMatrix.roundMatrix(m);
     }
 }
