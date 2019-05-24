@@ -7,7 +7,7 @@ This app does difference operation on Matrix:
 * Determinant
 * Inversion
 
-## I dedicated this program to a wonderful teacher Krzysztof dems(Teacher of higher mathematics)
+## I dedicated this program to a wonderful teacher Krzysztof Dems(Teacher of higher mathematics)
 
 <img src="gitRes/photo_1.jpg" width=200>&nbsp;
 <img src="gitRes/photo_2.jpg" width=200>&nbsp;
