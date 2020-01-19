@@ -150,6 +150,14 @@
                             android:layout_toEndOf="@id/tv_action_symbol"
                             android:layout_centerVertical="true">
 
+                        <Button
+                            android:id="@+id/btn_insert_matrix"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:textSize="10sp"
+                            android:text="@string/insert"
+                            tools:ignore="SmallSp" />
+
                         <TextView
                                 android:id="@id/tv_matrix"
                                 android:layout_width="match_parent"
