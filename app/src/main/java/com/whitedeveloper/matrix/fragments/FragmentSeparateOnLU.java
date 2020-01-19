@@ -129,13 +129,12 @@ public class FragmentSeparateOnLU extends Fragment implements AdapterView.OnItem
             }
         };
 
-        final TextView tvMatrix = view.findViewById(R.id.tv_matrix);
-        tvMatrix.setOnLongClickListener(new View.OnLongClickListener() {
+        final Button btnInsertMatrix = view.findViewById(R.id.btn_insert_matrix);
+        btnInsertMatrix.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                SavingHelper savingHelper = new SavingHelper(getContext());
+            public void onClick(View view) {
+                final SavingHelper savingHelper = new SavingHelper(getContext());
                 savingHelper.callAlertListSavingForMatrix(setMatrix);
-                return true;
             }
         });
     }

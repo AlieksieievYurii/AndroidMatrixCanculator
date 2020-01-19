@@ -28,7 +28,7 @@ import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
 public class FragmentMultiplicationMatrixByNumber extends Fragment implements
         AdapterView.OnItemSelectedListener,
         TextWatcher,
-        OnPressSaveResultListener, View.OnLongClickListener {
+        OnPressSaveResultListener {
     private View view;
 
     private Spinner spCountRowsMatrix;
@@ -107,8 +107,13 @@ public class FragmentMultiplicationMatrixByNumber extends Fragment implements
 
         savingHelper = new SavingHelper(getContext());
 
-        final TextView tvMatrixA = view.findViewById(R.id.tv_matrix);
-        tvMatrixA.setOnLongClickListener(this);
+        final Button btnInsertMatrix = view.findViewById(R.id.btn_insert_matrix);
+        btnInsertMatrix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savingHelper.callAlertListSavingForMatrix(setMatrix);
+            }
+        });
 
         rlResult = view.findViewById(R.id.rl_result);
 
@@ -299,16 +304,6 @@ public class FragmentMultiplicationMatrixByNumber extends Fragment implements
             }
         });
         alertDialogSave.show();
-    }
-
-    @Override
-    public boolean onLongClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_matrix:
-                savingHelper.callAlertListSavingForMatrix(setMatrix);
-                break;
-        }
-        return true;
     }
 
     @Override
