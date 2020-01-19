@@ -69,6 +69,7 @@
     <string name="text_author_1">Yurii Alieksieiev (30643)</string>
     <string name="text_footer">WSINF Lodz 2020</string>
     <string name="text_author_2">Oleg Horbatiuk (30715)</string>
+    <string name="insert">Insert</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
