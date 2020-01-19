@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import com.whitedeveloper.matrix.*;
 import com.whitedeveloper.matrix.ListView.SavingHelper;
 import com.whitedeveloper.matrix.activities.OnPressSaveResultListener;
@@ -19,6 +20,7 @@ import com.whitedeveloper.matrix.instance.SavingStateInstance;
 import com.whitedeveloper.matrix.operationModules.MultiplicationMatrix;
 import com.whitedeveloper.matrix.tags.Action;
 import com.whitedeveloper.matrix.tags.TagKeys;
+
 import org.json.JSONException;
 
 import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_A;
@@ -27,7 +29,7 @@ import static com.whitedeveloper.matrix.tags.TagKeys.TAG_ID_MATRIX_B;
 public class FragmentMultiplicationMatrix extends Fragment implements
         AdapterView.OnItemSelectedListener,
         TextWatcher,
-        OnPressSaveResultListener, View.OnLongClickListener {
+        OnPressSaveResultListener {
     private View view;
 
     private Spinner spCountRowsMatrixA;
@@ -113,10 +115,21 @@ public class FragmentMultiplicationMatrix extends Fragment implements
 
         savingHelper = new SavingHelper(getContext());
 
-        final TextView tvMatrixA = view.findViewById(R.id.tv_matrix_a);
-        final TextView tvMatrixB = view.findViewById(R.id.tv_matrix_b);
-        tvMatrixA.setOnLongClickListener(this);
-        tvMatrixB.setOnLongClickListener(this);
+        final Button btnInsertMatrixA = view.findViewById(R.id.btn_insert_matrix_a);
+        btnInsertMatrixA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savingHelper.callAlertListSavingForMatrix(setMatrixA);
+            }
+        });
+
+        final Button btnInsertMatrixB = view.findViewById(R.id.btn_insert_matrix_b);
+        btnInsertMatrixB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savingHelper.callAlertListSavingForMatrix(setMatrixB);
+            }
+        });
 
         rlResult = view.findViewById(R.id.rl_result);
 
@@ -341,19 +354,6 @@ public class FragmentMultiplicationMatrix extends Fragment implements
             }
         });
         alertDialogSave.show();
-    }
-
-    @Override
-    public boolean onLongClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_matrix_a:
-                savingHelper.callAlertListSavingForMatrix(setMatrixA);
-                break;
-            case R.id.tv_matrix_b:
-                savingHelper.callAlertListSavingForMatrix(setMatrixB);
-                break;
-        }
-        return true;
     }
 
     @Override
