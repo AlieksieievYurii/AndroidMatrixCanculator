@@ -30,8 +30,7 @@
     <string name="question_exit">Do you want to exit?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
-    <string name="special_for_dems">Special for Krzysztof Dems</string>
+    <string name="special_for">Special for Dariusz Doliwa</string>
     <string name="the_app_matrix">The program Matrix</string>
     <string name="clear">CLEAR</string>
     <string name="text_save_result">Save result</string>
@@ -67,6 +66,9 @@
     <string name="text_select_matrix">Select Matrix</string>
     <string name="multiplication_matrix_by_number">Multiplication by number</string>
     <string name="text_warming_enter_number_k">Enter number K!</string>
+    <string name="text_author_1">Yurii Alieksieiev (30643)</string>
+    <string name="text_footer">WSINF Lodz 2020</string>
+    <string name="text_author_2">Oleg Horbatiuk (30715)</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>

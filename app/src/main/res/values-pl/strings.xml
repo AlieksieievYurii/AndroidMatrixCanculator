@@ -30,8 +30,7 @@
     <string name="question_exit">Czy chcesz wyjść?</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
-    <string name="text_author">Yurii Alieksieiev WSINF Lodz 2018</string>
-    <string name="special_for_dems">Specjalnie dla Krzysztofa Demsa</string>
+    <string name="special_for">Specjalnie dla Dariusz Doliwa</string>
     <string name="the_app_matrix">Program obliczanie Macierzy</string>
     <string name="clear">USUN</string>
     <string name="text_save_result">Zapisz wynik</string>
@@ -67,6 +66,9 @@
     <string name="text_select_matrix">Wybierz Matrix</string>
     <string name="multiplication_matrix_by_number">Mnożenie przez liczbę</string>
     <string name="text_warming_enter_number_k">Wprowadź liczbę K!</string>
+    <string name="text_author_1">Yurii Alieksieiev (30643)</string>
+    <string name="text_footer">WSINF Lodz 2020</string>
+    <string name="text_author_2">Oleg Horbatiuk (30715)</string>
 
     <string-array name="numbers_for_spinner">
         <item>2</item>
