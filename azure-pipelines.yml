@@ -19,10 +19,15 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- script: |
-    ls
-    help
-
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: 'print("Hello Yurii")'
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: 'print("Hello Yurii")'
+    
 - script: |
     echo Fail something
     exit 1
