@@ -22,4 +22,6 @@ steps:
 - script: |
     echo Fail something
     exit 1
+  continueOnError: False
+  failOnStderr: True
   displayName: 'Fail'
