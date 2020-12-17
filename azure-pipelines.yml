@@ -9,7 +9,8 @@ trigger:
 
 pool:
   name: 'test'
-  demands: agent.name -equals 'my_computer'
+  demands: 
+  - agent.name -equals 'my_computer'
 
 steps:
 - script: echo Hello, world!
