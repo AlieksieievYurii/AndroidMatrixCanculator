@@ -21,3 +21,5 @@ This app does difference operation on Matrix:
 
 I'm changing the document to create a commit to trigger the pipeline on Azure DevOps.
 Change one more time.
+
+[![Build Status](https://dev.azure.com/alieksieievyurii/AzureDevOpsProject/_apis/build/status/SandboxPipeline?branchName=master)](https://dev.azure.com/alieksieievyurii/AzureDevOpsProject/_build/latest?definitionId=1&branchName=master)
