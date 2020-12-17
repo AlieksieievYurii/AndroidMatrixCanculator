@@ -9,7 +9,6 @@ trigger:
 
 pool:
   name: 'test'
-  demands: True
 
 steps:
 - script: echo Hello, world!
