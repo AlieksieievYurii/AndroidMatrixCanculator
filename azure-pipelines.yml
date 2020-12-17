@@ -8,7 +8,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 steps:
 - script: echo Hello, world!
@@ -20,9 +20,13 @@ steps:
   displayName: 'Run a multi-line script'
 
 - script: |
+    ls
+    help
+
+- script: |
     echo Fail something
     exit 1
   continueOnError: False
-  enabled: True
+  enabled: False
   failOnStderr: True
   displayName: 'Fail'
