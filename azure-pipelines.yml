@@ -23,6 +23,6 @@ steps:
     echo Fail something
     exit 1
   continueOnError: False
-  enabled: False
+  enabled: True
   failOnStderr: True
   displayName: 'Fail'
