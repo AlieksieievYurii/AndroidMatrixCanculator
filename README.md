@@ -18,3 +18,5 @@ This app does difference operation on Matrix:
 <img src="gitRes/photo_7.jpg" width=200>&nbsp;
 
 ## <a href="https://github.com/AlieksieievYurii/AndroidMatrixCanculator/tree/master/ApkFIle">Apk file</a>
+
+I'm changing the document to create a commit to trigger the pipeline on Azure DevOps
