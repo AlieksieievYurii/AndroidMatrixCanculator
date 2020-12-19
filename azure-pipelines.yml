@@ -5,7 +5,6 @@
 
 variables:
   pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
-
     
 
 trigger:
@@ -53,15 +52,14 @@ stages:
           - script: echo Dynamic Tests
   
   - stage: StaticTests
-    pool: 
-      vmImage: 'macos-10.14'
+    pool: 'test'
     dependsOn: BuildSoftware
     jobs:
       - job: RunStaticTests
         steps:
+          - checkout: git://AzureDevOpsProject/BankMVC
           - script: |
               echo Static Tests
-              exit 1
       - job: UnitTests
         dependsOn: RunStaticTests
         steps:
@@ -72,6 +70,7 @@ stages:
       vmImage: 'Ubuntu-16.04'
     dependsOn:
       - DynamicTests
+      - StaticTests
     jobs:
       - job: 
         steps:
