@@ -21,11 +21,13 @@ steps:
 
 - task: PythonScript@0
   inputs:
+    pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
   displayName: Test Script 1
 - task: PythonScript@0
   inputs:
+    pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
   displayName: Test Script 2
