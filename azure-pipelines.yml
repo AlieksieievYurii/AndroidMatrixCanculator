@@ -9,7 +9,7 @@ variables:
 parameters:
   - name: SendEmail
     type: boolean
-    default: false
+    default: true
 
 trigger:
 - main
@@ -78,6 +78,7 @@ stages:
       - job: 
         steps:
           - script: echo Deploying...
+          - script: exit 1
   
   - stage: SendEmail
     jobs:
