@@ -41,7 +41,8 @@ stages:
           - script: echo Building the project
   
   - stage: DynamicTests
-    pool: 'Ubuntu-16.04'
+    pool: 
+      vmImage: 'Ubuntu-16.04'
     dependsOn: BuildSoftware
     jobs:
       - job: FlashDevices
@@ -52,7 +53,8 @@ stages:
           - script: echo Dynamic Tests
   
   - stage: StaticTests
-    pool: 'macos-10.14'
+    pool: 
+      vmImage: 'macos-10.14'
     dependsOn: BuildSoftware
     jobs:
       - job: RunStaticTests
