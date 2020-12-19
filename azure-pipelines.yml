@@ -22,8 +22,8 @@ pool:
 stages:
  - stage: FirstStage
    jobs:
-     - job: JobAFromFirstStage
-       steps:
+      - job: JobAFromFirstStage
+        steps:
          - task: PythonScript@0
            inputs:
             scriptSource: 'inline'
@@ -31,7 +31,18 @@ stages:
               my_list = [1,2,3,4,5]
               print(str([a * a for a in my_list]))
             pythonInterpreter: '${{variables.pythonInterpreter}}'
-     - job: JobBFromFirstStage
-       steps:
-         - script: echo Job B
+      - job: JobBFromFirstStage
+        steps:
+          - script: echo Job B
+  
+ - stage: SecondStage
+   jobs:
+      - job: JobAFromSecondStage
+        steps:
+          - script: echo LOLLLLLOOO
+            displayName: Printing LOL
+      - job: JobBFromSecondStage
+        steps:
+          - script: echo kek
+            displayName: Printing KEK
     
