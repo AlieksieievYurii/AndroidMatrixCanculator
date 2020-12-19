@@ -63,3 +63,14 @@ stages:
       - job: UnitTests
         steps:
           - script: echo Unit Tests
+  
+  - stage: Deploy
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    dependsOn:
+      - StaticTests
+      - DynamicTests
+    jobs:
+      - job: 
+        steps:
+          - script: echo Deploying...
