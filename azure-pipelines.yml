@@ -36,6 +36,7 @@ stages:
           - script: echo Job B
   
  - stage: SecondStage
+   dependsOn: []
    jobs:
       - job: JobAFromSecondStage
         steps:
