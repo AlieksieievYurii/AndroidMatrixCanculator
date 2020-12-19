@@ -63,6 +63,7 @@ stages:
               echo Static Tests
               exit 1
       - job: UnitTests
+        dependsOn: RunStaticTests
         steps:
           - script: echo Unit Tests
   
@@ -70,7 +71,6 @@ stages:
     pool:
       vmImage: 'Ubuntu-16.04'
     dependsOn:
-      - StaticTests
       - DynamicTests
     jobs:
       - job: 
