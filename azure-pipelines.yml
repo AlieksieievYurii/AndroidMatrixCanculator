@@ -6,6 +6,12 @@
 variables:
   pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
 
+parameters:
+  - name: runTest
+    type: boolean
+    default: false
+    
+
 trigger:
 - main
 - master
@@ -13,24 +19,19 @@ trigger:
 pool:
   name: 'test'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- task: PythonScript@0
-  inputs:
-    pythonInterpreter: ${{variables.pythonInterpreter}}
-    scriptSource: 'inline'
-    script: 'print("Hello Yurii")'
-  displayName: Test Script 1
-- task: PythonScript@0
-  inputs:
-    pythonInterpreter: ${{variables.pythonInterpreter}}
-    scriptSource: 'inline'
-    script: 'print("Hello Yurii")'
-  displayName: Test Script 2
+stages:
+ - stage: FirstStage
+   jobs:
+     - job: JobAFromFirstStage
+       steps:
+         - task: PythonScript@0
+           inputs:
+            scriptSource: 'inline'
+            script: |
+              my_list = [1,2,3,4,5]
+              print(str([a * a for a in my_list]))
+            pythonInterpreter: '${{variables.pythonInterpreter}}'
+     - job: JobBFromFirstStage
+       steps:
+         - script: echo Job B
+    
