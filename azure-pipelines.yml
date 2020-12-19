@@ -59,7 +59,9 @@ stages:
     jobs:
       - job: RunStaticTests
         steps:
-          - script: echo Static Tests
+          - script: |
+              echo Static Tests
+              exit 1
       - job: UnitTests
         steps:
           - script: echo Unit Tests
