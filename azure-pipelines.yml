@@ -6,10 +6,6 @@
 variables:
   pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
 
-parameters:
-  - name: runTest
-    type: boolean
-    default: false
     
 
 trigger:
@@ -20,30 +16,48 @@ pool:
   name: 'test'
 
 stages:
- - stage: FirstStage
-   jobs:
-      - job: JobAFromFirstStage
+  - stage: PreperationEnv
+    jobs:
+      - job: PreperatePythonEnv
         steps:
-         - task: PythonScript@0
-           inputs:
-            scriptSource: 'inline'
-            script: |
-              my_list = [1,2,3,4,5]
-              print(str([a * a for a in my_list]))
-            pythonInterpreter: '${{variables.pythonInterpreter}}'
-      - job: JobBFromFirstStage
-        steps:
-          - script: echo Job B
+          - script: echo Preparation Python env
   
- - stage: SecondStage
-   dependsOn: []
-   jobs:
-      - job: JobAFromSecondStage
+  - stage: DownloadDependencies
+    jobs:
+      - job: DownloadSDK
         steps:
-          - script: echo LOLLLLLOOO
-            displayName: Printing LOL
-      - job: JobBFromSecondStage
+          - script: echo Downloading SDK
+      - job: DownloadGradle
         steps:
-          - script: echo kek
-            displayName: Printing KEK
-    
+          - script: echo Downlading Gradle
+      - job: BuildGradle
+        steps:
+          - script: echo Buidl gradle
+
+  - stage: BuildSoftware
+    jobs:
+      - job: 
+        steps:
+          - script: echo Building the project
+  
+  - stage: DynamicTests
+    pool: 'Ubuntu-16.04'
+    dependsOn: BuildSoftware
+    jobs:
+      - job: FlashDevices
+        steps:
+          - script: echo Flashing the devices
+      - job: RunDynamicTests
+        steps:
+          - script: echo Dynamic Tests
+  
+  - stage: StaticTests
+    pool: 'macos-10.14'
+    dependsOn: BuildSoftware
+    jobs:
+      - job: RunStaticTests
+        steps:
+          - script: echo Static Tests
+      - job: UnitTests
+        steps:
+          - script: echo Unit Tests
