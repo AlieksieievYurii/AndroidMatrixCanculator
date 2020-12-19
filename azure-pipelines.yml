@@ -3,6 +3,9 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
+
 trigger:
 - main
 - master
@@ -21,13 +24,13 @@ steps:
 
 - task: PythonScript@0
   inputs:
-    pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
+    pythonInterpreter: ${{variables.pythonInterpreter}}
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
   displayName: Test Script 1
 - task: PythonScript@0
   inputs:
-    pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
+    pythonInterpreter: ${{variables.pythonInterpreter}}
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
   displayName: Test Script 2
