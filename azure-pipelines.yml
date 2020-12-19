@@ -23,15 +23,9 @@ steps:
   inputs:
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
+  displayName: Test Script 1
 - task: PythonScript@0
   inputs:
     scriptSource: 'inline'
     script: 'print("Hello Yurii")'
-    
-- script: |
-    echo Fail something
-    exit 1
-  continueOnError: False
-  enabled: False
-  failOnStderr: True
-  displayName: 'Fail'
+  displayName: Test Script 2
