@@ -5,7 +5,11 @@
 
 variables:
   pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
-    
+
+parameters:
+  - name: SendEmail
+    type: boolean
+    default: false
 
 trigger:
 - main
@@ -76,11 +80,8 @@ stages:
           - script: echo Deploying...
   
   - stage: SendEmail
-    dependsOn:
-      - DynamicTests
-      - StaticTests
     jobs:
       - job: 
         steps:
           - script: echo Sending emails...
-    condition: succeeded('StaticTests')
+    condition: eq('${{parameters.SendEmail}}', true)
