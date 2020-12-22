@@ -3,9 +3,6 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-  pythonInterpreter: C:\Users\newgo\Desktop\ExperimentApi\env\Scripts\python.exe
-
 parameters:
   - name: SendEmail
     type: boolean
@@ -18,71 +15,18 @@ trigger:
 pool:
   name: 'test'
 
-stages:
-  - stage: PreperationEnv
-    jobs:
-      - job: PreperatePythonEnv
-        steps:
-          - script: echo Preparation Python env
-  
-  - stage: DownloadDependencies
-    jobs:
-      - job: DownloadSDK
-        steps:
-          - script: echo Downloading SDK
-      - job: DownloadGradle
-        steps:
-          - script: echo Downlading Gradle
-      - job: BuildGradle
-        steps:
-          - script: echo Buidl gradle
+variables:
+- name: one
+  value: initialValue 
 
-  - stage: BuildSoftware
-    jobs:
-      - job: 
-        steps:
-          - script: echo Building the project
-  
-  - stage: DynamicTests
-    pool: 
-      vmImage: 'Ubuntu-16.04'
-    dependsOn: BuildSoftware
-    jobs:
-      - job: FlashDevices
-        steps:
-          - script: echo Flashing the devices
-      - job: RunDynamicTests
-        steps:
-          - script: echo Dynamic Tests
-  
-  - stage: StaticTests
-    pool: 'test'
-    dependsOn: BuildSoftware
-    jobs:
-      - job: RunStaticTests
-        steps:
-          - script: |
-              echo Static Tests
-      - job: UnitTests
-        dependsOn: RunStaticTests
-        steps:
-          - script: echo Unit Tests
-  
-  - stage: Deploy
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    dependsOn:
-      - DynamicTests
-      - StaticTests
-    jobs:
-      - job: 
-        steps:
-          - script: echo Deploying...
-          - script: exit 1
-  
-  - stage: SendEmail
-    jobs:
-      - job: 
-        steps:
-          - script: echo Sending emails...
-    condition: eq('${{parameters.SendEmail}}', true)
+steps:
+  - script: |
+      echo ${{ variables.one }} # outputs initialValue
+      echo $(one)
+    displayName: First variable pass
+  - bash: echo '##vso[task.setvariable variable=one]secondValue'
+    displayName: Set new variable value
+  - script: |
+      echo ${{ variables.one }} # outputs initialValue
+      echo $(one) # outputs secondValue
+    displayName: Second variable pass
